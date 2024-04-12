@@ -29,12 +29,15 @@ const Login = () => {
   return (
     <div className='flex flex-col pt-5 pr-4 pb-20 pl-15 bg-white rounded-[29px] max-md:pl-5'>
       <div className='flex gap-5 justify-between ml-12 text-xl font-medium text-slate-900 max-md:flex-wrap max-md:max-w-full'>
-        <img
-          loading='lazy'
-          src='https://cdn.builder.io/api/v1/image/assets/TEMP/185cf0d94db80904890925432d177a31775474e254651792c34dc0deb43e85a8?'
-          className='shrink-0 max-w-full aspect-[3.33] w-[166px]'
-          onClick={handleLoginToggle}
-        />
+        <Link to='/'>
+          <img
+            loading='lazy'
+            src='https://cdn.builder.io/api/v1/image/assets/TEMP/185cf0d94db80904890925432d177a31775474e254651792c34dc0deb43e85a8?'
+            className='shrink-0 max-w-full aspect-[3.33] w-[166px]'
+            onClick={handleLoginToggle}
+          />
+        </Link>
+
         <div className='flex gap-5 justify-between items-center self-start max-md:flex-wrap'>
           {/* <img
             loading="lazy"
@@ -50,10 +53,7 @@ const Login = () => {
             className='custom-dropdown'
           />
 
-          <Link
-            className='flex flex-col flex-1 justify-center self-stretch font-semibold text-sky-400 whitespace-nowrap'
-            to='/signup'
-          >
+          <Link className='flex flex-col flex-1 justify-center self-stretch font-semibold text-sky-400 whitespace-nowrap'>
             <Link
               className='justify-center px-11 py-3 bg-white border-2 border-sky-400 border-solid rounded-[31px] max-md:px-5'
               to='/signup'
