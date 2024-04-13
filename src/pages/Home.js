@@ -1,11 +1,7 @@
-import React from 'react'
+import React from 'react';
 
 function Home() {
-  return (
-    <div>
-This is home
-    </div>
-  )
+  return <div>THIS IS HOME FROM DEV Branch</div>;
 }
 
-export default Home
+export default Home;
