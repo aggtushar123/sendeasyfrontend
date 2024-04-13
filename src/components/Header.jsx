@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import logo from './assets/Group.png';
 import { useSelector, useDispatch } from 'react-redux';
 import { toggleView } from '../features/headerSlice';
+import Dropdown from './Dropdown';
 
 const Header = () => {
   // const ViewHeader = useSelector((state) => state.header.value);
@@ -36,12 +37,8 @@ const Header = () => {
       </div>
       <div className='flex gap-5 justify-between items-center my-auto text-slate-900 max-md:flex-wrap'>
         <div className='flex gap-2 self-stretch py-0.5 my-auto capitalize whitespace-nowrap'>
-          <div className='grow'>Create a listing</div>
-          <img
-            loading='lazy'
-            src='https://cdn.builder.io/api/v1/image/assets/TEMP/96b7625a7246ab9eff90b36014d3446f441392a4fbe176490583a9492bc4b46f?'
-            className='shrink-0 my-auto aspect-[1.79] w-[9px]'
-          />
+          <Dropdown/>
+          
         </div>
         <Link className='self-stretch my-auto' to='/about'>
           About Us
