@@ -2,10 +2,10 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import logo from './assets/Group.png';
 import { useSelector, useDispatch } from 'react-redux';
-import { toggleView } from '../redux/stateManager/counterSlice';
+import { toggleView } from '../features/headerSlice';
 
 const Header = () => {
-  const ViewHeader = useSelector((state) => state.counter.value);
+  // const ViewHeader = useSelector((state) => state.header.value);
   const dispatch = useDispatch();
 
   const handleLoginToggle = () => {

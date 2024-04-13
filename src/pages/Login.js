@@ -6,7 +6,7 @@ import { envelope } from '@heroicons/vue/outline';
 import Dropdown from 'react-dropdown';
 import 'react-dropdown/style.css';
 import { useSelector, useDispatch } from 'react-redux';
-import { toggleView } from '../redux/stateManager/counterSlice';
+import { toggleView } from '../features/headerSlice';
 
 const Login = () => {
   const dispatch = useDispatch();

@@ -12,7 +12,7 @@ import { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
 function App() {
-  const ViewHeader = useSelector((state) => state.counter.value);
+  const ViewHeader = useSelector((state) => state.header.value);
   console.log(ViewHeader);
   return (
     <>

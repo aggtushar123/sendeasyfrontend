@@ -4,8 +4,8 @@ const initialState = {
   value: true,
 };
 
-export const counterSlice = createSlice({
-  name: 'counter',
+export const headerSlice = createSlice({
+  name: 'header',
   initialState,
   reducers: {
     increment: (state) => {
@@ -24,6 +24,6 @@ export const counterSlice = createSlice({
 });
 
 export const { increment, decrement, incrementByAmount, toggleView } =
-  counterSlice.actions;
+  headerSlice.actions;
 
-export default counterSlice.reducer;
+export default headerSlice.reducer;
