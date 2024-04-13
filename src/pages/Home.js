@@ -1,7 +1,7 @@
 import React from 'react';
 
 function Home() {
-  return <div>THIS IS HOME FROM DEV Branch 2</div>;
+  return <div>this is aryansaini branch test </div>;
 }
 
 export default Home;
