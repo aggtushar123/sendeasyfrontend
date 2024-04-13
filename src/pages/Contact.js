@@ -2,6 +2,7 @@ import React from "react";
 import office from '../components/assets/Contact/Office.svg'
 import phone from '../components/assets/Contact/Phone.svg'
 import location from '../components/assets/Contact/Location.svg'
+import Accordion from "../components/Accordian";
 const contact = () => {
   return (
     <div className="flex flex-col items-center pt-8 bg-white rounded-[29px]">
@@ -138,51 +139,9 @@ const contact = () => {
         You've got questions. we've got answers.
       </div>
       <div className="flex flex-col p-8 mt-16 max-w-full bg-gray-100 rounded-xl w-[750px] max-md:px-5 max-md:mt-10">
-        <div className="flex gap-2.5 justify-between text-2xl font-semibold leading-8 text-sky-400 rounded-xl max-md:flex-wrap max-md:max-w-full">
-          <button>How often do you come per month?</button>
-          <img
-            loading="lazy"
-            src="https://cdn.builder.io/api/v1/image/assets/TEMP/b4cf947232c15b3d0223f56683dc6042884844734f5f16d60c52bea9d9bc1175?"
-            className="shrink-0 w-8 aspect-square"
-          />
-        </div>
-        <div className="mt-5 text-base leading-6 text-slate-900 max-md:max-w-full">
-          We aim to come weekly for lawn and yard maintenance, especially in
-          peak growth season. Every yard is unique, which is why we're regularly
-          checking up and keeping notes on your yard so we can best serve you
-          year-round.{" "}
-        </div>
+        <Accordion/>
       </div>
-      <div className="flex flex-col justify-center p-8 mt-8 max-w-full text-2xl font-semibold leading-8 text-sky-400 bg-gray-100 rounded-xl w-[750px] max-md:px-5">
-        <div className="flex gap-2.5 justify-between rounded-xl max-md:flex-wrap max-md:max-w-full">
-          <div>What is your cancellation policy?</div>
-          <img
-            loading="lazy"
-            src="https://cdn.builder.io/api/v1/image/assets/TEMP/8a43208e20f2c102fc949f3be0ca0dbbe2065ddb25c4cf5e357f526646c40598?"
-            className="shrink-0 w-8 aspect-square"
-          />
-        </div>
-      </div>
-      <div className="flex flex-col justify-center p-8 mt-8 max-w-full text-2xl font-semibold leading-8 text-sky-400 whitespace-nowrap bg-gray-100 rounded-xl w-[750px] max-md:px-5">
-        <div className="flex gap-2.5 justify-between rounded-xl max-md:flex-wrap max-md:max-w-full">
-          <div>Title</div>
-          <img
-            loading="lazy"
-            src="https://cdn.builder.io/api/v1/image/assets/TEMP/8a43208e20f2c102fc949f3be0ca0dbbe2065ddb25c4cf5e357f526646c40598?"
-            className="shrink-0 w-8 aspect-square"
-          />
-        </div>
-      </div>
-      <div className="flex flex-col justify-center p-8 mt-8 max-w-full text-2xl font-semibold leading-8 text-sky-400 whitespace-nowrap bg-gray-100 rounded-xl w-[750px] max-md:px-5">
-        <div className="flex gap-2.5 justify-between rounded-xl max-md:flex-wrap max-md:max-w-full">
-          <div>Title</div>
-          <img
-            loading="lazy"
-            src="https://cdn.builder.io/api/v1/image/assets/TEMP/8a43208e20f2c102fc949f3be0ca0dbbe2065ddb25c4cf5e357f526646c40598?"
-            className="shrink-0 w-8 aspect-square"
-          />
-        </div>
-      </div>
+      
       <div className="flex flex-col items-center px-20 mt-32 max-w-full font-semibold text-slate-900 w-[1140px] max-md:px-5 max-md:mt-10">
         <div className="text-xs tracking-wide uppercase">contact us</div>
         <div className="mt-5 text-4xl text-center text-sky-400 max-md:max-w-full">
