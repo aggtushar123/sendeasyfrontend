@@ -17,7 +17,7 @@ const Login = () => {
 
   const handleDropdownChange = (selected) => {
     setSelectedOption(selected.value);
-    navigate(`/${selected.value.toLowerCase().replace(/\s/g, '-')}`);
+    navigate(`/${selected.value.toLowerCase().replace(/\s/g, '')}`);
   };
   const handleLoginToggle = () => {
     dispatch(toggleView());
