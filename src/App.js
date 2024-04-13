@@ -13,7 +13,7 @@ import { useSelector, useDispatch } from 'react-redux';
 
 function App() {
   const ViewHeader = useSelector((state) => state.counter.value);
-  // console.log(ViewHeader);
+  console.log(ViewHeader);
   return (
     <>
       <Router>
