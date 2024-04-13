@@ -1,5 +1,7 @@
-import * as React from "react";
-
+import React from "react";
+import office from '../components/assets/Contact/Office.svg'
+import phone from '../components/assets/Contact/Phone.svg'
+import location from '../components/assets/Contact/Location.svg'
 const contact = () => {
   return (
     <div className="flex flex-col items-center pt-8 bg-white rounded-[29px]">
@@ -9,7 +11,7 @@ const contact = () => {
             <div className="flex flex-col grow items-center text-center rounded-2xl text-slate-900">
               <img
                 loading="lazy"
-                src="https://cdn.builder.io/api/v1/image/assets/TEMP/9164fcf8a09b8f6b078d5e10b21df47ab8738a0c0432d35a6bd7c291b351d572?"
+                src={office}
                 className="w-8 aspect-square"
               />
               <div className="mt-2.5 text-xl font-semibold leading-7">
@@ -25,7 +27,7 @@ const contact = () => {
             <div className="flex flex-col px-20 text-center rounded-2xl text-slate-900 max-md:px-5">
               <img
                 loading="lazy"
-                src="https://cdn.builder.io/api/v1/image/assets/TEMP/650a70c65de8dc7bd5536eafc02fdbd338deaff7aa3b3466decea6796561a2a7?"
+                src={phone}
                 className="self-center w-8 aspect-square"
               />
               <div className="mt-2.5 text-xl font-semibold leading-7 max-md:mr-0.5">
@@ -40,7 +42,7 @@ const contact = () => {
             <div className="flex flex-col items-center px-8 text-center whitespace-nowrap rounded-2xl text-slate-900 max-md:px-5">
               <img
                 loading="lazy"
-                src="https://cdn.builder.io/api/v1/image/assets/TEMP/23433e7d6dbdd14d434dc3d57cac055f1d8d493e1dbe7e25d918f779f70a6406?"
+                src={location}
                 className="w-8 aspect-square"
               />
               <div className="mt-2.5 text-xl font-semibold leading-7">
@@ -137,7 +139,7 @@ const contact = () => {
       </div>
       <div className="flex flex-col p-8 mt-16 max-w-full bg-gray-100 rounded-xl w-[750px] max-md:px-5 max-md:mt-10">
         <div className="flex gap-2.5 justify-between text-2xl font-semibold leading-8 text-sky-400 rounded-xl max-md:flex-wrap max-md:max-w-full">
-          <div>How often do you come per month?</div>
+          <button>How often do you come per month?</button>
           <img
             loading="lazy"
             src="https://cdn.builder.io/api/v1/image/assets/TEMP/b4cf947232c15b3d0223f56683dc6042884844734f5f16d60c52bea9d9bc1175?"

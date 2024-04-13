@@ -1,11 +1,15 @@
 import React from 'react';
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { envelope } from '@heroicons/vue/outline';
-import Dropdown from 'react-dropdown';
+import Dropdown from '../components/Dropdown'
 import 'react-dropdown/style.css';
 import { useSelector, useDispatch } from 'react-redux';
 import { toggleView } from '../features/headerSlice';
+import logo from '../components/assets/Group.png'
+import image from '../components/assets/Login/main.svg'
+import GoogleIcon from '../components/assets/Login/GoogleIcon.svg'
+import FacebookIcon from '../components/assets/Login/FaebookIcon.svg'
+
 const Signup = () => {
   const dispatch = useDispatch();
   const handleLoginToggle = () => {
@@ -31,25 +35,15 @@ const Signup = () => {
         <Link to='/'>
           <img
             loading='lazy'
-            src='https://cdn.builder.io/api/v1/image/assets/TEMP/77bef0bc0c92c66befec65f15750a8d069b6dd172c3c4bd83dbf08cd69980a8d?'
+            src={logo}
             className='shrink-0 max-w-full aspect-[3.33] w-[166px]'
             onClick={handleLoginToggle}
           />
         </Link>
 
         <div className='flex gap-5 justify-between items-center self-start max-md:flex-wrap'>
-          {/* <img
-            loading="lazy"
-            src="https://cdn.builder.io/api/v1/image/assets/TEMP/96b7625a7246ab9eff90b36014d3446f441392a4fbe176490583a9492bc4b46f?"
-            className="shrink-0 self-stretch my-auto aspect-[1.79] w-[9px]"
-          /> */}
-          <Dropdown
-            options={options}
-            onChange={handleDropdownChange}
-            value={selectedOption}
-            placeholder='Go to Listing'
-            className='custom-dropdown'
-          />
+          
+          <Dropdown/>
           <Link
             className='flex flex-col flex-1 justify-center self-stretch text-center text-white whitespace-nowrap'
             to='/login'
@@ -63,7 +57,7 @@ const Signup = () => {
       <div className='flex gap-2 justify-between self-center mt-7 w-full max-w-[1080px] max-md:flex-wrap max-md:mt-10 max-md:max-w-full'>
         <img
           loading='lazy'
-          src='https://cdn.builder.io/api/v1/image/assets/TEMP/00ca7080ddb547f8eb4dc61ff36b0cd8bc60fa79a4b1749836f4ee3710723faf?'
+          src={image}
           className='self-start w-full aspect-[1.1] max-md:max-w-full'
         />
         <div className='flex flex-col '>
@@ -79,55 +73,26 @@ const Signup = () => {
               placeholder='First name'
               className='flex flex-col justify-center items-start py-6 pr-16 pl-4 mt-7 max-w-full bg-gray-100 rounded-xl w-[327px] max-md:pr-5 max-md:mr-2'
             />
-            {/* <div className="flex gap-2.5">
-                <img
-                  loading="lazy"
-                  src="https://cdn.builder.io/api/v1/image/assets/TEMP/04dd2fbeab29c993a0e679716e1b65de1749083c24f10fa6695931f8789e8bf8?"
-                  className="shrink-0 w-5 aspect-square"
-                />
-                
-              </div> */}
+           
 
             <input
               placeholder='Email'
               className='flex flex-col justify-center items-start py-6 pr-16 pl-4 mt-4 max-w-full whitespace-nowrap bg-gray-100 rounded-xl w-[327px] max-md:pr-5 max-md:mr-2'
             />
-            {/* <div className="flex gap-2.5">
-                <img
-                  loading="lazy"
-                  src="https://cdn.builder.io/api/v1/image/assets/TEMP/001848ec6217bbe27cfcbc222ed63c6db01587802ebc1e14620c5201ceb3920d?"
-                  className="shrink-0 w-5 aspect-square"
-                />
-                
-              </div> */}
+           
 
             <input
               placeholder='Password'
               className='flex flex-col justify-center items-start py-6 pr-16 pl-4 mt-4 max-w-full whitespace-nowrap bg-gray-100 rounded-xl w-[327px] max-md:pr-5 max-md:mr-2'
               type={showPassword ? 'text' : 'password'}
             />
-            {/* <div className="flex gap-2.5">
-                <img
-                  loading="lazy"
-                  src="https://cdn.builder.io/api/v1/image/assets/TEMP/abb6e03dac75e14973e8c3ab07b7ded9a218812b74e89a375db03382e1dd4c83?"
-                  className="shrink-0 w-5 aspect-square"
-                />
-                
-              </div>
-           */}
+           
             <input
               placeholder='Confirm Password'
               className='flex flex-col justify-center items-start py-6 pr-16 pl-4 mt-4 max-w-full whitespace-nowrap bg-gray-100 rounded-xl w-[327px] max-md:pr-5 max-md:mr-2'
               type={showPassword ? 'text' : 'password'}
             />
-            {/* <div className="flex gap-2.5">
-                <img
-                  loading="lazy"
-                  src="https://cdn.builder.io/api/v1/image/assets/TEMP/abb6e03dac75e14973e8c3ab07b7ded9a218812b74e89a375db03382e1dd4c83?"
-                  className="shrink-0 w-5 aspect-square"
-                />
-               
-              </div> */}
+           
 
             <button
               className='self-end mt-2 font-semibold text-right text-sky-400 whitespace-nowrap leading-[167%]'
@@ -159,20 +124,20 @@ const Signup = () => {
             </div>
           </div>
           <div className='flex gap-3'>
-            <div className='flex flex-1 justify-center items-center px-16 py-6 bg-gray-100 rounded-3xl max-md:px-5'>
+            <button className='flex flex-1 justify-center items-center px-16 py-6 bg-gray-100 rounded-3xl max-md:px-5'>
               <img
                 loading='lazy'
-                src='https://cdn.builder.io/api/v1/image/assets/TEMP/d5f8e2b898f51b67aa766f4ed3c2a87ae4d2a2943bfa553884498aa9338ea793?'
+                src={GoogleIcon}
                 className='aspect-square w-[25px]'
               />
-            </div>
-            <div className='flex flex-1 justify-center items-center px-16 py-6 bg-gray-100 rounded-3xl max-md:px-5'>
+            </button>
+            <button className='flex flex-1 justify-center items-center px-16 py-6 bg-gray-100 rounded-3xl max-md:px-5'>
               <img
                 loading='lazy'
-                src='https://cdn.builder.io/api/v1/image/assets/TEMP/7e6f8764dfc88862201611e1e332ba44b41ddb02fd97cfdc23092990d99fec07?'
+                src={FacebookIcon}
                 className='aspect-square w-[25px]'
               />
-            </div>
+            </button>
           </div>
           <div className='self-center mt-2 text-sm tracking-wide leading-5 text-cyan-900 whitespace-nowrap'>
             <span className=''>Already have an account?</span>
