@@ -11,8 +11,12 @@ export const headerSlice = createSlice({
     increment: (state) => {
       state.value += 1;
     },
-    toggleView: (state) => {
-      state.value = !state.value;
+
+    toggleTrue: (state) => {
+      state.value = true;
+    },
+    toggleFalse: (state) => {
+      state.value = false;
     },
     decrement: (state) => {
       state.value -= 1;
@@ -23,7 +27,12 @@ export const headerSlice = createSlice({
   },
 });
 
-export const { increment, decrement, incrementByAmount, toggleView } =
-  headerSlice.actions;
+export const {
+  increment,
+  decrement,
+  incrementByAmount,
+  toggleFalse,
+  toggleTrue,
+} = headerSlice.actions;
 
 export default headerSlice.reducer;
