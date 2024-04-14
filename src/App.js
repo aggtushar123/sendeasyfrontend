@@ -12,6 +12,7 @@ import Home from './pages/Home';
 import { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import Traveler from './pages/Traveler';
+import LuggageListing from './pages/LugageListing';
 
 function App() {
   const ViewHeader = useSelector((state) => state.header.value);
@@ -27,6 +28,7 @@ function App() {
           <Route path='/login' element={<Login />} />
           <Route path='/Signup' element={<Signup />} />
           <Route path='/travelerListing' element={<TravelerListing />} />
+          <Route path='/luggageListing' element={<LuggageListing/>}/>
         </Routes>
         {/* <TravelerListing/> */}
         <Footer />
