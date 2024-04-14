@@ -1,5 +1,11 @@
 import React from "react";
 import {Link} from "react-router-dom"
+import Facebook from '../components/assets/Footer/Facebook.svg'
+import Logo from '../components/assets/Footer/logo.svg'
+import Instagram from '../components/assets/Footer/Instagram.svg'
+import Twitter from '../components/assets/Footer/Twitter.svg'
+import Youtube from '../components/assets/Footer/Youtube.svg'
+
 const Footer = () => {
   return (
     <div className="flex flex-col items-center p-20 bg-slate-900 max-md:px-5">
@@ -12,28 +18,28 @@ const Footer = () => {
                 <Link to="https://www.facebook.com/">
                 <img
                   loading="lazy"
-                  src="https://cdn.builder.io/api/v1/image/assets/TEMP/9d5b2354b342ec113d3c66f4946947d05a6e937abfafdc2c415eac0c37d79415?"
+                  src={Facebook}
                   className="shrink-0 w-8 aspect-square"
                 />
                 </Link>
                 <Link to="https://twitter.com/?lang=en">
                 <img
                   loading="lazy"
-                  src="https://cdn.builder.io/api/v1/image/assets/TEMP/451cbd16eaaee04f31ca11239c69995537e765baa78a9f5b3b08b8550a78e17c?"
+                  src={Twitter}
                   className="shrink-0 w-8 aspect-square"
                 />
                 </Link>
                 <Link to="https://www.instagram.com/">
                 <img
                   loading="lazy"
-                  src="https://cdn.builder.io/api/v1/image/assets/TEMP/d9b7492d13a345a3138e177dd38748e20ca38cf4b346094484bcba8e0a7edc52?"
+                  src={Instagram}
                   className="shrink-0 w-8 aspect-square"
                 />   ]
                 </Link>
                 <Link to="https://www.youtube.com/">
                 <img
                   loading="lazy"
-                  src="https://cdn.builder.io/api/v1/image/assets/TEMP/e7a4ef92b7f984ca594edae440c4d6e8bcc4301cb9e596f203c2a4bedaa8c8be?"
+                  src={Youtube}
                   className="shrink-0 w-8 aspect-square"
                 />
                 </Link>
@@ -42,7 +48,7 @@ const Footer = () => {
               </div>
               <img
                 loading="lazy"
-                src="https://cdn.builder.io/api/v1/image/assets/TEMP/ff7d72e0cfca62b755b5c102e7882104bbc280e7b69780175be42aff297d0bd3?"
+                src={Logo}
                 className="self-center mt-12 aspect-[4] w-[238px] max-md:mt-10"
               />
             </div>
@@ -78,8 +84,8 @@ const Footer = () => {
                     <div className="font-semibold text-sky-400">
                       OUR SERVICES
                     </div>
-                    <Link className="mt-5" to="/traveller-listing">Traveler listing</Link>
-                    <Link className="mt-4" to="/luggage-listing">Luggage listing</Link>
+                    <Link className="mt-5" to="/travelerListing">Traveler listing</Link>
+                    <Link className="mt-4" to="/luggageListing">Luggage listing</Link>
                   </div>
                 </div>
               </div>

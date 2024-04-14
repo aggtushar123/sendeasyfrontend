@@ -37,7 +37,7 @@ const Dropdown = () => {
       {isOpen && (
         <div
           id="dropdownHover"
-          className="z-10 divide-y text-slate-600 rounded-lg shadow w-44 absolute right-0 mt-2 dark:bg-gray-100"
+          className="bg-white z-10 divide-y text-slate-600 rounded-lg shadow w-44 absolute right-0 mt-2 dark:bg-gray-100"
         >
           <ul className="py-2 text-sm text-slate-700 dark:text-slate-600" aria-labelledby="dropdownHoverButton">
             <li>
