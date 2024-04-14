@@ -1,19 +1,19 @@
 import React from 'react';
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import Dropdown from '../components/Dropdown'
+import Dropdown from '../components/Dropdown';
 import 'react-dropdown/style.css';
 import { useSelector, useDispatch } from 'react-redux';
-import { toggleView } from '../features/headerSlice';
-import logo from '../components/assets/Group.png'
-import image from '../components/assets/Login/main.svg'
-import GoogleIcon from '../components/assets/Login/GoogleIcon.svg'
-import FacebookIcon from '../components/assets/Login/FaebookIcon.svg'
+import { toggleFalse, toggleTrue } from '../features/headerSlice';
+import logo from '../components/assets/Group.png';
+import image from '../components/assets/Login/main.svg';
+import GoogleIcon from '../components/assets/Login/GoogleIcon.svg';
+import FacebookIcon from '../components/assets/Login/FaebookIcon.svg';
 
 const Signup = () => {
   const dispatch = useDispatch();
   const handleLoginToggle = () => {
-    dispatch(toggleView());
+    dispatch(toggleFalse());
   };
   const [showPassword, setShowPassword] = useState(false);
   const options = ['Traveler Listing', 'Luggage Listing', 'Create a Listing'];
@@ -31,7 +31,7 @@ const Signup = () => {
 
   return (
     <div className='flex flex-col pt-5 pr-4 pb-20 pl-15 bg-white rounded-[29px] max-md:pl-5'>
-      <div className='flex gap-5 justify-between ml-8 text-xl font-medium text-slate-900 max-md:flex-wrap max-md:max-w-full'>
+      {/* <div className='flex gap-5 justify-between ml-8 text-xl font-medium text-slate-900 max-md:flex-wrap max-md:max-w-full'>
         <Link to='/'>
           <img
             loading='lazy'
@@ -42,8 +42,7 @@ const Signup = () => {
         </Link>
 
         <div className='flex gap-5 justify-between items-center self-start max-md:flex-wrap'>
-          
-          <Dropdown/>
+          <Dropdown />
           <Link
             className='flex flex-col flex-1 justify-center self-stretch text-center text-white whitespace-nowrap'
             to='/login'
@@ -53,7 +52,7 @@ const Signup = () => {
             </div>
           </Link>
         </div>
-      </div>
+      </div> */}
       <div className='flex gap-2 justify-between self-center mt-7 w-full max-w-[1080px] max-md:flex-wrap max-md:mt-10 max-md:max-w-full'>
         <img
           loading='lazy'
@@ -73,26 +72,23 @@ const Signup = () => {
               placeholder='First name'
               className='flex flex-col justify-center items-start py-6 pr-16 pl-4 mt-7 max-w-full bg-gray-100 rounded-xl w-[327px] max-md:pr-5 max-md:mr-2'
             />
-           
 
             <input
               placeholder='Email'
               className='flex flex-col justify-center items-start py-6 pr-16 pl-4 mt-4 max-w-full whitespace-nowrap bg-gray-100 rounded-xl w-[327px] max-md:pr-5 max-md:mr-2'
             />
-           
 
             <input
               placeholder='Password'
               className='flex flex-col justify-center items-start py-6 pr-16 pl-4 mt-4 max-w-full whitespace-nowrap bg-gray-100 rounded-xl w-[327px] max-md:pr-5 max-md:mr-2'
               type={showPassword ? 'text' : 'password'}
             />
-           
+
             <input
               placeholder='Confirm Password'
               className='flex flex-col justify-center items-start py-6 pr-16 pl-4 mt-4 max-w-full whitespace-nowrap bg-gray-100 rounded-xl w-[327px] max-md:pr-5 max-md:mr-2'
               type={showPassword ? 'text' : 'password'}
             />
-           
 
             <button
               className='self-end mt-2 font-semibold text-right text-sky-400 whitespace-nowrap leading-[167%]'

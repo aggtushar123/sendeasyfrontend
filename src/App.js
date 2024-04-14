@@ -20,7 +20,7 @@ function App() {
   return (
     <>
       <Router>
-        {ViewHeader && <Header />}
+        <Header />
 
         <Routes>
           <Route path='/' element={<Home />} />
@@ -28,7 +28,7 @@ function App() {
           <Route path='/login' element={<Login />} />
           <Route path='/Signup' element={<Signup />} />
           <Route path='/travelerListing' element={<TravelerListing />} />
-          <Route path='/luggageListing' element={<LuggageListing/>}/>
+          <Route path='/luggageListing' element={<LuggageListing />} />
         </Routes>
         {/* <TravelerListing/> */}
         <Footer />
