@@ -9,6 +9,9 @@ import logo from '../components/assets/Group.png';
 import image from '../components/assets/Login/main.svg';
 import GoogleIcon from '../components/assets/Login/GoogleIcon.svg';
 import FacebookIcon from '../components/assets/Login/FaebookIcon.svg';
+import EmailIcon from '../components/assets/Login/EmailIcon.svg';
+import NameIcon from '../components/assets/Login/NameIcon.svg';
+import PasswordIcon from '../components/assets/Login/PasswordIcon.svg';
 
 const Signup = () => {
   const dispatch = useDispatch();
@@ -31,6 +34,28 @@ const Signup = () => {
 
   return (
     <div className='flex flex-col pt-5 pr-4 pb-20 pl-15 rounded-[29px] max-md:pl-5'>
+      {/* <div className='flex gap-5 justify-between ml-8 text-xl font-medium text-slate-900 max-md:flex-wrap max-md:max-w-full'>
+        <Link to='/'>
+          <img
+            loading='lazy'
+            src={logo}
+            className='shrink-0 max-w-full aspect-[3.33] w-[166px]'
+            onClick={handleLoginToggle}
+          />
+        </Link>
+
+        <div className='flex gap-5 justify-between items-center self-start max-md:flex-wrap'>
+          <Dropdown />
+          <Link
+            className='flex flex-col flex-1 justify-center self-stretch text-center text-white whitespace-nowrap'
+            to='/login'
+          >
+            <div className='justify-center px-14 py-3 bg-sky-400 rounded-[31px] max-md:px-5'>
+              Log in
+            </div>
+          </Link>
+        </div>
+      </div> */}
       <div className='flex gap-2 justify-between self-center mt-7 w-full max-w-[1080px] max-md:flex-wrap max-md:mt-10 max-md:max-w-full'>
         <img
           loading='lazy'
@@ -46,27 +71,64 @@ const Signup = () => {
             <div className='mt-1 text-sm tracking-wide leading-5 whitespace-nowrap text-slate-600 max-md:ml-1'>
               quis nostrud exercitation ullamco laboris nisi ut
             </div>
-            <input
-              placeholder='First name'
-              className='flex flex-col justify-center items-start py-6 pr-16 pl-4 mt-7 max-w-full bg-gray-100 rounded-xl w-[327px] max-md:pr-5 max-md:mr-2'
-            />
+            <div class='relative mt-2'>
+              <input
+                type='text'
+                class='pl-10 pr-4 py-2 border rounded-xl bg-gray-100 w-[327px] h-[70px] '
+                placeholder='Full Name'
+              />
+              <div
+                class='absolute inset-y-0 left-0 pl-3  
+                    flex items-center  
+                    pointer-events-none'
+              >
+                <img src={NameIcon} alt='' />
+              </div>
+            </div>
 
-            <input
-              placeholder='Email'
-              className='flex flex-col justify-center items-start py-6 pr-16 pl-4 mt-4 max-w-full whitespace-nowrap bg-gray-100 rounded-xl w-[327px] max-md:pr-5 max-md:mr-2'
-            />
+            <div class='relative mt-2'>
+              <input
+                type='email'
+                class='pl-10 pr-4 py-2 border rounded-xl bg-gray-100 w-[327px] h-[70px] '
+                placeholder='Email'
+              />
+              <div
+                class='absolute inset-y-0 left-0 pl-3  
+                    flex items-center  
+                    pointer-events-none'
+              >
+                <img src={EmailIcon} alt='' />
+              </div>
+            </div>
+            <div class='relative mt-2'>
+              <input
+                type={showPassword ? 'text' : 'password'}
+                class='pl-10 pr-4 py-2 border rounded-xl bg-gray-100 w-[327px] h-[70px] '
+                placeholder='Password'
+              />
+              <div
+                class='absolute inset-y-0 left-0 pl-3  
+                    flex items-center  
+                    pointer-events-none'
+              >
+                <img src={PasswordIcon} alt='' />
+              </div>
+            </div>
 
-            <input
-              placeholder='Password'
-              className='flex flex-col justify-center items-start py-6 pr-16 pl-4 mt-4 max-w-full whitespace-nowrap bg-gray-100 rounded-xl w-[327px] max-md:pr-5 max-md:mr-2'
-              type={showPassword ? 'text' : 'password'}
-            />
-
-            <input
-              placeholder='Confirm Password'
-              className='flex flex-col justify-center items-start py-6 pr-16 pl-4 mt-4 max-w-full whitespace-nowrap bg-gray-100 rounded-xl w-[327px] max-md:pr-5 max-md:mr-2'
-              type={showPassword ? 'text' : 'password'}
-            />
+            <div class='relative mt-2'>
+              <input
+                type={showPassword ? 'text' : 'password'}
+                class='pl-10 pr-4 py-2 border rounded-xl bg-gray-100 w-[327px] h-[70px] '
+                placeholder='Confirm Password'
+              />
+              <div
+                class='absolute inset-y-0 left-0 pl-3  
+                    flex items-center  
+                    pointer-events-none'
+              >
+                <img src={PasswordIcon} alt='' />
+              </div>
+            </div>
 
             <button
               className='self-end mt-2 font-semibold text-right text-sky-400 whitespace-nowrap leading-[167%]'
