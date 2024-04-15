@@ -30,7 +30,7 @@ const Signup = () => {
   };
 
   return (
-    <div className='flex flex-col pt-5 pr-4 pb-20 pl-15 bg-white rounded-[29px] max-md:pl-5'>
+    <div className='flex flex-col pt-5 pr-4 pb-20 pl-15 rounded-[29px] max-md:pl-5'>
       {/* <div className='flex gap-5 justify-between ml-8 text-xl font-medium text-slate-900 max-md:flex-wrap max-md:max-w-full'>
         <Link to='/'>
           <img
