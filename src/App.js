@@ -30,6 +30,7 @@ function App() {
           <Route path='/Signup' element={<Signup />} />
           <Route path='/travelerListing' element={<TravelerListing />} />
           <Route path='/luggageListing' element={<LuggageListing />} />
+          <Route path='/createaListing' element={<CreateTravellerListing />} />
         </Routes>
         {/* <TravelerListing/> */}
         <Footer />
