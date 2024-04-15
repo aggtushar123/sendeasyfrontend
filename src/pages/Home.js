@@ -7,16 +7,13 @@ import step5 from '../components/assets/Home/step5.svg';
 
 function Home() {
   return (
-
-    <div className="flex flex-col items-center px-20 w-full max-md:px-5 max-md:max-w-full">
-      <div className="mt-12 w-full max-w-[1080px] max-md:mt-10 max-md:max-w-full">
-        <div className="flex gap-5 max-md:flex-col max-md:gap-0">
-          <div className="flex flex-col w-[38%] max-md:ml-0 max-md:w-full">
-            <div className="flex flex-col grow px-1.5 pt-1.5 pb-6 w-full text-base font-medium text-sky-400 bg-white rounded-3xl shadow-sm max-md:max-w-full">
-              <div className="flex gap-5 whitespace-nowrap bg-white rounded-2xl border-solid border-[3px] border-neutral-100 text-slate-900 max-md:flex-wrap max-md:max-w-full">
-                <div className="justify-center items-start px-16 py-2.5 rounded-2xl bg-neutral-100 max-md:pr-5 max-md:pl-6
-    
-
+    <div className='flex flex-col items-center px-20 w-full max-md:px-5 max-md:max-w-full'>
+      <div className='mt-12 w-full max-w-[1080px] max-md:mt-10 max-md:max-w-full'>
+        <div className='flex gap-5 max-md:flex-col max-md:gap-0'>
+          <div className='flex flex-col w-[38%] max-md:ml-0 max-md:w-full'>
+            <div className='flex flex-col grow px-1.5 pt-1.5 pb-6 w-full text-base font-medium text-sky-400 bg-white rounded-3xl shadow-sm max-md:max-w-full'>
+              <div className='flex gap-5 whitespace-nowrap bg-white rounded-2xl border-solid border-[3px] border-neutral-100 text-slate-900 max-md:flex-wrap max-md:max-w-full'>
+                <div className='justify-center items-start px-16 py-2.5 rounded-2xl bg-neutral-100 max-md:pr-5 max-md:pl-6'>
                   Traveler
                 </div>
                 <div className='flex-auto my-auto text-center'>Shipper</div>
@@ -30,10 +27,7 @@ function Home() {
                 />
               </div>
 
-              
-        
               <div className='justify-center items-start px-10 py-5 mt-7 mr-4 ml-5 bg-neutral-100 rounded-[41px] max-md:px-5 max-md:mx-2.5'>
-
                 Drop place
               </div>
               <div className='flex gap-5 justify-between py-5 pr-5 pl-10 mt-6 mr-4 ml-5 max-w-full bg-neutral-100 rounded-[41px] w-[420px] max-md:pl-5 max-md:mx-2.5'>
