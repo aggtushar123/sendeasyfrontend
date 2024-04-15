@@ -6,6 +6,7 @@ import step4 from '../components/assets/Home/step4.svg';
 import step5 from '../components/assets/Home/step5.svg';
 import CountUp from 'react-countup';
 import VisibilitySensor from 'react-visibility-sensor';
+import CountUpComponent from '../components/CountUp';
 function Home() {
   return (
     <div className='flex flex-col items-center px-20 w-full max-md:px-5 max-md:max-w-full'>
@@ -150,64 +151,7 @@ function Home() {
         </div>
       </div>
 
-      <div className='flex justify-between mt-9 text-base text-center w-[80%] max-md:flex-wrap  '>
-        <div className='w-full mt-[170px] xl:h-[200px] md:p-10 xl:my-10 text-center  py-4  text-2xl xl:text-4xl text-[#0D9276]'>
-          {' '}
-          <h1 className='text-[20px] py-3 text-[#0D9276] mb-4'>Eco Friendly</h1>
-          <CountUp
-            enableScrollSpy={true}
-            redraw={true}
-            end={100}
-            scrollSpyDelay={2}
-            suffix='%'
-          >
-            {({ countUpRef, start }) => (
-              <VisibilitySensor onChange={start}>
-                <span ref={countUpRef} className='text-[64px] ' />
-              </VisibilitySensor>
-            )}
-          </CountUp>
-        </div>
-        <div className='w-full mt-[170px] xl:h-[200px] md:p-10 xl:my-10 text-center  py-4  text-2xl xl:text-4xl text-[#0D9276]'>
-          {' '}
-          <h1 className='text-[20px] py-3 text-[#0D9276] mb-4'>
-            Satisfied Client
-          </h1>
-          <CountUp
-            enableScrollSpy={true}
-            redraw={true}
-            end={100}
-            scrollSpyDelay={2}
-            suffix='+'
-          >
-            {({ countUpRef, start }) => (
-              <VisibilitySensor onChange={start}>
-                <span ref={countUpRef} className='text-[64px] ' />
-              </VisibilitySensor>
-            )}
-          </CountUp>
-        </div>
-
-        <div className='w-full mt-[170px] xl:h-[200px] md:p-10 xl:my-10 text-center  py-4  text-2xl xl:text-4xl text-[#0D9276]'>
-          {' '}
-          <h1 className='text-[20px] py-3 text-[#0D9276] mb-4'>
-            Years Of Experience
-          </h1>
-          <CountUp
-            enableScrollSpy={true}
-            redraw={true}
-            end={11}
-            scrollSpyDelay={2}
-            suffix=' Years'
-          >
-            {({ countUpRef, start }) => (
-              <VisibilitySensor onChange={start}>
-                <span ref={countUpRef} className='text-[64px] ' />
-              </VisibilitySensor>
-            )}
-          </CountUp>
-        </div>
-      </div>
+      <CountUpComponent />
     </div>
   );
 }
