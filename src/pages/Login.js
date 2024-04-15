@@ -1,8 +1,9 @@
 import * as React from 'react';
 import { useState } from 'react';
-
+import { MdOutlineMailOutline } from 'react-icons/md';
 import { Link, useNavigate } from 'react-router-dom';
-
+import EmailIcon from '../components/assets/Login/EmailIcon.svg';
+import PasswordIcon from '../components/assets/Login/PasswordIcon.svg';
 import 'react-dropdown/style.css';
 import { useSelector, useDispatch } from 'react-redux';
 import { toggleFalse, toggleTrue } from '../features/headerSlice';
@@ -75,40 +76,41 @@ const Login = () => {
               quis nostrud exercitation ullamco laboris nisi ut
             </div>
 
-            <input
-              className='flex flex-col justify-center items-start py-6 pr-16 pl-4 mt-9 max-w-full bg-gray-100 rounded-xl w-[327px] max-md:pr-5 max-md:mr-2'
-              placeholder='Email'
-            />
-            {/* <div className="flex gap-2.5">
-                <img
-                  loading="lazy"
-                  src={EmailIcon.svg}
-                  className="shrink-0 w-5 aspect-square"
-                />
-               
-              </div> */}
-
-            <input
-              className='flex flex-col justify-center items-start py-6 pr-16 pl-4 mt-4 max-w-full whitespace-nowrap bg-gray-100 rounded-xl w-[327px] max-md:pr-5 max-md:mr-2'
-              placeholder='Password'
-              type={showPassword ? 'text' : 'password'}
-            />
-            {/* <div className="flex gap-2.5">
-                <img
-                  loading="lazy"
-                  src={PasswordIcon.svg}
-                  className="shrink-0 w-5 aspect-square"
-                />
-               
-              </div> */}
-
+            <div class='relative mt-2'>
+              <input
+                type='email'
+                class='pl-10 pr-4 py-2 border rounded-xl bg-gray-100 w-[327px] h-[70px] '
+                placeholder='Email'
+              />
+              <div
+                class='absolute inset-y-0 left-0 pl-3  
+                    flex items-center  
+                    pointer-events-none'
+              >
+                <img src={EmailIcon} alt='' />
+              </div>
+            </div>
+            <div class='relative mt-2'>
+              <input
+                type={showPassword ? 'text' : 'password'}
+                class='pl-10 pr-4 py-2 border rounded-xl bg-gray-100 w-[327px] h-[70px] '
+                placeholder='Password'
+              />
+              <div
+                class='absolute inset-y-0 left-0 pl-3  
+                    flex items-center  
+                    pointer-events-none'
+              >
+                <img src={PasswordIcon} alt='' />
+              </div>
+            </div>
             <div className='flex gap-5 justify-between mt-4 font-semibold text-sky-400 leading-[143%] max-md:mr-2'>
               <button className='flex-auto'>Forgot password?</button>
               <button
                 className='flex-auto text-right'
                 onClick={handleShowPassword}
               >
-                Show password
+                {showPassword ? 'Hide' : 'Show'} password
               </button>
             </div>
             <Link className='justify-center items-center self-center px-16 py-6 mt-6 max-w-full text-base font-bold tracking-wide text-center text-white whitespace-nowrap bg-sky-400 rounded-[29px] w-[278px] max-md:px-5'>
