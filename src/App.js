@@ -11,7 +11,7 @@ import About from './pages/About';
 import Home from './pages/Home';
 import { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import Traveler from './pages/Traveler';
+import Traveler from './components/Traveler';
 import LuggageListing from './pages/LugageListing';
 
 function App() {
@@ -24,6 +24,7 @@ function App() {
 
         <Routes>
           <Route path='/' element={<Home />} />
+          <Route path='/about' element={<About />} />
           <Route path='/contact' element={<Contact />} />
           <Route path='/login' element={<Login />} />
           <Route path='/Signup' element={<Signup />} />
