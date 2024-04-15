@@ -34,7 +34,7 @@ const Header = () => {
         </Link>
 
         {ViewHeader && (
-          <div className='flex flex-auto gap-5 justify-between py-0.5 pl-20 backdrop-blur-[4.400000095367432px] bg-white bg-opacity-70 rounded-[34px]'>
+          <div className='flex flex-auto gap-5 justify-between py-0.5 pl-20 backdrop-blur-[4.400000095367432px] bg-none bg-opacity-70 rounded-[34px]'>
             <div className='my-auto'> Kolkata</div>
             <img
               loading='lazy'
