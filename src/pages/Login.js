@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { useState } from 'react';
-import { MdOutlineMailOutline } from 'react-icons/md';
 import { Link, useNavigate } from 'react-router-dom';
 import EmailIcon from '../components/assets/Login/EmailIcon.svg';
 import PasswordIcon from '../components/assets/Login/PasswordIcon.svg';
