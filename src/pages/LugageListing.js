@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import Traveler from './Traveler';
+import Traveler from '../components/Traveler';
 import luggageListing from '../components/assets/TravelerListing/LuggageListing.svg';
 import ListingLogo from '../components/assets/TravelerListing/ListingLogo.svg';
 import searchButton from '../components/assets/TravelerListing/SearchButton.svg';
