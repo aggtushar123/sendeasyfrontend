@@ -27,12 +27,6 @@ export const headerSlice = createSlice({
   },
 });
 
-export const {
-  increment,
-  decrement,
-  incrementByAmount,
-  toggleFalse,
-  toggleTrue,
-} = headerSlice.actions;
+export const { toggleFalse, toggleTrue } = headerSlice.actions;
 
 export default headerSlice.reducer;
