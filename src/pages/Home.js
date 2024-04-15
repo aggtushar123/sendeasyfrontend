@@ -7,6 +7,7 @@ import step5 from '../components/assets/Home/step5.svg';
 import CountUp from 'react-countup';
 import VisibilitySensor from 'react-visibility-sensor';
 import CountUpComponent from '../components/CountUp';
+import CarouselComponent from '../components/Carousel';
 function Home() {
   return (
     <div className='flex flex-col items-center px-20 w-full max-md:px-5 max-md:max-w-full'>
@@ -152,6 +153,8 @@ function Home() {
       </div>
 
       <CountUpComponent />
+
+      <CarouselComponent />
     </div>
   );
 }
