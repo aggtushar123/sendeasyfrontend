@@ -31,28 +31,6 @@ const Signup = () => {
 
   return (
     <div className='flex flex-col pt-5 pr-4 pb-20 pl-15 rounded-[29px] max-md:pl-5'>
-      {/* <div className='flex gap-5 justify-between ml-8 text-xl font-medium text-slate-900 max-md:flex-wrap max-md:max-w-full'>
-        <Link to='/'>
-          <img
-            loading='lazy'
-            src={logo}
-            className='shrink-0 max-w-full aspect-[3.33] w-[166px]'
-            onClick={handleLoginToggle}
-          />
-        </Link>
-
-        <div className='flex gap-5 justify-between items-center self-start max-md:flex-wrap'>
-          <Dropdown />
-          <Link
-            className='flex flex-col flex-1 justify-center self-stretch text-center text-white whitespace-nowrap'
-            to='/login'
-          >
-            <div className='justify-center px-14 py-3 bg-sky-400 rounded-[31px] max-md:px-5'>
-              Log in
-            </div>
-          </Link>
-        </div>
-      </div> */}
       <div className='flex gap-2 justify-between self-center mt-7 w-full max-w-[1080px] max-md:flex-wrap max-md:mt-10 max-md:max-w-full'>
         <img
           loading='lazy'

@@ -59,11 +59,11 @@ const Login = () => {
           </Link>
         </div>
       </div> */}
-      <div className='flex gap-5 justify-between items-start self-center mt-20 w-full max-w-[1080px] max-md:flex-wrap max-md:mt-10 max-md:max-w-full'>
+      <div className='flex gap-2 justify-between self-center mt-7 w-full max-w-[1080px] max-md:flex-wrap max-md:mt-10 max-md:max-w-full'>
         <img
           loading='lazy'
           src={image}
-          className='w-full aspect-[1.1] max-md:max-w-full'
+          className='self-start w-full aspect-[1.1] max-md:max-w-full'
         />
         <div className='flex flex-col mt-3.5'>
           <div className='flex flex-col px-3 text-sm tracking-wide text-slate-400'>
