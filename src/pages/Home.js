@@ -7,6 +7,7 @@ import step5 from '../components/assets/Home/step5.svg';
 import money from '../components/assets/Home/Money.svg';
 import delivery from '../components/assets/Home/delivery.svg';
 import green from '../components/assets/Home/green.svg';
+import globe from '../components/assets/Home/globe.svg';
 import CountUp from 'react-countup';
 import VisibilitySensor from 'react-visibility-sensor';
 import CountUpComponent from '../components/CountUp';
@@ -15,16 +16,26 @@ import Card from '../components/Card';
 import Newsletter from '../components/Newsletter';
 import TravellerShipper from '../components/TravellerShipper';
 
-
 function Home() {
   return (
     <div className='flex flex-col items-center px-20 w-full max-md:px-5 max-md:max-w-full'>
       <div className='mt-12 w-full max-w-[1080px] max-md:mt-10 max-md:max-w-full'>
         <div className='flex gap-5 max-md:flex-col max-md:gap-0'>
-          <TravellerShipper/>
+          <TravellerShipper />
           <div className='flex flex-col w-[62%] max-md:ml-0 max-md:w-full'>
-            <div className='justify-center items-start self-stretch px-12 py-11 my-auto w-full text-5xl font-bold bg-sky-400 max-w-[774px] min-h-[244px] tracking-widest text-white capitalize leading-[54px] max-md:px-5 max-md:mt-10 max-md:max-w-full max-md:text-4xl max-md:leading-[50px]'>
-              Send a package, carry a package
+            <div
+              className='justify-center items-start self-stretch px-12 py-11 my-auto w-full text-5xl font-bold bg-sky-600 bg-opacity-60 max-w-[774px] min-h-[244px] tracking-widest text-white capitalize leading-[54px] max-md:px-5 max-md:mt-10 max-md:max-w-full max-md:text-4xl max-md:leading-[50px] '
+              style={{
+                background:
+                  'linear-gradient(90.91deg, #40A2E3 -8.91%, rgba(64, 162, 227, 0) 99.22%)',
+              }}
+            >
+              <img
+                src={globe}
+                alt=''
+                className='absolute left-[540px] top-[140px]  -z-10 w-[851px] h-[270px] '
+              />
+              Send a <div>package, carry</div> <div> a package</div>
             </div>
           </div>
         </div>
