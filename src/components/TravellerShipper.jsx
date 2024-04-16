@@ -31,7 +31,7 @@ function TravellerShipper() {
         <div className='relative '>
           <input
             placeholder='Pickup Place'
-            className='flex gap-5 justify-between py-5  pr-3 pl-10 mt-12 mr-4 ml-5 max-w-full  bg-neutral-100 rounded-[41px] max-md:pl-5 max-md:mx-2.5 max-md:mt-10  w-[455px] h-[70px]'
+            className=' placeholder-sky-400 flex gap-5 justify-between py-5  pr-3 pl-10 mt-12 mr-4 ml-5 max-w-full  bg-neutral-100 rounded-[41px] max-md:pl-5 max-md:mx-2.5 max-md:mt-10  w-[455px] h-[70px]'
           />
 
           <img
@@ -45,7 +45,7 @@ function TravellerShipper() {
         <div className='relative '>
           <input
             placeholder='Drop Place'
-            className='flex gap-5 justify-between py-5  pr-3 pl-10 mt-7 mr-4 ml-5 max-w-full bg-neutral-100 rounded-[41px] max-md:pl-5 max-md:mx-2.5 max-md:mt-10  w-[455px] h-[70px]'
+            className='placeholder-sky-400 flex gap-5 justify-between py-5  pr-3 pl-10 mt-7 mr-4 ml-5 max-w-full bg-neutral-100 rounded-[41px] max-md:pl-5 max-md:mx-2.5 max-md:mt-10  w-[455px] h-[70px]'
           />
 
           <img
@@ -59,7 +59,7 @@ function TravellerShipper() {
         <div className='relative '>
           <input
             placeholder='Preffered Date'
-            className='flex gap-5 justify-between py-5  pr-3 pl-10 mt-7 mr-4 ml-5 max-w-full bg-neutral-100 rounded-[41px] max-md:pl-5 max-md:mx-2.5 max-md:mt-10  w-[455px] h-[70px]'
+            className=' placeholder-sky-400 flex gap-5 justify-between py-5  pr-3 pl-10 mt-7 mr-4 ml-5 max-w-full bg-neutral-100 rounded-[41px] max-md:pl-5 max-md:mx-2.5 max-md:mt-10  w-[455px] h-[70px]'
           />
 
           <img
