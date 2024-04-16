@@ -8,6 +8,7 @@ import CountUp from 'react-countup';
 import VisibilitySensor from 'react-visibility-sensor';
 import CountUpComponent from '../components/CountUp';
 import CarouselComponent from '../components/Carousel';
+import Card from '../components/Card';
 function Home() {
   return (
     <div className='flex flex-col items-center px-20 w-full max-md:px-5 max-md:max-w-full'>
@@ -154,7 +155,27 @@ function Home() {
 
       <CountUpComponent />
 
-      <CarouselComponent />
+      <div className='w-full flex space-x-12 overflow-x-scroll p-12 snap-x snap-mandatory mt-20 '>
+        <Card />
+        <Card />
+        <Card />
+        <Card />
+      </div>
+
+      <div className='flex gap-5 justify-between max-w-[430px]'>
+        <img
+          loading='lazy'
+          src='https://cdn.builder.io/api/v1/image/assets/TEMP/f2af070893427b2b16e9d9d6744f2efad484b50ca7c7fd8ca73494e65409938b?'
+          className='shrink-0 w-10 aspect-square'
+        />
+        <img
+          loading='lazy'
+          src='https://cdn.builder.io/api/v1/image/assets/TEMP/b8779b961abdf423a85e7a0ba6ddfa561353928e3796d787476f811d15934b98?'
+          className='shrink-0 w-10 aspect-square'
+        />
+      </div>
+
+      {/* <CarouselComponent /> */}
     </div>
   );
 }

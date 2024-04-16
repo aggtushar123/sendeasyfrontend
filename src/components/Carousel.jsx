@@ -8,8 +8,8 @@ function CarouselComponent() {
       <Carousel
         autoPlay={true}
         infiniteLoop={true}
-        showThumbs={false}
-        showIndicators={false}
+        showThumbs={true}
+        showIndicators={true}
         showStatus={false}
         renderArrowPrev={(clickHandler, hasPrev) => (
           <div
