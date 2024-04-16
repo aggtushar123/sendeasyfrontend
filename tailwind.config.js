@@ -2,12 +2,13 @@
 module.exports = {
   content: ['./src/**/*.{js,jsx,ts,tsx}'],
   theme: {
-    extend: {
-      fontFamily: {
-        'Reem': ['Reem Kufi', ' sans - serif'],
-        Railway: ['Raleway'],
-        Inter: ['Inter'],
-      },
+    extend: {},
+    fontFamily: {
+      reem: 'Reem',
+      raleway: 'Raleway',
+      inter: 'Inter',
+      playfair: 'Playfair',
+      dmSans: 'DMSans',
     },
   },
   plugins: [],

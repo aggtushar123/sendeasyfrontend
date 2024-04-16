@@ -5,16 +5,16 @@ import AboutUsCard from '../components/AboutUsCard';
 
 function About() {
   return (
-    <div className='flex flex-col items-center  rounded-[29px]'>
+    <div className='flex flex-col items-center  rounded-[29px] font-inter'>
       <div className='flex flex-col items-center self-stretch px-20 pt-8 pb-0.5 w-full max-md:px-5 max-md:max-w-full'>
         <div className='mt-24 max-w-full w-[996px] max-md:mt-10'>
           <div className='flex gap-5 max-md:flex-col max-md:gap-0'>
             <div className='flex flex-col w-6/12 max-md:ml-0 max-md:w-full'>
               <div className='flex flex-col text-sky-400 max-md:mt-10 max-md:max-w-full w-[80%]'>
-                <div className='text-3xl font-bold tracking-wider leading-10 capitalize max-md:max-w-full'>
+                <div className='text-3xl font-bold tracking-wider leading-10 capitalize max-md:max-w-full font-reem'>
                   About Us
                 </div>
-                <div className='mt-6 text-4xl font-semibold max-md:max-w-full'>
+                <div className='mt-6 text-4xl font-semibold max-md:max-w-full font-raleway'>
                   Lorem ipsum dolor sit amet
                 </div>
                 <div className='mt-11 text-base leading-5 text-slate-900 max-md:mt-10 max-md:max-w-full '>
@@ -42,7 +42,7 @@ function About() {
         <div className='flex gap-5 max-md:flex-col max-md:gap-0'>
           <div className='flex flex-col w-6/12 max-md:ml-0 max-md:w-full'>
             <div className='flex flex-col grow px-5 mt-11 max-md:mt-10 max-md:max-w-full'>
-              <div className='text-4xl font-semibold text-sky-400 max-md:max-w-full'>
+              <div className='text-4xl font-semibold text-sky-400 max-md:max-w-full font-raleway'>
                 Our Mission
               </div>
               <div className='mt-32 text-base leading-5 text-slate-900 max-md:mt-10 max-md:max-w-full'>
@@ -65,7 +65,7 @@ function About() {
                 in reprehenderit in voluptate velit esse cillum dolore eu fugiat
                 nulla pariatur. 
               </div>
-              <div className='self-center mt-32 text-4xl font-semibold text-sky-400 max-md:mt-10'>
+              <div className='self-center mt-32 text-4xl font-semibold text-sky-400 max-md:mt-10 font-raleway'>
                 Our Vision
               </div>
             </div>
