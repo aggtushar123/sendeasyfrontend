@@ -35,7 +35,7 @@ const Header = () => {
 
         {ViewHeader && (
           <div className='flex flex-auto gap-5 justify-between py-0.5 pl-20 backdrop-blur-[4.400000095367432px] bg-none bg-opacity-70 rounded-[34px]'>
-            <div className='my-auto text-black'> Kolkata</div>
+            <div className='my-auto text-gray-400'> Kolkata</div>
             <img
               loading='lazy'
               src='https://cdn.builder.io/api/v1/image/assets/TEMP/d5f4d6d74f28ca8672970bb57400ecedd031c1d7dee63cd755a966e79e2ba151?'
