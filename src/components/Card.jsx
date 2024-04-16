@@ -11,7 +11,7 @@ function Card() {
             className='grow w-full aspect-[1] h-[296px] '
           />
         </div>
-        <div className='flex flex-col ml-5 w-[83%] max-md:ml-0 max-md:w-full text-black'>
+        <div className='flex flex-col ml-5 w-[83%] max-md:ml-0 max-md:w-full text-black'>    
           <div className='flex flex-col self-stretch my-auto text-xs text-slate-900 max-md:mt-10 max-md:max-w-full'>
             <div className='text-left max-md:max-w-full'>May 8, 2020</div>
             <div className='mt-4 text-2xl font-semibold max-md:max-w-full'>

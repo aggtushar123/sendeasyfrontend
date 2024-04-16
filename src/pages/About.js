@@ -1,6 +1,7 @@
 import React from 'react';
 import Accordion from '../components/Accordian';
 import CountUpComponent from '../components/CountUp';
+import AboutUsCard from '../components/AboutUsCard';
 
 function About() {
   return (
@@ -9,14 +10,14 @@ function About() {
         <div className='mt-24 max-w-full w-[996px] max-md:mt-10'>
           <div className='flex gap-5 max-md:flex-col max-md:gap-0'>
             <div className='flex flex-col w-6/12 max-md:ml-0 max-md:w-full'>
-              <div className='flex flex-col text-sky-400 max-md:mt-10 max-md:max-w-full'>
+              <div className='flex flex-col text-sky-400 max-md:mt-10 max-md:max-w-full w-[80%]'>
                 <div className='text-3xl font-bold tracking-wider leading-10 capitalize max-md:max-w-full'>
                   About Us
                 </div>
                 <div className='mt-6 text-4xl font-semibold max-md:max-w-full'>
                   Lorem ipsum dolor sit amet
                 </div>
-                <div className='mt-11 text-base leading-5 text-slate-900 max-md:mt-10 max-md:max-w-full'>
+                <div className='mt-11 text-base leading-5 text-slate-900 max-md:mt-10 max-md:max-w-full '>
                   Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
                   do eiusmod tempor incididunt ut labore et dolore magna aliqua.
                   Ut enim ad minim veniam, quis nostrud exercitation ullamco
@@ -29,8 +30,8 @@ function About() {
             <div className='flex flex-col ml-5 w-6/12 max-md:ml-0 max-md:w-full'>
               <img
                 loading='lazy'
-                srcSet='...'
-                className='grow w-full aspect-[1.27] max-md:mt-10 max-md:max-w-full'
+                srcSet='https://s3-alpha-sig.figma.com/img/a0dd/41a5/dc6befe011a68514e414644fff863090?Expires=1714348800&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=aFrhV7PK1OLLpwtyJgfZntcwXeiWjPm9kDQUDrEUQnNuwIC0qdgWBlbbIoIpne-iPVaHWEh5lAjOr0SRRRn1bIFw--VgppSIoIiaxorppmGFJrucCkVy5kbrhR1bBni9kmtcmyCRptD3tAcGdc69bL-cbGHT1wf6AP9hrlqnaKVOZ-nGbXNpW9Ta~JYNWHHFslrYDRTQV4uBeP~xR3-4oYveI8-Vz~8VeEJ6CBnfi4fdxQztzPffJxsFiucn6dzVLc634JRY68HjAxkwzkID7Qkn6SPOauDsNWphnHnq~JAosfneZEhFhyELsoVdYH5J07YkwLRufZOw0acEBrWBaw__'
+                className='grow aspect-[1.27] max-md:mt-10 max-md:max-w-full rounded-xl w-[454px] h-[357px]'
               />
             </div>
           </div>
@@ -71,109 +72,20 @@ function About() {
           </div>
         </div>
       </div>
-      <div className='mt-20 text-4xl font-semibold leading-10 text-center text-sky-400 max-md:mt-10 max-md:max-w-full'>
+      <div className='mt-20 text-4xl font-semibold leading-10 text-center text-sky-400 max-md:mt-10 max-md:max-w-full '>
         Get to know our team
       </div>
-      <div className='mt-5 px-20 text-base leading-5 text-center text-slate-900 max-md:max-w-full'>
+      <div className='mt-5 px-20 text-base leading-5 text-center text-slate-900 max-md:max-w-full w-[80%]'>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
         tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
         veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
       </div>
-      <div className='px-5 mt-16 max-w-full w-[915px] max-md:mt-10'>
+      <div className='px-5 max-w-full w-[915px] max-md:mt-10'>
         <div className='flex gap-5 max-md:flex-col max-md:gap-0'>
-          <div className='flex flex-col w-[33%] max-md:ml-0 max-md:w-full'>
-            <div className='flex flex-col grow items-center pb-9 max-md:mt-8'>
-              <img
-                loading='lazy'
-                srcSet='...'
-                className='self-stretch w-full aspect-[0.98]'
-              />
-              <div className='mt-8 text-2xl font-semibold leading-8 text-slate-900'>
-                John Doe
-              </div>
-              <div className='mt-2.5 text-xl leading-7 text-sky-400'>
-                Founder
-              </div>
-              <div className='flex gap-5 mt-8'>
-                <img
-                  loading='lazy'
-                  src='https://cdn.builder.io/api/v1/image/assets/TEMP/0909c58c43f22228141dc1bc20449a8aa705552af7e260664b0943b88c31f306?'
-                  className='shrink-0 w-8 aspect-square'
-                />
-                <img
-                  loading='lazy'
-                  src='https://cdn.builder.io/api/v1/image/assets/TEMP/bfef91c74d2acfcb42d22bf31df156320d13e8cc12ff5c87580efdeb28e590b2?'
-                  className='shrink-0 w-8 aspect-square'
-                />
-                <img
-                  loading='lazy'
-                  src='https://cdn.builder.io/api/v1/image/assets/TEMP/863f8f81cc1fa7a6583a4544243b4885917dd4c657794ac25fb4366f9802326a?'
-                  className='shrink-0 w-8 aspect-square'
-                />
-              </div>
-            </div>
-          </div>
-          <div className='flex flex-col ml-5 w-[33%] max-md:ml-0 max-md:w-full'>
-            <div className='flex flex-col grow items-center pb-9 max-md:mt-8'>
-              <img
-                loading='lazy'
-                srcSet='...'
-                className='self-stretch w-full aspect-[0.98]'
-              />
-              <div className='mt-8 text-2xl font-semibold leading-8 text-slate-900'>
-                John Doe
-              </div>
-              <div className='mt-2.5 text-xl leading-7 text-sky-400'>
-                Co Founder
-              </div>
-              <div className='flex gap-5 mt-8'>
-                <img
-                  loading='lazy'
-                  src='https://cdn.builder.io/api/v1/image/assets/TEMP/b79f92538e28c4e52a2ae94b20222b4a6580d382d12442abc3881bb4c355b0d8?'
-                  className='shrink-0 w-8 aspect-square'
-                />
-                <img
-                  loading='lazy'
-                  src='https://cdn.builder.io/api/v1/image/assets/TEMP/b1540d16e306bb3ae98e84080df3f027e07dab8108d8c4931acdeee4aba12eba?'
-                  className='shrink-0 w-8 aspect-square'
-                />
-                <img
-                  loading='lazy'
-                  src='https://cdn.builder.io/api/v1/image/assets/TEMP/b5dddcde80791a4be7bb034e13837e79211f7da6e7d0123d220eeff7e40dd519?'
-                  className='shrink-0 w-8 aspect-square'
-                />
-              </div>
-            </div>
-          </div>
-          <div className='flex flex-col ml-5 w-[33%] max-md:ml-0 max-md:w-full'>
-            <div className='flex flex-col grow items-center pb-9 max-md:mt-8'>
-              <img
-                loading='lazy'
-                srcSet='...'
-                className='self-stretch w-full aspect-[0.98]'
-              />
-              <div className='mt-8 text-2xl font-semibold leading-8 text-slate-900'>
-                John Doe
-              </div>
-              <div className='mt-2.5 text-xl leading-7 text-sky-400'>CEO</div>
-              <div className='flex gap-5 mt-8'>
-                <img
-                  loading='lazy'
-                  src='https://cdn.builder.io/api/v1/image/assets/TEMP/8bbb3a10812c511dc52fd76a70f75d017701973189afb3459237bfb583a45f3a?'
-                  className='shrink-0 w-8 aspect-square'
-                />
-                <img
-                  loading='lazy'
-                  src='https://cdn.builder.io/api/v1/image/assets/TEMP/1a888d919716b42ecdbd6be5c0ad58b461bdd9e773b0c79a1e1482ffd1912ab8?'
-                  className='shrink-0 w-8 aspect-square'
-                />
-                <img
-                  loading='lazy'
-                  src='https://cdn.builder.io/api/v1/image/assets/TEMP/8a71f130cdd97db7761a2c329eedb0ebaebb49b15656d7bb50c4ae632e97a13d?'
-                  className='shrink-0 w-8 aspect-square'
-                />
-              </div>
-            </div>
+          <div className='w-full flex space-x-12 overflow-x-scroll p-12 snap-x snap-mandatory mt-20 '>
+            <AboutUsCard />
+            <AboutUsCard />
+            <AboutUsCard />
           </div>
         </div>
       </div>
