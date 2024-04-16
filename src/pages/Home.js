@@ -27,7 +27,7 @@ function Home() {
                 </div>
                 <div className='flex-auto my-auto text-center'>Shipper</div>
               </div>
-              <div className='flex gap-5 justify-between py-2.5 pr-3 pl-10 mt-12 mr-4 ml-5 max-w-full bg-neutral-100 rounded-[41px] w-[420px] max-md:pl-5 max-md:mx-2.5 max-md:mt-10'>
+              <div className='flex gap-5 justify-between py-5  pr-3 pl-10 mt-12 mr-4 ml-5 max-w-full bg-neutral-100 rounded-[41px] max-md:pl-5 max-md:mx-2.5 max-md:mt-10'>
                 <div className='my-auto'>Pickup Place</div>
                 <img
                   loading='lazy'
@@ -35,11 +35,16 @@ function Home() {
                   className='shrink-0 aspect-square w-[33px]'
                 />
               </div>
-
-              <div className='justify-center items-start px-10 py-5 mt-7 mr-4 ml-5 bg-neutral-100 rounded-[41px] max-md:px-5 max-md:mx-2.5'>
-                Drop place
+              <div className='flex gap-5 justify-between py-5  pr-3 pl-10 mt-6 mr-4 ml-5 max-w-full bg-neutral-100 rounded-[41px] max-md:pl-5 max-md:mx-2.5 max-md:mt-10'>
+                <div className='my-auto'>Drop</div>
+                <img
+                  loading='lazy'
+                  src='https://cdn.builder.io/api/v1/image/assets/TEMP/4a417873fe7c330c8c9d2a6709c305c10289e9ca5ba387e35ff92f4019b342b8?'
+                  className='shrink-0 aspect-square w-[33px]'
+                />
               </div>
-              <div className='flex gap-5 justify-between py-5 pr-5 pl-10 mt-6 mr-4 ml-5 max-w-full bg-neutral-100 rounded-[41px] w-[420px] max-md:pl-5 max-md:mx-2.5'>
+
+              <div className='flex gap-5 justify-between py-5 pr-5 pl-10 mt-6 mr-4 ml-5 max-w-full bg-neutral-100 rounded-[41px] max-md:pl-5 max-md:mx-2.5'>
                 <div className='my-auto'>Pref Date </div>
                 <img
                   loading='lazy'
