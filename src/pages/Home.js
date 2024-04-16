@@ -73,27 +73,18 @@ function Home() {
         <div className='flex gap-5 max-md:flex-col max-md:gap-0'>
           <div className='flex flex-col w-[33%] max-md:ml-0 max-md:w-full'>
             <div className='flex flex-col grow text-slate-900 max-md:mt-10'>
-            <img
-                loading='lazy'
-                src={step1}
-              />
+              <img loading='lazy' src={step1} />
             </div>
           </div>
           <div className='flex flex-col ml-5 w-[33%] max-md:ml-0 max-md:w-full'>
             <div className='flex flex-col grow text-slate-900 max-md:mt-10'>
-            <img
-                loading='lazy'
-                src={step2}
-              />
+              <img loading='lazy' src={step2} />
             </div>
           </div>
 
           <div className='flex flex-col ml-5 w-[33%] max-md:ml-0 max-md:w-full'>
             <div className='flex flex-col grow text-slate-900 max-md:mt-10'>
-            <img
-                loading='lazy'
-                src={step3}
-              />
+              <img loading='lazy' src={step3} />
             </div>
           </div>
         </div>
@@ -101,16 +92,10 @@ function Home() {
       <div className='mt-28 max-w-full w-[740px] max-md:mt-10'>
         <div className='flex gap-5 max-md:flex-col max-md:gap-0'>
           <div className='flex flex-col w-6/12 max-md:ml-0 max-md:w-full'>
-          <img
-                loading='lazy'
-                src={step4}
-              />
+            <img loading='lazy' src={step4} />
           </div>
           <div className='flex flex-col ml-5 w-6/12 max-md:ml-0 max-md:w-full'>
-          <img
-                loading='lazy'
-                src={step5}
-              />
+            <img loading='lazy' src={step5} />
           </div>
         </div>
       </div>
@@ -161,19 +146,19 @@ function Home() {
       </div>
 
       <CountUpComponent />
-     
-      <div className="text-4xl font-medium mt-20 text-center text-sky-400 max-md:max-w-full">
-      What Our Clients Say About Us
-    </div>
 
-      <div className='w-full flex space-x-12 overflow-x-scroll p-12 snap-x snap-mandatory mt-10 '>
+      <div className='text-4xl font-medium mt-20 text-center text-sky-400 max-md:max-w-full'>
+        What Our Clients Say About Us
+      </div>
+
+      <div className='w-full flex space-x-12 overflow-x-scroll p-12 snap-x snap-mandatory mt-10 mb-10 '>
         <Card />
         <Card />
         <Card />
         <Card />
       </div>
 
-      <div className='flex gap-5 justify-between max-w-[430px]'>
+      {/* <div className='flex gap-5 justify-between max-w-[430px] mb-10'>
         <img
           loading='lazy'
           src='https://cdn.builder.io/api/v1/image/assets/TEMP/f2af070893427b2b16e9d9d6744f2efad484b50ca7c7fd8ca73494e65409938b?'
@@ -184,45 +169,40 @@ function Home() {
           src='https://cdn.builder.io/api/v1/image/assets/TEMP/b8779b961abdf423a85e7a0ba6ddfa561353928e3796d787476f811d15934b98?'
           className='shrink-0 w-10 aspect-square'
         />
-      </div>
-     
-      <div className="max-w-[996px] mt-20">
-      <div className="flex gap-5 max-md:flex-col max-md:gap-0">
-        <div className="flex flex-col w-6/12 max-md:ml-0 max-md:w-full">
-          <div className="flex flex-col px-5 text-sky-400 max-md:mt-10 max-md:max-w-full">
-            <div className="text-3xl font-bold tracking-wider leading-10 capitalize max-md:max-w-full">
-              Who are we
-            </div>
-            <div className="mt-6 text-4xl font-semibold max-md:max-w-full">
-              Lorem ipsum dolor sit amet
-            </div>
-            <div className="mt-11 text-base leading-5 text-slate-900 max-md:mt-10 max-md:max-w-full">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-              enim ad minim veniam, quis nostrud exercitation ullamco laboris
-              nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
-              reprehenderit in voluptate velit esse cillum dolore eu fugiat
-              nulla pariatur. 
+      </div> */}
+
+      <div className='max-w-[996px] mt-20'>
+        <div className='flex gap-5 max-md:flex-col max-md:gap-0'>
+          <div className='flex flex-col w-6/12 max-md:ml-0 max-md:w-full'>
+            <div className='flex flex-col px-5 text-sky-400 max-md:mt-10 max-md:max-w-full'>
+              <div className='text-3xl font-bold tracking-wider leading-10 capitalize max-md:max-w-full'>
+                Who are we
+              </div>
+              <div className='mt-6 text-4xl font-semibold max-md:max-w-full'>
+                Lorem ipsum dolor sit amet
+              </div>
+              <div className='mt-11 text-base leading-5 text-slate-900 max-md:mt-10 max-md:max-w-full'>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+                enim ad minim veniam, quis nostrud exercitation ullamco laboris
+                nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor
+                in reprehenderit in voluptate velit esse cillum dolore eu fugiat
+                nulla pariatur.
+              </div>
             </div>
           </div>
-        </div>
-        <div className="flex flex-col ml-5 w-6/12 max-md:ml-0 max-md:w-full">
-          <img
-            loading="lazy"
-            srcSet="..."
-            className="grow w-full aspect-[1.27] max-md:mt-10 max-md:max-w-full"
-          />
+          <div className='flex flex-col ml-5 w-6/12 max-md:ml-0 max-md:w-full mb-[150px]'>
+            <img
+              loading='lazy'
+              srcSet='https://s3-alpha-sig.figma.com/img/a0dd/41a5/dc6befe011a68514e414644fff863090?Expires=1714348800&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=aFrhV7PK1OLLpwtyJgfZntcwXeiWjPm9kDQUDrEUQnNuwIC0qdgWBlbbIoIpne-iPVaHWEh5lAjOr0SRRRn1bIFw--VgppSIoIiaxorppmGFJrucCkVy5kbrhR1bBni9kmtcmyCRptD3tAcGdc69bL-cbGHT1wf6AP9hrlqnaKVOZ-nGbXNpW9Ta~JYNWHHFslrYDRTQV4uBeP~xR3-4oYveI8-Vz~8VeEJ6CBnfi4fdxQztzPffJxsFiucn6dzVLc634JRY68HjAxkwzkID7Qkn6SPOauDsNWphnHnq~JAosfneZEhFhyELsoVdYH5J07YkwLRufZOw0acEBrWBaw__'
+              className='grow aspect-[1.27] max-md:mt-10 max-md:max-w-full w-[454px] h-[357px] mb-10 rounded-xl'
+            />
+          </div>
         </div>
       </div>
-    </div>
-    
-      <Newsletter/>
-    </div>
-  
 
-
-      
-    
+      <Newsletter />
+    </div>
   );
 }
 
