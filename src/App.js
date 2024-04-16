@@ -9,6 +9,7 @@ import CreateTravellerListing from './pages/CreateTravellerLising';
 import Contact from './pages/Contact';
 import About from './pages/About';
 import Home from './pages/Home';
+import Home1 from './pages/Home1';
 import { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import Traveler from './components/Traveler';
@@ -24,6 +25,7 @@ function App() {
 
         <Routes>
           <Route path='/' element={<Home />} />
+          <Route path='/home1' element={<Home1 />} />
           <Route path='/about' element={<About />} />
           <Route path='/contact' element={<Contact />} />
           <Route path='/login' element={<Login />} />
