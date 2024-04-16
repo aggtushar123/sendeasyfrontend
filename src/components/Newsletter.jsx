@@ -11,7 +11,7 @@ function Newsletter() {
   return (
     <>
       {newsLetter && (
-        <div className='flex overflow-hidden relative flex-col items-end px-20 py-16 w-[850px] min-h-[396px] mb-20 max-md:px-5 max-md:max-w-full '>
+        <div className='flex overflow-hidden relative flex-col items-end px-20 py-16 w-[850px] min-h-[396px] mb-20 max-md:px-5 max-md:max-w-full font-dmSans'>
           <button
             className='absolute right-[11px] top-[11px] z-10'
             onClick={removeNewsletter}
@@ -23,7 +23,7 @@ function Newsletter() {
             src={Subsribe}
             className='object-cover absolute inset-0 size-full'
           />
-          <div className='relative text-2xl leading-9 text-indigo-950'>
+          <div className='relative text-2xl leading-9 text-indigo-950 font-bold'>
             Subscribe to our newsletter
           </div>
           <div className='relative mt-6 leading-8 w-[360px]'>
