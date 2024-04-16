@@ -133,16 +133,21 @@ const contact = () => {
         <div className='mt-5 text-4xl text-center text-sky-400 max-md:max-w-full'>
           Get in touch
         </div>
-        <div className='mt-5 text-xl leading-7 text-center w-[751px] max-md:max-w-full'>
+        <div className='mt-5 text-xl leading-7 text-center w-[751px] max-md:max-w-full font-normal'>
           We're happy to answer any questions you may have about our lawn care
           or landscaping services, Feel free to give us a call or send us a
           message and we'll help get the answers you need
         </div>
-        <img
+        <iframe
+          src='https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3806.5131038219242!2d78.33810017515599!3d17.43513880142779!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bcb939d186aa671%3A0xe0130f40b7e04e9e!2sIndian%20School%20of%20Business%E2%80%93Hyderabad%20(ISB%E2%80%93Hyderabad)!5e0!3m2!1sen!2sin!4v1713288043070!5m2!1sen!2sin'
+          width='600'
+          height='450'
+          style={{ border: '0' }}
+          allowfullscreen=''
           loading='lazy'
-          srcSet='...'
-          className='mt-16 max-w-full aspect-[1.72] w-[950px] max-md:mt-10'
-        />
+          referrerpolicy='no-referrer-when-downgrade'
+          className='my-10 rounded-xl'
+        ></iframe>
       </div>
     </div>
   );
