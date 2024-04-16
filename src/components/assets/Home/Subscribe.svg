@@ -4,8 +4,6 @@
 </mask>
 <g mask="url(#mask0_491_9140)">
 <rect width="824.512" height="395.529" fill="#F5F4F8"/>
-<path d="M722.402 39L738.402 23" stroke="#170F49" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M738.402 39L722.402 23" stroke="#170F49" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
 <mask id="mask1_491_9140" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="-1" width="308" height="397">
 <path d="M0 19.2821C0 8.38422 8.83444 -0.450195 19.7323 -0.450195H308V395.979H19.7323C8.83444 395.979 0 387.145 0 376.247V19.2821Z" fill="#B5AEFF"/>
 </mask>

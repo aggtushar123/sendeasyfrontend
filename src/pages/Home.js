@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import step1 from '../components/assets/Home/step1.svg';
 import step2 from '../components/assets/Home/step2.svg';
 import step3 from '../components/assets/Home/step3.svg';
@@ -14,6 +14,7 @@ import CarouselComponent from '../components/Carousel';
 import Card from '../components/Card';
 import Newsletter from '../components/Newsletter';
 import TravellerShipper from '../components/TravellerShipper';
+
 
 function Home() {
   return (
