@@ -4,11 +4,16 @@ import step2 from '../components/assets/Home/step2.svg';
 import step3 from '../components/assets/Home/step3.svg';
 import step4 from '../components/assets/Home/step4.svg';
 import step5 from '../components/assets/Home/step5.svg';
+import money from '../components/assets/Home/Money.svg';
+import delivery from '../components/assets/Home/delivery.svg';
+import green from '../components/assets/Home/green.svg';
 import CountUp from 'react-countup';
 import VisibilitySensor from 'react-visibility-sensor';
 import CountUpComponent from '../components/CountUp';
 import CarouselComponent from '../components/Carousel';
 import Card from '../components/Card';
+import Newsletter from '../components/Newsletter';
+
 function Home() {
   return (
     <div className='flex flex-col items-center px-20 w-full max-md:px-5 max-md:max-w-full'>
@@ -68,18 +73,27 @@ function Home() {
         <div className='flex gap-5 max-md:flex-col max-md:gap-0'>
           <div className='flex flex-col w-[33%] max-md:ml-0 max-md:w-full'>
             <div className='flex flex-col grow text-slate-900 max-md:mt-10'>
-              <img src={step1} />
+            <img
+                loading='lazy'
+                src={step1}
+              />
             </div>
           </div>
           <div className='flex flex-col ml-5 w-[33%] max-md:ml-0 max-md:w-full'>
             <div className='flex flex-col grow text-slate-900 max-md:mt-10'>
-              <img src={step2} />
+            <img
+                loading='lazy'
+                src={step2}
+              />
             </div>
           </div>
 
           <div className='flex flex-col ml-5 w-[33%] max-md:ml-0 max-md:w-full'>
             <div className='flex flex-col grow text-slate-900 max-md:mt-10'>
-              <img src={step3} />
+            <img
+                loading='lazy'
+                src={step3}
+              />
             </div>
           </div>
         </div>
@@ -87,23 +101,16 @@ function Home() {
       <div className='mt-28 max-w-full w-[740px] max-md:mt-10'>
         <div className='flex gap-5 max-md:flex-col max-md:gap-0'>
           <div className='flex flex-col w-6/12 max-md:ml-0 max-md:w-full'>
-            <div className='flex flex-col grow px-7 pb-7 mx-auto w-full bg-sky-200 rounded-[32px] max-md:px-5 max-md:mt-10'></div>
+          <img
+                loading='lazy'
+                src={step4}
+              />
           </div>
           <div className='flex flex-col ml-5 w-6/12 max-md:ml-0 max-md:w-full'>
-            <div className='flex flex-col grow items-start pr-14 pb-14 pl-6 mx-auto w-full bg-sky-50 rounded-[32px] text-slate-900 max-md:px-5 max-md:mt-10'>
-              <div className='flex z-10 gap-1.5 py-2 mt-0 text-lg whitespace-nowrap bg-sky-200 rounded-lg'>
-                <div>Step</div>
-                <div className='font-semibold'>5</div>
-              </div>
-              <img
+          <img
                 loading='lazy'
-                srcSet='...'
-                className='self-center mt-9 max-w-full aspect-[1.43] w-[202px]'
+                src={step5}
               />
-              <div className='mt-16 text-xl font-semibold text-center max-md:mt-10'>
-                Sender makes payment. Sender/receiver ends trip
-              </div>
-            </div>
           </div>
         </div>
       </div>
@@ -113,7 +120,7 @@ function Home() {
             <div className='flex grow gap-5 justify-center px-4 py-6 w-full text-xl font-semibold leading-6 bg-sky-50 rounded-[32px] text-slate-900 max-md:mt-10'>
               <img
                 loading='lazy'
-                srcSet='...'
+                src={money}
                 className='shrink-0 aspect-square w-[84px]'
               />
               <div className='self-start'>Money based</div>
@@ -123,7 +130,7 @@ function Home() {
             <div className='flex grow gap-5 justify-center px-4 py-6 w-full text-xl font-semibold leading-6 bg-sky-50 rounded-[32px] text-slate-900 max-md:mt-10'>
               <img
                 loading='lazy'
-                srcSet='...'
+                src={delivery}
                 className='shrink-0 aspect-square w-[84px]'
               />
               <div>Guaranteed fastest delivery</div>
@@ -133,7 +140,7 @@ function Home() {
             <div className='flex grow gap-5 justify-center px-4 py-6 w-full text-xl font-semibold leading-6 bg-sky-50 rounded-[32px] text-slate-900 max-md:mt-10'>
               <img
                 loading='lazy'
-                srcSet='...'
+                src={green}
                 className='shrink-0 aspect-square w-[84px]'
               />
               <div className='self-start'>Go green</div>
@@ -154,8 +161,12 @@ function Home() {
       </div>
 
       <CountUpComponent />
+     
+      <div className="text-4xl font-medium mt-20 text-center text-sky-400 max-md:max-w-full">
+      What Our Clients Say About Us
+    </div>
 
-      <div className='w-full flex space-x-12 overflow-x-scroll p-12 snap-x snap-mandatory mt-20 '>
+      <div className='w-full flex space-x-12 overflow-x-scroll p-12 snap-x snap-mandatory mt-10 '>
         <Card />
         <Card />
         <Card />
@@ -174,9 +185,44 @@ function Home() {
           className='shrink-0 w-10 aspect-square'
         />
       </div>
-
-      {/* <CarouselComponent /> */}
+     
+      <div className="max-w-[996px] mt-20">
+      <div className="flex gap-5 max-md:flex-col max-md:gap-0">
+        <div className="flex flex-col w-6/12 max-md:ml-0 max-md:w-full">
+          <div className="flex flex-col px-5 text-sky-400 max-md:mt-10 max-md:max-w-full">
+            <div className="text-3xl font-bold tracking-wider leading-10 capitalize max-md:max-w-full">
+              Who are we
+            </div>
+            <div className="mt-6 text-4xl font-semibold max-md:max-w-full">
+              Lorem ipsum dolor sit amet
+            </div>
+            <div className="mt-11 text-base leading-5 text-slate-900 max-md:mt-10 max-md:max-w-full">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+              enim ad minim veniam, quis nostrud exercitation ullamco laboris
+              nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
+              reprehenderit in voluptate velit esse cillum dolore eu fugiat
+              nulla pariatur. 
+            </div>
+          </div>
+        </div>
+        <div className="flex flex-col ml-5 w-6/12 max-md:ml-0 max-md:w-full">
+          <img
+            loading="lazy"
+            srcSet="..."
+            className="grow w-full aspect-[1.27] max-md:mt-10 max-md:max-w-full"
+          />
+        </div>
+      </div>
     </div>
+    
+      <Newsletter/>
+    </div>
+  
+
+
+      
+    
   );
 }
 
