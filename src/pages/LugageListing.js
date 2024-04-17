@@ -1,13 +1,21 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import Traveler from '../components/Traveler';
+import location from '../components/assets/Home/location.svg';
+import kg from '../components/assets/TravelerListing/kg.svg';
 import luggageListing from '../components/assets/TravelerListing/LuggageListing.svg';
 import ListingLogo from '../components/assets/TravelerListing/ListingLogo.svg';
 import searchButton from '../components/assets/TravelerListing/SearchButton.svg';
 import Dropdown from '../components/Dropdown';
 import SortPrice from '../components/SortPrice';
+import { useNavigate } from 'react-router-dom';
 
 const LuggageListing = () => {
+  let navigate = useNavigate();
+  const routeChange = () => {
+    let path = `/travelerListing`;
+    navigate(path);
+  };
   return (
     <div className='flex flex-col pt-8  rounded-[29px]'>
       <div className='flex flex-col items-center px-20 w-full max-md:px-5 max-md:max-w-full'>
@@ -44,60 +52,88 @@ const LuggageListing = () => {
             </div>
           </div>
         </div>
-        <div className='flex gap-5 justify-between items-start mt-12 max-w-full font-medium w-[920px] max-md:flex-wrap max-md:mt-10'>
-          <div className='flex grow gap-5 items-center pl-10 mt-4 w-auto text-base border-white border-solid bg-neutral-100 border-[3px] rounded-[41px] text-stone-300 max-md:flex-wrap max-md:max-w-full'>
+
+        <div className='flex gap-5 mt-12 max-w-full  w-[1147px] max-md:flex-wrap max-md:mt-10'>
+          <div className='relative'>
             <input
-              className='flex-auto bg-gray-100 self-stretch my-auto'
               placeholder='Search Destination'
+              className='flex grow gap-5 px-24 py-4 mt-3  tracking-wide capitalize bg-gray-100 rounded-3xl text-blue-950 w-[602px]'
             />
 
             <Link>
               <img
                 loading='lazy'
                 src={searchButton}
-                className='z-10 shrink-0 self-stretch my-auto aspect-square w-[70px]'
+                className='z-10 shrink-0 self-stretch my-auto aspect-square w-[70px] left-[540px] top-[6px] absolute '
               />
             </Link>
           </div>
-          <button className='justify-center px-14 py-4 mt-4 text-xl text-center text-sky-400 capitalize bg-white border-2 border-sky-400 border-solid rounded-[31px] max-md:px-5'>
-            want to ship items
-          </button>
 
-          <SortPrice />
+          <div className='relative'>
+            {' '}
+            <button
+              onClick={routeChange}
+              className='justify-center px-16 py-3 mt-3 text-center text-sky-400 capitalize bg-white border-2 border-sky-400 border-solid rounded-[31px] max-md:px-5'
+            >
+              Want To Ship Items
+            </button>
+          </div>
+
+          <div className='relative'>
+            {' '}
+            <SortPrice />
+          </div>
         </div>
+
         <div className='flex gap-5 px-5 mt-16 max-md:flex-wrap max-md:mt-10'>
-          <div className='grow my-auto text-base font-medium text-stone-300'>
+          <div className='grow mt-5 mr-5 font-medium text-stone-300'>
             Filter
           </div>
-          <input
-            type='date'
-            className='flex grow gap-5 px-5 py-6 w-auto text-xs tracking-wide capitalize bg-gray-100 rounded-3xl text-blue-950'
-          />
-          <div className='flex grow gap-5 px-5 py-7 w-auto bg-gray-100 rounded-3xl'>
+
+          <div className='relative '>
             <input
-              type='number'
-              className='flex-auto bg-gray-100 text-xs tracking-wide capitalize text-blue-950'
-              placeholder='available luggage space'
+              placeholder='Destination Location'
+              className='flex grow gap-5 px-8 py-6  text-xs tracking-wide capitalize bg-gray-100 rounded-3xl text-blue-950 w-[280px]'
             />
 
-            <div className='self-start text-lg font-semibold tracking-wide text-sky-400'>
-              KG
-            </div>
-          </div>
-          <div className='flex grow gap-5 px-4 py-2.5 w-auto text-xs tracking-wide capitalize bg-gray-100 rounded-3xl text-blue-950'>
-            <div className='flex-auto my-auto'>destination location</div>
             <img
               loading='lazy'
-              src='https://cdn.builder.io/api/v1/image/assets/TEMP/92ee52690ef9818bb372d1e3848a55c30563a079c441fe7da5b2b0f35e1f92c0?'
-              className='shrink-0 aspect-square w-[50px]'
+              src={location}
+              className='shrink-0 aspect-square w-[50px] z-10  self-stretch my-auto left-[220px] top-[6px] absolute'
             />
           </div>
-          <div className='flex grow gap-5 justify-between px-4 py-2.5 w-auto text-xs tracking-wide capitalize bg-gray-100 rounded-3xl text-blue-950'>
-            <div className='my-auto'>source location</div>
+          <div className='relative '>
+            <input
+              placeholder='Source Location'
+              className='flex grow gap-5 px-8 py-6  text-xs tracking-wide capitalize bg-gray-100 rounded-3xl text-blue-950 w-[280px]'
+            />
+
             <img
               loading='lazy'
-              src='https://cdn.builder.io/api/v1/image/assets/TEMP/92ee52690ef9818bb372d1e3848a55c30563a079c441fe7da5b2b0f35e1f92c0?'
-              className='shrink-0 aspect-square w-[50px]'
+              src={location}
+              className='shrink-0 aspect-square w-[50px] z-10  self-stretch my-auto left-[220px] top-[6px] absolute'
+            />
+          </div>
+
+          <div className='relative '>
+            <input
+              type='number'
+              placeholder='Available Luggage Space'
+              className='flex grow gap-5 px-8 py-6  text-xs tracking-wide capitalize bg-gray-100 rounded-3xl text-blue-950 w-[280px]'
+            />
+
+            <img
+              loading='lazy'
+              src={kg}
+              className='shrink-0 aspect-square w-[50px] z-10  self-stretch my-auto left-[220px] top-[22px] absolute size-5'
+            />
+          </div>
+
+          <div className='relative'>
+            {' '}
+            <input
+              type='date'
+              className='flex grow gap-5 px-5 py-6 w-auto text-xs tracking-wide capitalize bg-gray-100 rounded-3xl text-blue-950'
             />
           </div>
         </div>
