@@ -12,7 +12,7 @@ const SortPrice = () => {
       <button
         id="dropdownDefaultButton"
         onClick={toggleDropdown}
-        className="flex gap-3 self-center mt-3 px-4 py-7 h-auto text-xs tracking-wide capitalize bg-gray-100 rounded-3xl text-blue-950"
+        className="flex gap-3 self-center mt-3 px-4 py-6 h-auto text-xs tracking-wide capitalize bg-gray-100 rounded-3xl text-blue-950"
         type="button"
       >
         Sort: Price Low to High

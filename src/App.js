@@ -13,6 +13,7 @@ import { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import Traveler from './components/Traveler';
 import LuggageListing from './pages/LugageListing';
+import ForgetPassword from './components/ForgetPassword';
 
 function App() {
   const ViewHeader = useSelector((state) => state.header.value);
@@ -24,6 +25,7 @@ function App() {
 
         <Routes>
           <Route path='/' element={<Home />} />
+          <Route path='/fp' element={<ForgetPassword />} />
           
           <Route path='/about' element={<About />} />
           <Route path='/contact' element={<Contact />} />
