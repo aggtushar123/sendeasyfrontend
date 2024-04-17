@@ -41,7 +41,7 @@ function CarouselComponent() {
           <div className='  w-[245px]'>
             <img
               src='https://plus.unsplash.com/premium_photo-1705091982008-b40865cb9c26?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwxN3x8fGVufDB8fHx8fA%3D%3D'
-              className='aspect-[16/10] md:aspect-auto object-cover  rounded-xl '
+              className='aspect-[16/10] md:aspect-auto object-cover  rounded-xl'
             />
           </div>
           asdsad
