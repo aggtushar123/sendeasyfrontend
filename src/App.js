@@ -15,6 +15,8 @@ import Traveler from './components/Traveler';
 import LuggageListing from './pages/LugageListing';
 import ForgetPassword from './components/ForgetPassword';
 import ForgetOtp from './components/ForgetOtp';
+import Sidebar from './components/Sidebar';
+import Terms from './pages/Terms'
 
 function App() {
   const ViewHeader = useSelector((state) => state.header.value);
@@ -26,7 +28,9 @@ function App() {
 
         <Routes>
           <Route path='/' element={<Home />} />
+          <Route path='/sidebar' element={<Sidebar />} />
           <Route path='/fp' element={<ForgetPassword />} />
+          <Route path='/t&c' element={<Terms />} />
           <Route path='/fo' element={<ForgetOtp />} />
           <Route path='/about' element={<About />} />
           <Route path='/contact' element={<Contact />} />
