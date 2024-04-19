@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import logo from "./assets/Group.png";
 import { useSelector, useDispatch } from "react-redux";
 import { toggleFalse, toggleTrue } from "../features/headerSlice";
@@ -9,8 +9,9 @@ import Dropdown from "./Dropdown";
 const Header = () => {
   const ViewHeader = useSelector((state) => state.header.value);
   const { user } = useSelector((state) => state.auth);
-
+  const navigate = useNavigate()
   const dispatch = useDispatch();
+  const location = useLocation();
 
   const handleLoginToggleTrue = () => {
     dispatch(toggleTrue());
@@ -24,6 +25,11 @@ const Header = () => {
     setSignUpClicked(false);
   };
   const [signUpClicked, setSignUpClicked] = useState(true);
+  const onLogout = () => {
+    dispatch(logout())
+  dispatch(reset())
+  navigate('/')
+  }
   return (
     <div className="flex gap-5 justify-between pt-5 ml-5 mr-5 max-md:flex-wrap max-md:max-w-full">
       <div className="flex gap-5 justify-between items-start text-center capitalize text-stone-300 max-md:flex-wrap">
@@ -53,6 +59,14 @@ const Header = () => {
         </div>
    
           <>
+          <Link
+              to="/"
+              className={`text-slate-900 ${
+                location.pathname === '/' ? 'font-bold' : 'hover:text-gray-300'
+              }`}
+            >
+              Home
+            </Link>
             <Link className="self-stretch my-auto" to="/about">
               About Us
             </Link>
@@ -65,8 +79,8 @@ const Header = () => {
         {user ? (
           <Link
             className="flex flex-col flex-1 justify-center self-stretch font-semibold text-sky-400 whitespace-nowrap"
-            to="/signup"
-            onClick={handleSignupToggle}
+            
+            onClick={onLogout}
           >
             <div className="justify-center px-11 py-3 bg-white border-2 border-sky-400 border-solid rounded-[31px] max-md:px-5">
               Logout
