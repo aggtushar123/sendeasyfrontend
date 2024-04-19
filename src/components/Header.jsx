@@ -22,7 +22,7 @@ const Header = () => {
   };
   const [signUpClicked, setSignUpClicked] = useState(true);
   return (
-    <div className='flex gap-5 justify-between pt-5 ml-5 mr-5 max-md:flex-wrap max-md:max-w-full'>
+    <header className='flex gap-5 justify-between pt-5 ml-5 mr-5 max-md:flex-wrap max-md:max-w-full'>
       <div className='flex gap-5 justify-between items-start text-center capitalize text-stone-300 max-md:flex-wrap'>
         <Link to='/' onClick={() => handleLoginToggleTrue()}>
           <img
@@ -92,7 +92,7 @@ const Header = () => {
           </Link>
         )}
       </div>
-    </div>
+    </header>
   );
 };
 

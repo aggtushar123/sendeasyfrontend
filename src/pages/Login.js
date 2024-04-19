@@ -11,6 +11,7 @@ import image from "../components/assets/Login/main.svg";
 import GoogleIcon from "../components/assets/Login/GoogleIcon.svg";
 import FacebookIcon from "../components/assets/Login/FaebookIcon.svg";
 import Dropdown from "../components/Dropdown";
+import { login } from "../features/auth/authSlice";
 
 const Login = () => {
   const dispatch = useDispatch();
@@ -18,7 +19,18 @@ const Login = () => {
   const options = ["Traveler Listing", "Luggage Listing", "Create a Listing"];
   const [selectedOption, setSelectedOption] = useState();
   const navigate = useNavigate();
+  const [isOpen, setIsOpen] = useState(false);
+  const [loginData, setLoginData] = useState({
+    email: "",
+    password: "",
+  });
+  const { email, password } = loginData;
 
+  const {user, isSuccess, isLoading, message} = useSelector((state) => state.auth)
+
+  const toggleDropdown = () => {
+    setIsOpen((prev) => !prev);
+  };
   const handleDropdownChange = (selected) => {
     setSelectedOption(selected.value);
     navigate(`/${selected.value.toLowerCase().replace(/\s/g, "")}`);
@@ -30,35 +42,23 @@ const Login = () => {
   const handleShowPassword = () => {
     setShowPassword(!showPassword);
   };
-  const [isOpen, setIsOpen] = useState(false);
-
-  const toggleDropdown = () => {
-    setIsOpen((prev) => !prev);
+  const onChange = (e) => {
+    setLoginData((prevData) => ({
+      ...prevData,
+      [e.target.name]: e.target.value,
+    }));
   };
+
+  const onSubmit = (e) => {
+    e.preventDefault()
+    const userData = {
+      email, password,
+    }
+    dispatch(login(userData))
+  }
+
   return (
     <div className="flex flex-col pt-5 pr-4 pb-20 pl-15 rounded-[29px] max-md:pl-5">
-      {/* <div className="flex gap-5 justify-between ml-12 text-xl font-medium text-slate-900 max-md:flex-wrap max-md:max-w-full">
-        <Link to="/">
-          <img
-            loading="lazy"
-            src={logo}
-            className="shrink-0 max-w-full aspect-[3.33] w-[166px]"
-            onClick={handleLoginToggle}
-          />
-        </Link>
-
-        <div className="flex gap-5 justify-between items-center self-start max-md:flex-wrap">
-          <Dropdown/>
-          <Link className="flex flex-col flex-1 justify-center self-stretch font-semibold text-sky-400 whitespace-nowrap">
-            <Link
-              className="justify-center px-11 py-3 bg-white border-2 border-sky-400 border-solid rounded-[31px] max-md:px-5"
-              to="/signup"
-            >
-              Sign up
-            </Link>
-          </Link>
-        </div>
-      </div> */}
       <div className="flex gap-2 justify-between self-center mt-7 w-full max-w-[1080px] max-md:flex-wrap max-md:mt-10 max-md:max-w-full">
         <img
           loading="lazy"
@@ -74,47 +74,60 @@ const Login = () => {
             <div className="mt-5 whitespace-nowrap leading-[143%] text-slate-600 max-md:ml-1.5">
               quis nostrud exercitation ullamco laboris nisi ut
             </div>
-
-            <div class="relative mt-2">
-              <input
-                type="email"
-                class="pl-10 pr-4 py-2 border rounded-xl bg-gray-100 w-[327px] h-[70px] "
-                placeholder="Email"
-              />
-              <div
-                class="absolute inset-y-0 left-0 pl-3  
+            <form onSubmit={onSubmit}>
+              <div class="relative mt-2">
+                <input
+                  type="email"
+                  class="pl-10 pr-4 py-2 border rounded-xl bg-gray-100 w-[327px] h-[70px] "
+                  placeholder="Email"
+                  id="email"
+                  name="email"
+                  value={email}
+                  onChange={onChange}
+                  required
+                />
+                <div
+                  class="absolute inset-y-0 left-0 pl-3  
                     flex items-center  
                     pointer-events-none"
-              >
-                <img src={EmailIcon} alt="" />
+                >
+                  <img src={EmailIcon} alt="" />
+                </div>
               </div>
-            </div>
-            <div class="relative mt-2">
-              <input
-                type={showPassword ? "text" : "password"}
-                class="pl-10 pr-4 py-2 border rounded-xl bg-gray-100 w-[327px] h-[70px] "
-                placeholder="Password"
-              />
-              <div
-                class="absolute inset-y-0 left-0 pl-3  
+              <div class="relative mt-2">
+                <input
+                  type={showPassword ? "text" : "password"}
+                  class="pl-10 pr-4 py-2 border rounded-xl bg-gray-100 w-[327px] h-[70px] "
+                  placeholder="Password"
+                  id="password"
+                  name="password"
+                  value={password}
+                  onChange={onChange}
+                  required
+                />
+                <div
+                  class="absolute inset-y-0 left-0 pl-3  
                     flex items-center  
                     pointer-events-none"
-              >
-                <img src={PasswordIcon} alt="" />
+                >
+                  <img src={PasswordIcon} alt="" />
+                </div>
               </div>
-            </div>
-            <div className="flex gap-5 justify-between mt-4 font-semibold text-sky-400 leading-[143%] max-md:mr-2">
-              <button className="flex-auto">Forgot password?</button>
-              <button
-                className="flex-auto text-right"
-                onClick={handleShowPassword}
-              >
-                {showPassword ? "Hide" : "Show"} password
+              <div className="flex gap-5 justify-between mt-4 font-semibold text-sky-400 leading-[143%] max-md:mr-2">
+                <button className="flex-auto">Forgot password?</button>
+                <button
+                  type="button"
+                  className="flex-auto text-right"
+                  onClick={handleShowPassword}
+                >
+                  {showPassword ? "Hide" : "Show"} password
+                </button>
+              </div>
+              <button className="justify-between items-center self-center px-16 py-6 mt-6 max-w-full text-base font-bold tracking-wide text-center text-white whitespace-nowrap bg-sky-400 rounded-[29px] w-[278px] max-md:px-5">
+                Login
               </button>
-            </div>
-            <Link className="justify-center items-center self-center px-16 py-6 mt-6 max-w-full text-base font-bold tracking-wide text-center text-white whitespace-nowrap bg-sky-400 rounded-[29px] w-[278px] max-md:px-5">
-              Login
-            </Link>
+            </form>
+
             <div className="flex justify-center items-center px-16 mt-3 font-semibold text-center whitespace-nowrap max-md:px-5 max-md:mr-2">
               <div className="justify-center px-2.5 py-1.5 bg-white">OR</div>
             </div>

@@ -17,6 +17,9 @@ import ForgetPassword from './components/ForgetPassword';
 import ForgetOtp from './components/ForgetOtp';
 import Sidebar from './components/Sidebar';
 import Terms from './pages/Terms'
+import Dashboard from './pages/Dashboard';
+import {ToastContainer} from 'react-toastify'
+import "react-toastify/dist/ReactToastify.css";
 
 function App() {
   const ViewHeader = useSelector((state) => state.header.value);
@@ -28,7 +31,7 @@ function App() {
 
         <Routes>
           <Route path='/' element={<Home />} />
-          <Route path='/sidebar' element={<Sidebar />} />
+          <Route path='/dashboard' element={<Dashboard />} />
           <Route path='/fp' element={<ForgetPassword />} />
           <Route path='/t&c' element={<Terms />} />
           <Route path='/fo' element={<ForgetOtp />} />
@@ -43,6 +46,7 @@ function App() {
         {/* <TravelerListing/> */}
         <Footer />
       </Router>
+      <ToastContainer/>
     </>
   );
 }
