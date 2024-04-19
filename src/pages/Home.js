@@ -40,7 +40,7 @@ function Home1() {
         <div className='self-start mt-32 ml-7 text-4xl font-semibold text-sky-400 max-md:mt-10 max-md:ml-2.5'>
           How it works
           <div className='self-end mt-12 text-base text-slate-900 max-md:mt-10 max-md:max-w-full font-normal'>
-             ipsum dolor sit amet, consectetur adipiscing elit, sed do
+              dolor sit amet, consectetur adipiscing elit, sed do
             eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
             ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
             aliquip ex ea commodo consequat. Duis aute irure dolor in
