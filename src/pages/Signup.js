@@ -84,7 +84,7 @@ const Signup = () => {
           </div>
 
           <form
-            className="flex flex-col text-xs tracking-wide text-slate-400"
+            className="flex flex-col text-xs mt-3 tracking-wide text-slate-400"
             onSubmit={onSubmit}
           >
             <div className="relative mt-2">

@@ -73,11 +73,11 @@ const Login = () => {
             <span className="">Let’s</span>{" "}
             <span className="font-extrabold text-sky-400">Sign In</span>{" "}
           </div>
-          <div className="mt-5 whitespace-nowrap leading-[143%] text-slate-600 max-md:ml-1.5">
+          <div className="mt-1 whitespace-nowrap leading-[143%] text-slate-600 max-md:ml-1.5">
             quis nostrud exercitation ullamco laboris nisi ut
           </div>
           <form
-            className="flex flex-col text-sm tracking-wide text-slate-400"
+            className="flex flex-col text-sm mt-3 tracking-wide text-slate-400"
             onSubmit={onSubmit}
           >
             <div className="relative mt-2">
@@ -119,7 +119,9 @@ const Login = () => {
               </div>
             </div>
             <div className="flex gap-5 justify-between mt-4 font-semibold text-sky-400 leading-[143%] max-md:mr-2">
-              <button className="flex-auto">Forgot password?</button>
+              <button 
+              type="button"
+              className="flex-auto">Forgot password?</button>
               <button
                 type="button"
                 className="flex-auto text-right"
