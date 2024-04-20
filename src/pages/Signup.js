@@ -31,7 +31,9 @@ const Signup = () => {
 
   const { name, email, password, cpassword } = signupData;
 
-  const {user, isSuccess, isLoading, message} = useSelector((state) => state.auth)
+  const { user, isSuccess, isLoading, message } = useSelector(
+    (state) => state.auth
+  );
 
   const onChange = (e) => {
     setSignupData((prevState) => ({
@@ -50,12 +52,10 @@ const Signup = () => {
         email,
         password,
       };
-      dispatch(register(userData))
+      dispatch(register(userData));
     }
   };
-  const handleLoginToggle = () => {
-    dispatch(toggleFalse());
-  };
+
 
   const handleDropdownChange = (selected) => {
     setSelectedOption(selected.value);
@@ -75,119 +75,120 @@ const Signup = () => {
           className="self-start w-full aspect-[1.1] max-md:max-w-full"
         />
         <div className="flex flex-col ">
-     
-            <div className="text-3xl font-medium tracking-wider leading-10 text-sky-400 ">
-              <span className="">Let’s</span>{" "}
-              <span className="font-extrabold text-sky-400">Sign Up</span>{" "}
-            </div>
-            <div className="mt-1 text-sm tracking-wide leading-5 whitespace-nowrap text-slate-600 max-md:ml-1">
-              quis nostrud exercitation ullamco laboris nisi ut
-            </div>
+          <div className="text-3xl font-medium tracking-wider leading-10 text-sky-400 ">
+            <span className="">Let’s</span>{" "}
+            <span className="font-extrabold text-sky-400">Sign Up</span>{" "}
+          </div>
+          <div className="mt-1 text-sm tracking-wide leading-5 whitespace-nowrap text-slate-600 max-md:ml-1">
+            quis nostrud exercitation ullamco laboris nisi ut
+          </div>
 
-            <form className="flex flex-col text-xs tracking-wide text-slate-400" onSubmit={onSubmit}>
-              <div className="relative mt-2">
-                <input
-                  type="text"
-                  className="pl-10 pr-4 py-2 border rounded-xl bg-gray-100 w-[327px] h-[70px] "
-                  placeholder="Full Name"
-                  id="name"
-                  name="name"
-                  value={name}
-                  onChange={onChange}
-                  required
-                />
-                <div
-                  className="absolute inset-y-0 left-0 pl-3  
+          <form
+            className="flex flex-col text-xs tracking-wide text-slate-400"
+            onSubmit={onSubmit}
+          >
+            <div className="relative mt-2">
+              <input
+                type="text"
+                className="pl-10 pr-4 py-2 border rounded-xl bg-gray-100 w-[327px] h-[70px] "
+                placeholder="Full Name"
+                id="name"
+                name="name"
+                value={name}
+                onChange={onChange}
+                required
+              />
+              <div
+                className="absolute inset-y-0 left-0 pl-3  
                     flex items-center  
                     pointer-events-none"
-                >
-                  <img src={NameIcon} alt="" />
-                </div>
-              </div>
-              <div className="relative mt-2">
-                <input
-                  type="email"
-                  className="pl-10 pr-4 py-2 border rounded-xl bg-gray-100 w-[327px] h-[70px] "
-                  placeholder="Email"
-                  id="email"
-                  name="email"
-                  value={email}
-                  onChange={onChange}
-                  required
-                />
-                <div
-                  className="absolute inset-y-0 left-0 pl-3  
-                    flex items-center  
-                    pointer-events-none"
-                >
-                  <img src={EmailIcon} alt="" />
-                </div>
-              </div>
-              <div className="relative mt-2">
-                <input
-                  type={showPassword ? "text" : "password"}
-                  className="pl-10 pr-4 py-2 border rounded-xl bg-gray-100 w-[327px] h-[70px] "
-                  placeholder="Password"
-                  id="password"
-                  name="password"
-                  value={password}
-                  onChange={onChange}
-                  required
-                />
-                <div
-                  className="absolute inset-y-0 left-0 pl-3  
-                    flex items-center  
-                    pointer-events-none"
-                >
-                  <img src={PasswordIcon} alt="" />
-                </div>
-              </div>
-              <div className="relative mt-2">
-                <input
-                  type={showPassword ? "text" : "password"}
-                  className="pl-10 pr-4 py-2 border rounded-xl bg-gray-100 w-[327px] h-[70px] "
-                  placeholder="Confirm Password"
-                  id="cpassword"
-                  name="cpassword"
-                  value={cpassword}
-                  onChange={onChange}
-                  required
-                />
-                <div
-                  className="absolute inset-y-0 left-0 pl-3  
-                    flex items-center  
-                    pointer-events-none"
-                >
-                  <img src={PasswordIcon} alt="" />
-                </div>
-              </div>
-
-              <button
-                type="button"
-                className=" mt-2 font-semibold text-right text-sky-400 whitespace-nowrap leading-[167%]"
-                onClick={handleShowPassword}
               >
-                Show password
-              </button>
-              <div className="flex gap-2 text-xs ">
-                <input
-                  type="checkbox"
-                  className="shrink-0 rounded aspect-[1.06] to-blue-600 w-[17px]"
-                  required
-                />
-                <div className="flex-auto my-auto mt-2">
-                  I agree with the{" "}
-                  <Link to="t&c" className="text-sky-400">
-                    terms and condition
-                  </Link>{" "}
-                  of this.
-                </div>
+                <img src={NameIcon} alt="" />
               </div>
-              <button className="flex  flex-col align-middle justify-center items-center self-center px-16 py-7 mt-3 max-w-full text-base font-bold tracking-wide text-center text-white whitespace-nowrap bg-sky-400 rounded-[29px] w-[278px] max-md:px-5">
-                Next
-              </button>
-            </form>
-          
+            </div>
+            <div className="relative mt-2">
+              <input
+                type="email"
+                className="pl-10 pr-4 py-2 border rounded-xl bg-gray-100 w-[327px] h-[70px] "
+                placeholder="Email"
+                id="email"
+                name="email"
+                value={email}
+                onChange={onChange}
+                required
+              />
+              <div
+                className="absolute inset-y-0 left-0 pl-3  
+                    flex items-center  
+                    pointer-events-none"
+              >
+                <img src={EmailIcon} alt="" />
+              </div>
+            </div>
+            <div className="relative mt-2">
+              <input
+                type={showPassword ? "text" : "password"}
+                className="pl-10 pr-4 py-2 border rounded-xl bg-gray-100 w-[327px] h-[70px] "
+                placeholder="Password"
+                id="password"
+                name="password"
+                value={password}
+                onChange={onChange}
+                required
+              />
+              <div
+                className="absolute inset-y-0 left-0 pl-3  
+                    flex items-center  
+                    pointer-events-none"
+              >
+                <img src={PasswordIcon} alt="" />
+              </div>
+            </div>
+            <div className="relative mt-2">
+              <input
+                type={showPassword ? "text" : "password"}
+                className="pl-10 pr-4 py-2 border rounded-xl bg-gray-100 w-[327px] h-[70px] "
+                placeholder="Confirm Password"
+                id="cpassword"
+                name="cpassword"
+                value={cpassword}
+                onChange={onChange}
+                required
+              />
+              <div
+                className="absolute inset-y-0 left-0 pl-3  
+                    flex items-center  
+                    pointer-events-none"
+              >
+                <img src={PasswordIcon} alt="" />
+              </div>
+            </div>
+
+            <button
+              type="button"
+              className=" mt-2 font-semibold text-right text-sky-400 whitespace-nowrap leading-[167%]"
+              onClick={handleShowPassword}
+            >
+              Show password
+            </button>
+            <div className="flex gap-2 text-xs ">
+              <input
+                type="checkbox"
+                className="shrink-0 rounded aspect-[1.06] to-blue-600 w-[17px]"
+                required
+              />
+              <div className="flex-auto my-auto mt-2">
+                I agree with the{" "}
+                <Link to="t&c" className="text-sky-400">
+                  terms and condition
+                </Link>{" "}
+                of this.
+              </div>
+            </div>
+            <button className="flex  flex-col align-middle justify-center items-center self-center px-16 py-7 mt-3 max-w-full text-base font-bold tracking-wide text-center text-white whitespace-nowrap bg-sky-400 rounded-[29px] w-[278px] max-md:px-5">
+              Next
+            </button>
+          </form>
 
           <div className="flex flex-col px-3.5 ">
             <div className="flex justify-center items-center px-16  text-sm font-semibold tracking-wide text-center whitespace-nowrap text-slate-400 max-md:px-5">

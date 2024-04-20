@@ -26,7 +26,9 @@ const Login = () => {
   });
   const { email, password } = loginData;
 
-  const {user, isSuccess, isLoading, message} = useSelector((state) => state.auth)
+  const { user, isSuccess, isLoading, message } = useSelector(
+    (state) => state.auth
+  );
 
   const toggleDropdown = () => {
     setIsOpen((prev) => !prev);
@@ -50,12 +52,13 @@ const Login = () => {
   };
 
   const onSubmit = (e) => {
-    e.preventDefault()
+    e.preventDefault();
     const userData = {
-      email, password,
-    }
-    dispatch(login(userData))
-  }
+      email,
+      password,
+    };
+    dispatch(login(userData));
+  };
 
   return (
     <div className="flex flex-col pt-5 pr-4 pb-20 pl-15 rounded-[29px] max-md:pl-5">
@@ -66,71 +69,74 @@ const Login = () => {
           className="self-start w-full aspect-[1.1] max-md:max-w-full"
         />
         <div className="flex flex-col mt-3.5 text-sm tracking-wide text-slate-400">
-            <div className="text-3xl font-medium tracking-wider leading-10 text-sky-400 max-md:ml-1.5">
-              <span className="">Let’s</span>{" "}
-              <span className="font-extrabold text-sky-400">Sign In</span>{" "}
-            </div>
-            <div className="mt-5 whitespace-nowrap leading-[143%] text-slate-600 max-md:ml-1.5">
-              quis nostrud exercitation ullamco laboris nisi ut
-            </div>
-            <form  className="flex flex-col text-sm tracking-wide text-slate-400" onSubmit={onSubmit}>
-              <div className="relative mt-2">
-                <input
-                  type="email"
-                  className="pl-10 pr-4 py-2 border rounded-xl bg-gray-100 w-[327px] h-[70px] "
-                  placeholder="Email"
-                  id="email"
-                  name="email"
-                  value={email}
-                  onChange={onChange}
-                  required
-                />
-                <div
-                  className="absolute inset-y-0 left-0 pl-3  
+          <div className="text-3xl font-medium tracking-wider leading-10 text-sky-400 max-md:ml-1.5">
+            <span className="">Let’s</span>{" "}
+            <span className="font-extrabold text-sky-400">Sign In</span>{" "}
+          </div>
+          <div className="mt-5 whitespace-nowrap leading-[143%] text-slate-600 max-md:ml-1.5">
+            quis nostrud exercitation ullamco laboris nisi ut
+          </div>
+          <form
+            className="flex flex-col text-sm tracking-wide text-slate-400"
+            onSubmit={onSubmit}
+          >
+            <div className="relative mt-2">
+              <input
+                type="email"
+                className="pl-10 pr-4 py-2 border rounded-xl bg-gray-100 w-[327px] h-[70px] "
+                placeholder="Email"
+                id="email"
+                name="email"
+                value={email}
+                onChange={onChange}
+                required
+              />
+              <div
+                className="absolute inset-y-0 left-0 pl-3  
                     flex items-center  
                     pointer-events-none"
-                >
-                  <img src={EmailIcon} alt="" />
-                </div>
+              >
+                <img src={EmailIcon} alt="" />
               </div>
-              <div className="relative mt-2">
-                <input
-                  type={showPassword ? "text" : "password"}
-                  className="pl-10 pr-4 py-2 border rounded-xl bg-gray-100 w-[327px] h-[70px] "
-                  placeholder="Password"
-                  id="password"
-                  name="password"
-                  value={password}
-                  onChange={onChange}
-                  required
-                />
-                <div
-                  className="absolute inset-y-0 left-0 pl-3  
+            </div>
+            <div className="relative mt-2">
+              <input
+                type={showPassword ? "text" : "password"}
+                className="pl-10 pr-4 py-2 border rounded-xl bg-gray-100 w-[327px] h-[70px] "
+                placeholder="Password"
+                id="password"
+                name="password"
+                value={password}
+                onChange={onChange}
+                required
+              />
+              <div
+                className="absolute inset-y-0 left-0 pl-3  
                     flex items-center  
                     pointer-events-none"
-                >
-                  <img src={PasswordIcon} alt="" />
-                </div>
+              >
+                <img src={PasswordIcon} alt="" />
               </div>
-              <div className="flex gap-5 justify-between mt-4 font-semibold text-sky-400 leading-[143%] max-md:mr-2">
-                <button className="flex-auto">Forgot password?</button>
-                <button
-                  type="button"
-                  className="flex-auto text-right"
-                  onClick={handleShowPassword}
-                >
-                  {showPassword ? "Hide" : "Show"} password
-                </button>
-              </div>
-              <button className="justify-between items-center self-center px-16 py-6 mt-6 max-w-full text-base font-bold tracking-wide text-center text-white whitespace-nowrap bg-sky-400 rounded-[29px] w-[278px] max-md:px-5">
-                Login
+            </div>
+            <div className="flex gap-5 justify-between mt-4 font-semibold text-sky-400 leading-[143%] max-md:mr-2">
+              <button className="flex-auto">Forgot password?</button>
+              <button
+                type="button"
+                className="flex-auto text-right"
+                onClick={handleShowPassword}
+              >
+                {showPassword ? "Hide" : "Show"} password
               </button>
-            </form>
-
-            <div className="flex justify-center items-center px-16 mt-3 font-semibold text-center whitespace-nowrap max-md:px-5 max-md:mr-2">
-              <div className="justify-center px-2.5 py-1.5 bg-white">OR</div>
             </div>
-          
+            <button className="justify-between items-center self-center px-16 py-6 mt-6 max-w-full text-base font-bold tracking-wide text-center text-white whitespace-nowrap bg-sky-400 rounded-[29px] w-[278px] max-md:px-5">
+              Login
+            </button>
+          </form>
+
+          <div className="flex justify-center items-center px-16 mt-3 font-semibold text-center whitespace-nowrap max-md:px-5 max-md:mr-2">
+            <div className="justify-center px-2.5 py-1.5 bg-white">OR</div>
+          </div>
+
           <div className="flex gap-3 mt-4">
             <button className="flex flex-1 justify-center items-center px-16 py-6 bg-gray-100 rounded-3xl max-md:px-5">
               <img
