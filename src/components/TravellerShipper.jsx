@@ -2,31 +2,33 @@ import React, { useState } from 'react';
 import location from '../components/assets/Home/location.svg';
 import date from '../components/assets/Home/date.svg';
 function TravellerShipper() {
-  const [isActiveClass1, setIsActiveClass1] = useState(true);
-  const [isActiveClass2, setIsActiveClass2] = useState(false);
   const [bgColor1, setbgColor1] = useState(true);
   const [bgColor2, setbgColor2] = useState(false);
 
   const handleClick1 = () => {
-    setIsActiveClass1(true);
-    setIsActiveClass2(false);
     setbgColor1(true);
     setbgColor2(false);
   };
   const handleClick2 = () => {
-    setIsActiveClass1(false);
-    setIsActiveClass2(true);
     setbgColor1(false);
     setbgColor2(true);
   };
   return (
-    <div className='flex flex-col w-[38%] max-md:ml-0 max-md:w-full'>
+    <form className='flex flex-col w-[38%] max-md:ml-0 max-md:w-full'>
       <div className='flex flex-col grow px-1.5 pt-1.5 pb-6 w-full text-base font-medium  bg-white rounded-3xl shadow-sm max-md:max-w-full'>
-        <div className='flex gap-5 whitespace-nowrap bg-white rounded-2xl border-solid border-[3px] border-neutral-100 text-slate-900 max-md:flex-wrap max-md:max-w-full'>
-          <button className='justify-center items-start px-16 py-2.5 rounded-2xl bg-neutral-100 max-md:pr-5 max-md:pl-6'>
+        <div className='flex  whitespace-nowrap bg-white rounded-2xl border-solid border-[3px] border-neutral-100 text-slate-900 max-md:flex-wrap max-md:max-w-full'>
+          <button 
+          type='button'
+          className= {bgColor1 ?'justify-center items-start px-20 py-4 rounded-2xl  text-center  bg-neutral-100':'justify-center items-start px-20 py-4 rounded-2xl  text-center '}
+          onClick={handleClick1}
+          >
             Traveler
           </button>
-          <button className='flex-auto my-auto text-center'>Shipper</button>
+          <button 
+          type='button'
+          className={bgColor2 ? 'justify-center items-start px-20 py-4 rounded-2xl  text-center  bg-neutral-100': 'justify-center items-start px-20 py-4 rounded-2xl  text-center'}
+          onClick={handleClick2}
+          >Shipper</button>
         </div>
         <div className='relative'>
           <input
@@ -67,7 +69,7 @@ function TravellerShipper() {
           Search Now
         </button>
       </div>
-    </div>
+    </form>
   );
 }
 
