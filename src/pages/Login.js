@@ -12,6 +12,7 @@ import GoogleIcon from '../components/assets/Login/GoogleIcon.svg';
 import FacebookIcon from '../components/assets/Login/FaebookIcon.svg';
 import Dropdown from '../components/Dropdown';
 import { login } from '../features/auth/authSlice';
+import cross from '../components/assets/Login/crossIcon.svg';
 
 const Login = () => {
   const dispatch = useDispatch();
@@ -69,26 +70,34 @@ const Login = () => {
             <div className='flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0'>
               {' '}
               <div className='fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity'></div>
-              <div className='relative transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg'>
-                <div className='bg-white px-4 pb-4 pt-5 sm:p-6 sm:pb-4'>
-                  <div className='sm:flex sm:items-start'>
-                    <div className='mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left'>
+              <div className='relative transform overflow-hidden rounded-2xl bg-white text-left shadow-xl transition-all sm:my-8 sm:max-w-lg py-12 '>
+                <div
+                  className='absolute left-[380px] top-4 cursor-pointer'
+                  onClick={() => {
+                    setShowModal(false);
+                  }}
+                >
+                  <img src={cross} alt='' />
+                </div>
+                <div className='bg-white px-4 pb-4  sm:p-6 sm:pb-4'>
+                  <div className='sm:flex items-center'>
+                    <div className='mt-3 text-left px-4 sm:mt-0 '>
                       <h3
-                        className='text-base font-semibold leading-6 text-gray-900'
+                        className='font-semibold leading-6 text-gray-900'
                         id='modal-title'
                       >
-                        <div className='self-start mt-1 ml-5 text-2xl font-medium tracking-wider leading-10 text-sky-400'>
+                        <div className='text-left mt-1 mx-5 text-2xl font-medium tracking-wider leading-10 '>
                           Search your
                           <span className='font-extrabold text-sky-400'>
                             {' '}
                             Id
                           </span>
                         </div>
-                        <div className='mt-5 ml-5 text-xs tracking-wide leading-5 text-slate-600 '>
+                        <div className='mt-5 text-xs tracking-wide leading-5 text-slate-600 font-light text-left mx-5'>
                           Put your email or mobile number to find your id
                         </div>
                       </h3>
-                      <div class='relative mt-5'>
+                      <div class='relative mt-5 mx-5'>
                         <input
                           type='email'
                           class='pl-10 pr-4 py-2 border rounded-xl bg-gray-100 w-[327px] h-[70px] '
@@ -103,18 +112,15 @@ const Login = () => {
                         </div>
                       </div>
 
-                      <button
-                        className='justify-center items-center self-center px-16 py-7 mt-10 max-w-full text-base font-bold tracking-wide text-center text-white whitespace-nowrap bg-sky-400 rounded-[29px] w-[278px]'
-                        onClick={() => {
-                          setShowModal(false);
-                        }}
-                      >
-                        Next
-                      </button>
+                      <div>
+                        <button className='justify-center items-center self-center px-16 py-4 mt-10  ml-8 max-w-full text-base font-bold tracking-wide text-center text-white whitespace-nowrap bg-sky-400 rounded-[29px] w-[278px] '>
+                          Next
+                        </button>
+                      </div>
                     </div>
                   </div>
                 </div>
-                <div className='bg-gray-50 px-4 py-3 sm:flex sm:flex-row-reverse sm:px-6'></div>
+                <div className=' px-4 py-3 sm:flex sm:flex-row-reverse sm:px-6'></div>
               </div>
             </div>
           </div>
