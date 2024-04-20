@@ -1,16 +1,13 @@
-import * as React from 'react';
+import React from 'react';
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import EmailIcon from '../components/assets/Login/EmailIcon.svg';
 import PasswordIcon from '../components/assets/Login/PasswordIcon.svg';
 import 'react-dropdown/style.css';
 import { useSelector, useDispatch } from 'react-redux';
-import { toggleFalse, toggleTrue } from '../features/headerSlice';
-import logo from '../components/assets/Group.png';
 import image from '../components/assets/Login/main.svg';
 import GoogleIcon from '../components/assets/Login/GoogleIcon.svg';
 import FacebookIcon from '../components/assets/Login/FaebookIcon.svg';
-import Dropdown from '../components/Dropdown';
 import { login } from '../features/auth/authSlice';
 import cross from '../components/assets/Login/crossIcon.svg';
 
@@ -18,10 +15,7 @@ const Login = () => {
   const dispatch = useDispatch();
   const [showPassword, setShowPassword] = useState(false);
   const [showModal, setShowModal] = useState(false);
-  const options = ['Traveler Listing', 'Luggage Listing', 'Create a Listing'];
-  const [selectedOption, setSelectedOption] = useState();
   const navigate = useNavigate();
-  const [isOpen, setIsOpen] = useState(false);
   const [loginData, setLoginData] = useState({
     email: '',
     password: '',
@@ -32,16 +26,7 @@ const Login = () => {
     (state) => state.auth
   );
 
-  const toggleDropdown = () => {
-    setIsOpen((prev) => !prev);
-  };
-  const handleDropdownChange = (selected) => {
-    setSelectedOption(selected.value);
-    navigate(`/${selected.value.toLowerCase().replace(/\s/g, '')}`);
-  };
-  const handleLoginToggle = () => {
-    dispatch(toggleFalse());
-  };
+ 
 
   const handleShowPassword = () => {
     setShowPassword(!showPassword);
