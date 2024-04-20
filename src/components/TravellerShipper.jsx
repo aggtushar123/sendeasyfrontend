@@ -19,14 +19,14 @@ function TravellerShipper() {
         <div className='flex  whitespace-nowrap bg-white rounded-2xl border-solid border-[3px] border-neutral-100 text-slate-900 max-md:flex-wrap max-md:max-w-full'>
           <button 
           type='button'
-          className= {bgColor1 ?'justify-center items-start px-20 py-4 rounded-2xl  text-center  bg-neutral-100':'justify-center items-start px-20 py-4 rounded-2xl  text-center '}
+          className= {bgColor1 ?'justify-center items-start px-[86px] py-4 rounded-2xl  text-center  bg-neutral-100':'justify-center items-start px-[86px] py-4 rounded-2xl  text-center '}
           onClick={handleClick1}
           >
             Traveler
           </button>
           <button 
           type='button'
-          className={bgColor2 ? 'justify-center items-start px-20 py-4 rounded-2xl  text-center  bg-neutral-100': 'justify-center items-start px-20 py-4 rounded-2xl  text-center'}
+          className={bgColor2 ? 'justify-center items-start px-[86px] py-4 rounded-2xl  text-center  bg-neutral-100': 'justify-center items-start px-[86px] py-4 rounded-2xl  text-center'}
           onClick={handleClick2}
           >Shipper</button>
         </div>
