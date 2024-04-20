@@ -65,8 +65,7 @@ const Login = () => {
           src={image}
           className="self-start w-full aspect-[1.1] max-md:max-w-full"
         />
-        <div className="flex flex-col mt-3.5">
-          <div className="flex flex-col px-3 text-sm tracking-wide text-slate-400">
+        <div className="flex flex-col mt-3.5 text-sm tracking-wide text-slate-400">
             <div className="text-3xl font-medium tracking-wider leading-10 text-sky-400 max-md:ml-1.5">
               <span className="">Let’s</span>{" "}
               <span className="font-extrabold text-sky-400">Sign In</span>{" "}
@@ -74,11 +73,11 @@ const Login = () => {
             <div className="mt-5 whitespace-nowrap leading-[143%] text-slate-600 max-md:ml-1.5">
               quis nostrud exercitation ullamco laboris nisi ut
             </div>
-            <form onSubmit={onSubmit}>
-              <div class="relative mt-2">
+            <form  className="flex flex-col text-sm tracking-wide text-slate-400" onSubmit={onSubmit}>
+              <div className="relative mt-2">
                 <input
                   type="email"
-                  class="pl-10 pr-4 py-2 border rounded-xl bg-gray-100 w-[327px] h-[70px] "
+                  className="pl-10 pr-4 py-2 border rounded-xl bg-gray-100 w-[327px] h-[70px] "
                   placeholder="Email"
                   id="email"
                   name="email"
@@ -87,17 +86,17 @@ const Login = () => {
                   required
                 />
                 <div
-                  class="absolute inset-y-0 left-0 pl-3  
+                  className="absolute inset-y-0 left-0 pl-3  
                     flex items-center  
                     pointer-events-none"
                 >
                   <img src={EmailIcon} alt="" />
                 </div>
               </div>
-              <div class="relative mt-2">
+              <div className="relative mt-2">
                 <input
                   type={showPassword ? "text" : "password"}
-                  class="pl-10 pr-4 py-2 border rounded-xl bg-gray-100 w-[327px] h-[70px] "
+                  className="pl-10 pr-4 py-2 border rounded-xl bg-gray-100 w-[327px] h-[70px] "
                   placeholder="Password"
                   id="password"
                   name="password"
@@ -106,7 +105,7 @@ const Login = () => {
                   required
                 />
                 <div
-                  class="absolute inset-y-0 left-0 pl-3  
+                  className="absolute inset-y-0 left-0 pl-3  
                     flex items-center  
                     pointer-events-none"
                 >
@@ -131,7 +130,7 @@ const Login = () => {
             <div className="flex justify-center items-center px-16 mt-3 font-semibold text-center whitespace-nowrap max-md:px-5 max-md:mr-2">
               <div className="justify-center px-2.5 py-1.5 bg-white">OR</div>
             </div>
-          </div>
+          
           <div className="flex gap-3 mt-4">
             <button className="flex flex-1 justify-center items-center px-16 py-6 bg-gray-100 rounded-3xl max-md:px-5">
               <img
