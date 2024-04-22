@@ -10,7 +10,7 @@ const axiosInstance = axios.create({
 
 // Register user
 const register = async (userData) => {
-  const response = await axiosInstance.post(API_URL, userData);
+  const response = await axiosInstance.post(`${API_URL}signup`, userData);
 
   if (response.data) {
     localStorage.setItem('user', JSON.stringify(response.data));

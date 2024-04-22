@@ -59,9 +59,9 @@ const Signup = () => {
         fname,
         email,
         password,
+        cpassword
       };
-      console.log(userData)
-      // dispatch(register(userData));
+      dispatch(register(userData));
     }
   };
 
