@@ -18,13 +18,13 @@ const Signup = () => {
   const dispatch = useDispatch();
 
   const [signupData, setSignupData] = useState({
-    fname: "",
+    fName: "",
     email: "",
     password: "",
-    cpassword: "",
+    cPassword: "",
   });
 
-  const { fname, email, password, cpassword } = signupData;
+  const { fName, email, password, cPassword } = signupData;
 
   const { user, isSuccess, isError, message } = useSelector(
     (state) => state.auth
@@ -52,15 +52,16 @@ const Signup = () => {
   const onSubmit = (e) => {
     e.preventDefault();
 
-    if (password !== cpassword) {
+    if (password !== cPassword) {
       toast.error("Password do not match");
     } else {
       const userData = {
-        fname,
+        fName,
         email,
         password,
-        cpassword
+        cPassword
       };
+      console.log(userData);
       dispatch(register(userData));
     }
   };
@@ -96,9 +97,9 @@ const Signup = () => {
                 type="text"
                 className="pl-10 pr-4 py-2 border rounded-xl bg-gray-100 w-[327px] h-[70px] "
                 placeholder="Full Name"
-                id="fname"
-                name="fname"
-                value={fname}
+                id="fName"
+                name="fName"
+                value={fName}
                 onChange={onChange}
                 required
               />
@@ -153,9 +154,9 @@ const Signup = () => {
                 type={showPassword ? "text" : "password"}
                 className="pl-10 pr-4 py-2 border rounded-xl bg-gray-100 w-[327px] h-[70px] "
                 placeholder="Confirm Password"
-                id="cpassword"
-                name="cpassword"
-                value={cpassword}
+                id="cPassword"
+                name="cPassword"
+                value={cPassword}
                 onChange={onChange}
                 required
               />
