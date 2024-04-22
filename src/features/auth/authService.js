@@ -1,34 +1,40 @@
-import axios from 'axios'
+import axios from 'axios';
 
-const API_URL = '/api/users/'
+const baseURL = 'http://localhost:5000'; // Change the port to 5000 or your desired backend port
+const API_URL = `${baseURL}/api/users/`;
 
-//Register user
-const register = async(userData) => {
-    const response = await axios.post(API_URL, userData)
+// Create an Axios instance with the specified base URL
+const axiosInstance = axios.create({
+  baseURL,
+});
 
-    if(response.data){
-        localStorage.setItem('user', JSON.stringify(response.data))
-    }
-    return response.data
-}
+// Register user
+const register = async (userData) => {
+  const response = await axiosInstance.post(API_URL, userData);
 
-//Login
+  if (response.data) {
+    localStorage.setItem('user', JSON.stringify(response.data));
+  }
+  return response.data;
+};
 
-const login = async(userData) => {
-    const response = await axios.post(API_URL + 'login', userData)
+// Login
+const login = async (userData) => {
+  const response = await axiosInstance.post(`${API_URL}login`, userData);
 
-    if(response.data){
-        localStorage.setItem('user', JSON.stringify(response.data))
-    }
-    return response.data
-}
+  if (response.data) {
+    localStorage.setItem('user', JSON.stringify(response.data));
+  }
+  return response.data;
+};
 
-//Logout User
-const logout = () => localStorage.removeItem('user')
+// Logout User
+const logout = () => localStorage.removeItem('user');
 
 const authService = {
-    register,
-    logout,
-    login
-}
-export default authService
+  register,
+  logout,
+  login,
+};
+
+export default authService;
