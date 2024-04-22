@@ -1,53 +1,36 @@
-
-import React from "react";
-import { useState, useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import "react-dropdown/style.css";
-import { useSelector, useDispatch } from "react-redux";
-import image from "../components/assets/Login/main.svg";
-import GoogleIcon from "../components/assets/Login/GoogleIcon.svg";
-import FacebookIcon from "../components/assets/Login/FaebookIcon.svg";
-import EmailIcon from "../components/assets/Login/EmailIcon.svg";
-import NameIcon from "../components/assets/Login/NameIcon.svg";
-import PasswordIcon from "../components/assets/Login/PasswordIcon.svg";
-import { toast } from "react-toastify";
-import { register, reset } from "../features/auth/authSlice";
-
+import React from 'react';
+import { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import 'react-dropdown/style.css';
+import { useSelector, useDispatch } from 'react-redux';
+import image from '../components/assets/Login/main.svg';
+import GoogleIcon from '../components/assets/Login/GoogleIcon.svg';
+import FacebookIcon from '../components/assets/Login/FaebookIcon.svg';
+import EmailIcon from '../components/assets/Login/EmailIcon.svg';
+import NameIcon from '../components/assets/Login/NameIcon.svg';
+import PasswordIcon from '../components/assets/Login/PasswordIcon.svg';
+import { toast } from 'react-toastify';
+import { register } from '../features/auth/authSlice';
+import cross from '../components/assets/Login/crossIcon.svg';
 
 const Signup = () => {
   const [showModal, setShowModal] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
-
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const [signupData, setSignupData] = useState({
-
-    fName: "",
-    email: "",
-    password: "",
-    cPassword: "",
-
+    fName: '',
+    email: '',
+    password: '',
+    cPassword: '',
   });
 
   const { fName, email, password, cPassword } = signupData;
 
-  const { user, isSuccess, isError, message } = useSelector(
+  const { user, isSuccess, isLoading, message } = useSelector(
     (state) => state.auth
   );
-
-  useEffect(()=>{
-    if(isError){
-      toast.error(message)
-    }
-
-    //Redirect when logged in 
-    if(isSuccess || user){
-      navigate('/')
-    }
-
-    dispatch(reset())
-  }, [isError, isSuccess, user, message, navigate, dispatch])
 
   const onChange = (e) => {
     setSignupData((prevState) => ({
@@ -58,10 +41,8 @@ const Signup = () => {
   const onSubmit = (e) => {
     e.preventDefault();
 
-
-    if (password !== cPassword) {
-      toast.error("Password do not match");
-
+    if (password !== cpassword) {
+      toast.error('Password do not match');
     } else {
       const userData = {
         fName,
@@ -69,12 +50,9 @@ const Signup = () => {
         password,
         cPassword
       };
-      console.log(userData);
       dispatch(register(userData));
     }
   };
-
-
 
   const handleShowPassword = () => {
     setShowPassword(!showPassword);
@@ -141,8 +119,6 @@ const Signup = () => {
           </div>
         </div>
       )}
-
-
 
       <div className='flex flex-col pt-5 pr-4 pb-20 pl-15 rounded-[29px] max-md:pl-5'>
         <div className='flex gap-2 justify-between self-center mt-7 w-full max-w-[1080px] max-md:flex-wrap max-md:mt-10 max-md:max-w-full'>
@@ -221,22 +197,19 @@ const Signup = () => {
                   <img src={PasswordIcon} alt='' />
                 </div>
               </div>
-
-            </div>
-            <div className="relative mt-2">
-              <input
-                type={showPassword ? "text" : "password"}
-                className="pl-10 pr-4 py-2 border rounded-xl bg-gray-100 w-[327px] h-[70px] "
-                placeholder="Confirm Password"
-                id="cPassword"
-                name="cPassword"
-                value={cPassword}
-                onChange={onChange}
-                required
-              />
-              <div
-                className="absolute inset-y-0 left-0 pl-3  
-
+              <div className='relative mt-2'>
+                <input
+                  type={showPassword ? 'text' : 'password'}
+                  className='pl-10 pr-4 py-2 border rounded-xl bg-gray-100 w-[327px] h-[70px] '
+                  placeholder='Confirm Password'
+                  id='cPassword'
+                  name='cPassword'
+                  value={cPassword}
+                  onChange={onChange}
+                  required
+                />
+                <div
+                  className='absolute inset-y-0 left-0 pl-3  
                     flex items-center  
                     pointer-events-none'
                 >
