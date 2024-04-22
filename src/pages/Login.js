@@ -1,5 +1,5 @@
 import React from 'react';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import EmailIcon from '../components/assets/Login/EmailIcon.svg';
 import PasswordIcon from '../components/assets/Login/PasswordIcon.svg';
@@ -8,8 +8,9 @@ import { useSelector, useDispatch } from 'react-redux';
 import image from '../components/assets/Login/main.svg';
 import GoogleIcon from '../components/assets/Login/GoogleIcon.svg';
 import FacebookIcon from '../components/assets/Login/FaebookIcon.svg';
-import { login } from '../features/auth/authSlice';
 import cross from '../components/assets/Login/crossIcon.svg';
+import { login, reset } from "../features/auth/authSlice";
+import {toast} from 'react-toastify'
 
 const Login = () => {
   const dispatch = useDispatch();
@@ -22,11 +23,22 @@ const Login = () => {
   });
   const { email, password } = loginData;
 
-  const { user, isSuccess, isLoading, message } = useSelector(
+  const { user, isSuccess, isError, message } = useSelector(
     (state) => state.auth
   );
 
- 
+  useEffect(()=>{
+    if(isError){
+      toast.error(message)
+    }
+
+    //Redirect when logged in 
+    if(isSuccess || user){
+      navigate('/')
+    }
+
+    dispatch(reset())
+  }, [isError, isSuccess, user, message, navigate, dispatch])
 
   const handleShowPassword = () => {
     setShowPassword(!showPassword);
