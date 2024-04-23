@@ -8,6 +8,7 @@ import Dropdown from "./Dropdown";
 const Header = () => {
  
   const { user } = useSelector((state) => state.auth);
+  console.log(user)
   const navigate = useNavigate()
   const dispatch = useDispatch();
   const location = useLocation();
