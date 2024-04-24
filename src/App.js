@@ -16,10 +16,10 @@ import LuggageListing from './pages/LugageListing';
 import ForgetPassword from './components/ForgetPassword';
 import ForgetOtp from './components/ForgetOtp';
 import Sidebar from './components/Sidebar';
-import Terms from './pages/Terms'
+import Terms from './pages/Terms';
 import Dashboard from './pages/Dashboard';
-import {ToastContainer} from 'react-toastify'
-import "react-toastify/dist/ReactToastify.css";
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function App() {
   const ViewHeader = useSelector((state) => state.header.value);
@@ -39,6 +39,7 @@ function App() {
           <Route path='/contact' element={<Contact />} />
           <Route path='/login' element={<Login />} />
           <Route path='/Signup' element={<Signup />} />
+
           <Route path='/travelerListing' element={<TravelerListing />} />
           <Route path='/luggageListing' element={<LuggageListing />} />
           <Route path='/createaListing' element={<CreateTravellerListing />} />
@@ -46,7 +47,7 @@ function App() {
         {/* <TravelerListing/> */}
         <Footer />
       </Router>
-      <ToastContainer/>
+      <ToastContainer />
     </>
   );
 }

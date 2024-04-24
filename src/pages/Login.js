@@ -9,8 +9,8 @@ import image from '../components/assets/Login/main.svg';
 import GoogleIcon from '../components/assets/Login/GoogleIcon.svg';
 import FacebookIcon from '../components/assets/Login/FaebookIcon.svg';
 import cross from '../components/assets/Login/crossIcon.svg';
-import { login, reset } from "../features/auth/authSlice";
-import {toast} from 'react-toastify'
+import { login, reset } from '../features/auth/authSlice';
+import { toast } from 'react-toastify';
 
 const Login = () => {
   const dispatch = useDispatch();
@@ -27,18 +27,18 @@ const Login = () => {
     (state) => state.auth
   );
 
-  useEffect(()=>{
-    if(isError){
-      toast.error(message)
+  useEffect(() => {
+    if (isError) {
+      toast.error(message);
     }
 
-    //Redirect when logged in 
-    if(isSuccess || user){
-      navigate('/')
+    //Redirect when logged in
+    if (isSuccess || user) {
+      navigate('/');
     }
 
-    dispatch(reset())
-  }, [isError, isSuccess, user, message, navigate, dispatch])
+    dispatch(reset());
+  }, [isError, isSuccess, user, message, navigate, dispatch]);
 
   const handleShowPassword = () => {
     setShowPassword(!showPassword);
@@ -57,6 +57,10 @@ const Login = () => {
       password,
     };
     dispatch(login(userData));
+  };
+
+  const googleAuth = () => {
+    window.open('http://localhost:3001/auth/google/callback');
   };
 
   return (
@@ -208,7 +212,10 @@ const Login = () => {
               <div className='justify-center px-2.5 py-1.5 bg-white'>OR</div>
             </div>
 
-            <div className='flex gap-3 mt-4'>
+            <div
+              className='flex gap-3 mt-4 cursor-pointer'
+              onClick={googleAuth}
+            >
               <button className='flex flex-1 justify-center items-center px-16 py-6 bg-gray-100 rounded-3xl max-md:px-5'>
                 <img
                   loading='lazy'
