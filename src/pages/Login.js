@@ -9,7 +9,7 @@ import image from '../components/assets/Login/main.svg';
 import GoogleIcon from '../components/assets/Login/GoogleIcon.svg';
 import FacebookIcon from '../components/assets/Login/FaebookIcon.svg';
 import cross from '../components/assets/Login/crossIcon.svg';
-import { login, reset } from '../features/auth/authSlice';
+import { login, reset, googleLogin } from '../features/auth/authSlice';
 import { toast } from 'react-toastify';
 
 const Login = () => {
@@ -60,7 +60,7 @@ const Login = () => {
   };
 
   const googleAuth = () => {
-    window.open('http://localhost:3001/auth/google/callback');
+    dispatch(googleLogin());
   };
 
   return (
