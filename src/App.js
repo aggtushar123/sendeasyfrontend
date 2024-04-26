@@ -20,6 +20,7 @@ import Terms from './pages/Terms';
 import Dashboard from './pages/Dashboard';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import LoggedInSuccess from './pages/LoggedInSuccess';
 
 function App() {
   const ViewHeader = useSelector((state) => state.header.value);
@@ -39,6 +40,8 @@ function App() {
           <Route path='/contact' element={<Contact />} />
           <Route path='/login' element={<Login />} />
           <Route path='/Signup' element={<Signup />} />
+          <Route path='/loggedInSuccess' element={<LoggedInSuccess />} />
+          <Route path='/loggedInSuccess' element={<LoggedInSuccess />} />
           <Route path='/travelerListing' element={<TravelerListing />} />
           <Route path='/luggageListing' element={<LuggageListing />} />
           <Route path='/createaListing' element={<CreateTravellerListing />} />

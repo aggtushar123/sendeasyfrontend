@@ -59,10 +59,27 @@ const Login = () => {
     dispatch(login(userData));
   };
 
-  const googleAuth = () => {
-    window.open('http://localhost:3001/auth/google/callback', '_self');
-    dispatch(googleLogin());
+  const [authWindow, setAuthWindow] = useState(null);
+
+  const googleAuth = async () => {
+    const newAuthWindow = window.open('http://localhost:3001/auth/google/callback');
+   
+    setAuthWindow(newAuthWindow);
+
   };
+
+  useEffect(() => {
+    if (authWindow) {
+      console.log("authWindow open")
+      const intervalId = setInterval(() => {
+        if (authWindow.closed) {
+          console.log("authwindow closed")
+          clearInterval(intervalId);
+          dispatch(googleLogin());
+        }
+      }, 1000); // Check every second if the authentication window is closed
+    }
+  }, [authWindow, dispatch]);
 
   return (
     <>

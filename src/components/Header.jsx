@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import logo from "./assets/Group.png";
 import { useSelector, useDispatch } from "react-redux";
@@ -14,7 +14,7 @@ const Header = () => {
   const location = useLocation();
 
  
-  const [signUpClicked, setSignUpClicked] = useState(true);
+  
   const onLogout = () => {
     dispatch(logout())
   dispatch(reset())
