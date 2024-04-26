@@ -60,6 +60,7 @@ const Login = () => {
   };
 
   const googleAuth = () => {
+    window.open('http://localhost:3001/auth/google/callback', '_self');
     dispatch(googleLogin());
   };
 

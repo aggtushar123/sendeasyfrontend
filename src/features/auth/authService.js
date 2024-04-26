@@ -43,18 +43,21 @@ const sendOtp = async (otpData) => {
 // Logout User
 const logout = () => localStorage.removeItem('user');
 
+// const getUser = async () => {
+//   try {
+//     const url = 'http://localhost:3001/auth/login/success';
+//     const { data } = await axios.get(url, { withCredentials: true });
+//     console.log(data);
+//   } catch (error) {
+//     console.log(error);
+//   }
+// };
 const googleLogin = async () => {
+  console.log('Dispatch called');
   try {
-    const response = await window.open(
-      `http://localhost:3001/auth/google/callback`,
-      '_self'
-    );
-      
-    const final = await axiosInstance.get(
-      `http://localhost:3001/auth/login/success`, 
-    );
-    console.log(final);
-    return response;
+    const url = 'http://localhost:3001/auth/login/success';
+    const { data } = await axios.get(url, { withCredentials: true });
+    console.log(data);
   } catch (error) {
     throw new Error(
       error.response?.data?.message ||
