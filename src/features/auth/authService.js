@@ -11,7 +11,7 @@ const axiosInstance = axios.create({
 // Register user
 const register = async (userData) => {
   const response = await axiosInstance.post(`${API_URL}signup`, userData);
-  console.log(response);
+
   return response.data;
 };
 
@@ -28,8 +28,7 @@ const login = async (userData) => {
 const sendOtp = async (otpData) => {
   try {
     const response = await axiosInstance.post(`${API_URL}sendOtp`, otpData);
-    console.log(response);
-    console.log(response.data.user);
+   
     if (response.data) {
       localStorage.setItem('user', JSON.stringify(response.data));
     }
@@ -47,11 +46,9 @@ const logout = () => localStorage.removeItem('user');
 const googleLogin = async () => {
   try {
     const url = 'http://localhost:3001/auth/login/success';
-    const { data } = await axios.get(url, { withCredentials: true });
-    console.log(data);
-    
-    localStorage.setItem('user', JSON.stringify(data.user))
-    return data;
+    const response = await axios.get(url, { withCredentials: true });
+    localStorage.setItem('user', JSON.stringify(response.data))
+    return response;
   } catch (error) {
     throw new Error(
       error.response?.data?.message ||
