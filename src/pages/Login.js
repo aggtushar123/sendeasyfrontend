@@ -70,10 +70,8 @@ const Login = () => {
 
   useEffect(() => {
     if (authWindow) {
-      console.log("authWindow open")
       const intervalId = setInterval(() => {
         if (authWindow.closed) {
-          console.log("authwindow closed")
           clearInterval(intervalId);
           dispatch(googleLogin());
         }

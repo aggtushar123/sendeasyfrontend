@@ -3,7 +3,6 @@ import authService from './authService';
 
 //Get user from localstorage
 const user = JSON.parse(localStorage.getItem('user'));
-console.log(user);
 
 const initialState = {
   user: user ? user : null,
@@ -49,7 +48,7 @@ export const logout = createAsyncThunk('auth/logout', async () => {
 });
 
 export const googleLogin = createAsyncThunk('auth/google', async () => {
-  await authService.googleLogin();
+  return await authService.googleLogin();
 });
 
 export const sendOtp = createAsyncThunk(
