@@ -81,11 +81,20 @@ const Dropdown = () => {
             </li>
             <li>
               <Link
-                to='/createaListing'
+                to='/createTraveler'
                 className='block px-4 py-2 hover:bg-gray-100 dark:hover:bg-white-600 dark:hover:text-slate-900'
                 onClick={closeDropdown} 
               >
-                Create A Listing
+                Create Traveler Listing 
+              </Link>
+            </li>
+            <li>
+              <Link
+                to='/createLuggage'
+                className='block px-4 py-2 hover:bg-gray-100 dark:hover:bg-white-600 dark:hover:text-slate-900'
+                onClick={closeDropdown} 
+              >
+                Create Luggage Listing
               </Link>
             </li>
           </ul>

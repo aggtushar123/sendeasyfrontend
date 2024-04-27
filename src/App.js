@@ -21,6 +21,7 @@ import Dashboard from './pages/Dashboard';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import LoggedInSuccess from './pages/LoggedInSuccess';
+import CreateLuggageListing from './pages/CreateLuggageListing'
 
 function App() {
   const ViewHeader = useSelector((state) => state.header.value);
@@ -44,7 +45,8 @@ function App() {
           <Route path='/loggedInSuccess' element={<LoggedInSuccess />} />
           <Route path='/travelerListing' element={<TravelerListing />} />
           <Route path='/luggageListing' element={<LuggageListing />} />
-          <Route path='/createaListing' element={<CreateTravellerListing />} />
+          <Route path='/createTraveler' element={<CreateTravellerListing />} />
+          <Route path='/createLuggage' element={<CreateLuggageListing/>} />
         </Routes>
         {/* <TravelerListing/> */}
         <Footer />

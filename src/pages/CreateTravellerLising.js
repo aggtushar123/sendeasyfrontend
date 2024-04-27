@@ -8,6 +8,11 @@ function CreateTraveller() {
           <span className="font-semibold text-sky-400">Create</span> Traveler
           listing
         </div>
+
+        <form >
+
+
+       
         <div className="flex gap-4 mt-3.5 max-w-full text-lg font-semibold tracking-wide text-center whitespace-nowrap text-blue-950 w-[849px] max-md:flex-wrap">
           <button
             type="button"
@@ -150,11 +155,16 @@ function CreateTraveller() {
             </div>
           </div>
         </div>
+        <button className="justify-center items-center mt-16 self-center px-16 py-5 max-w-full text-xl font-medium text-center text-white bg-sky-400 rounded-[31px] w-[349px] max-md:px-5">
+            Create Now
+          </button>
+          </form>
 
         <div className="flex flex-col self-center mt-24 max-w-full w-[693px] max-md:mt-10">
-          <div className="justify-center items-center self-center px-16 py-5 max-w-full text-xl font-medium text-center text-white bg-sky-400 rounded-[31px] w-[349px] max-md:px-5">
-            Create Now
-          </div>
+          
+
+
+
           <div className="mt-40 text-lg font-semibold tracking-wide text-rose-500 max-md:mt-10 max-md:max-w-full">
             Disclaimer{" "}
           </div>
