@@ -9,162 +9,155 @@ function CreateTraveller() {
           listing
         </div>
 
-        <form >
+        <form>
+          <div className="flex gap-4 mt-3.5 max-w-full text-lg font-semibold tracking-wide text-center whitespace-nowrap text-blue-950 w-[849px] max-md:flex-wrap">
+            <button
+              type="button"
+              className="justify-center items-center px-16 py-6 bg-gray-100 rounded-3xl max-md:px-5"
+            >
+              Local
+            </button>
+            <button
+              type="button"
+              className="justify-center items-center px-16 py-6 bg-gray-100 rounded-3xl max-md:px-5"
+            >
+              Outstation
+            </button>
+            <button
+              type="button"
+              className="justify-center items-center px-16 py-6 bg-gray-100 rounded-3xl max-md:px-5"
+            >
+              International
+            </button>
+          </div>
 
+          <div className="flex gap-5 mt-5 max-w-[1380px] mx-auto text-xs tracking-wide capitalize text-blue-950 w-[1380px] max-md:flex-wrap max-md:mt-10">
+            <div className="flex-auto">
+              <div className="flex-auto">Destination Location</div>
+              <div className="flex gap-5 py-2.5 pr-2 pl-7 mt-2 text-lg font-semibold tracking-wide bg-gray-100 rounded-3xl max-w-[636px] text-blue-950 max-md:flex-wrap max-md:pl-5">
+                <input
+                  type="text"
+                  className="flex-auto my-auto max-md:max-w-full bg-transparent border-none focus:outline-none"
+                />
+                <img
+                  loading="lazy"
+                  src="https://cdn.builder.io/api/v1/image/assets/TEMP/02d3a26d6f2a423afe74d7ebea8938f79d59ceaf8af12eb2c7dfae01c51954e9?"
+                  alt="icon"
+                  className="shrink-0 aspect-square w-[50px] cursor-pointer"
+                />
+              </div>
+            </div>
+            <div className="flex-auto">
+              <div className="flex-auto">Available Luggage Space</div>
+              <div className="flex gap-5 py-2.5 pr-2 pl-7 mt-2 text-lg font-semibold tracking-wide bg-gray-100 rounded-3xl max-w-[636px] text-blue-950 max-md:flex-wrap max-md:pl-5">
+                <input
+                  type="range"
+                  min="1"
+                  max="20"
+                  className="flex-auto py-5 marker:my-auto max-md:max-w-full bg-transparent border-none focus:outline-none"
+                />
+                <span className="ml-3 py-2.5 text-blue-950">Max</span>
+                <span className="ml-3 pr-5 py-2.5 text-sky-400">KG</span>
+              </div>
+            </div>
+          </div>
 
-       
-        <div className="flex gap-4 mt-3.5 max-w-full text-lg font-semibold tracking-wide text-center whitespace-nowrap text-blue-950 w-[849px] max-md:flex-wrap">
-          <button
-            type="button"
-            className="justify-center items-center px-16 py-6 bg-gray-100 rounded-3xl max-md:px-5"
-          >
-            Local
-          </button>
-          <button
-            type="button"
-            className="justify-center items-center px-16 py-6 bg-gray-100 rounded-3xl max-md:px-5"
-          >
-            Outstation
-          </button>
-          <button
-            type="button"
-            className="justify-center items-center px-16 py-6 bg-gray-100 rounded-3xl max-md:px-5"
-          >
-            International
-          </button>
-        </div>
+          <div className="flex gap-5 mt-5 max-w-[1380px] mx-auto text-xs tracking-wide capitalize text-blue-950 w-[1380px] max-md:flex-wrap max-md:mt-10">
+            <div className="flex-auto">
+              <div className="flex-auto">Date For Travel</div>
+              <div className="flex gap-2 py-2.5 pr-2 pl-7 mt-2 text-lg font-semibold tracking-wide bg-gray-100 rounded-3xl max-w-[636px] text-blue-950 max-md:flex-wrap max-md:pl-5">
+                <input
+                  type="date"
+                  className="flex-auto my-auto max-md:max-w-full bg-transparent border-none focus:outline-none"
+                  placeholder="Enter Date"
+                />
+                <img
+                  loading="lazy"
+                  src={date}
+                  alt="icon"
+                  className="shrink-0 aspect-square w-[50px] cursor-pointer"
+                />
+              </div>
+            </div>
+            <div className="flex-auto">
+              <div className="flex-auto">Est Monetary expectation</div>
+              <div className="flex gap-2 py-2.5 pr-2 pl-7 mt-2 text-lg font-semibold tracking-wide bg-gray-100 rounded-3xl max-w-[426px] text-blue-950 max-md:flex-wrap max-md:pl-5">
+                <input
+                  type="text"
+                  className="flex-auto py-2.5 my-auto max-md:max-w-full bg-transparent border-none focus:outline-none"
+                />
+                <span className="ml-3 py-2.5 pr-2 text-sky-400">
+                  Per kg USD
+                </span>
+              </div>
+            </div>
+            <div className="flex-auto">
+              <div className="flex-auto">Recommended</div>
+              <div className="flex gap-2 py-2.5 pr-2 pl-7 mt-2 text-lg font-semibold tracking-wide bg-gray-100 rounded-3xl max-w-[184px] text-blue-950 max-md:flex-wrap max-md:pl-5">
+                <div className="flex-auto py-2.5 my-auto max-md:max-w-full bg-transparent border-none focus:outline-none" />
+                <span className="ml-3 py-2.5 text-sky-400">Per kg USD</span>
+              </div>
+            </div>
+          </div>
 
-        <div className="flex gap-5 mt-5 max-w-[1380px] mx-auto text-xs tracking-wide capitalize text-blue-950 w-[1380px] max-md:flex-wrap max-md:mt-10">
-          <div className="flex-auto">
-            <div className="flex-auto">Destination Location</div>
-            <div className="flex gap-5 py-2.5 pr-2 pl-7 mt-2 text-lg font-semibold tracking-wide bg-gray-100 rounded-3xl max-w-[636px] text-blue-950 max-md:flex-wrap max-md:pl-5">
-              <input
-                type="text"
-                className="flex-auto my-auto max-md:max-w-full bg-transparent border-none focus:outline-none"
-              />
-              <img
-                loading="lazy"
-                src="https://cdn.builder.io/api/v1/image/assets/TEMP/02d3a26d6f2a423afe74d7ebea8938f79d59ceaf8af12eb2c7dfae01c51954e9?"
-                alt="icon"
-                className="shrink-0 aspect-square w-[50px] cursor-pointer"
-              />
+          <div className="flex gap-5 mt-5 max-w-[1380px] mx-auto text-xs tracking-wide capitalize text-blue-950 w-[1380px] max-md:flex-wrap max-md:mt-10">
+            <div className="flex-auto">
+              <div className="flex-auto">Expected time of delivery</div>
+              <div className="flex gap-5 py-2.5 pr-2 pl-7 mt-2 text-lg font-semibold tracking-wide bg-gray-100 rounded-3xl max-w-[636px] text-blue-950 max-md:flex-wrap max-md:pl-5">
+                <input
+                  type="text"
+                  className="flex-auto py-2.5 my-auto max-md:max-w-full bg-transparent border-none focus:outline-none"
+                />
+              </div>
+            </div>
+            <div className="flex-auto">
+              <div className="flex-auto">Source Location</div>
+              <div className="flex gap-5 py-2.5 pr-2 pl-7 mt-2 text-lg font-semibold tracking-wide bg-gray-100 rounded-3xl max-w-[636px] text-blue-950 max-md:flex-wrap max-md:pl-5">
+                <input
+                  type="text"
+                  className="flex-auto my-auto max-md:max-w-full bg-transparent border-none focus:outline-none"
+                />
+                <img
+                  loading="lazy"
+                  src="https://cdn.builder.io/api/v1/image/assets/TEMP/02d3a26d6f2a423afe74d7ebea8938f79d59ceaf8af12eb2c7dfae01c51954e9?"
+                  alt="icon"
+                  className="shrink-0 aspect-square w-[50px] cursor-pointer"
+                />
+              </div>
             </div>
           </div>
-          <div className="flex-auto">
-            <div className="flex-auto">Available Luggage Space</div>
-            <div className="flex gap-5 py-2.5 pr-2 pl-7 mt-2 text-lg font-semibold tracking-wide bg-gray-100 rounded-3xl max-w-[636px] text-blue-950 max-md:flex-wrap max-md:pl-5">
-              <input
-                type="range"
-                min="1"
-                max="20"
-                className="flex-auto py-5 marker:my-auto max-md:max-w-full bg-transparent border-none focus:outline-none"
-              />
-              <span className="ml-3 py-2.5 text-blue-950">Max</span>
-              <span className="ml-3 pr-5 py-2.5 text-sky-400">KG</span>
+          <div className="flex gap-5 mt-5 max-w-[1380px] mx-auto text-xs tracking-wide capitalize text-blue-950 w-[1380px] max-md:flex-wrap max-md:mt-10">
+            <div className="flex-auto">
+              <div className="flex-auto">Time of dept</div>
+              <div className="flex gap-5 py-2.5 pr-2 pl-7 mt-2 text-lg font-semibold tracking-wide bg-gray-100 rounded-3xl max-w-[636px] text-blue-950 max-md:flex-wrap max-md:pl-5">
+                <input
+                  type="text"
+                  className="flex-auto py-2.5 my-auto max-md:max-w-full bg-transparent border-none focus:outline-none"
+                />
+              </div>
+            </div>
+            <div className="flex-auto">
+              <div className="flex-auto">Items you won’t want to carry</div>
+              <div className="flex gap-5 py-2.5 pr-2 pl-7 mt-2 text-lg font-semibold tracking-wide bg-gray-100 rounded-3xl max-w-[636px] text-blue-950 max-md:flex-wrap max-md:pl-5">
+                <input
+                  type="text"
+                  className="flex-auto my-auto max-md:max-w-full bg-transparent border-none focus:outline-none"
+                />
+                <img
+                  loading="lazy"
+                  src="https://cdn.builder.io/api/v1/image/assets/TEMP/02d3a26d6f2a423afe74d7ebea8938f79d59ceaf8af12eb2c7dfae01c51954e9?"
+                  alt="icon"
+                  className="shrink-0 aspect-square w-[50px] cursor-pointer"
+                />
+              </div>
             </div>
           </div>
-        </div>
-
-        
-
-        <div className="flex gap-5 mt-5 max-w-[1380px] mx-auto text-xs tracking-wide capitalize text-blue-950 w-[1380px] max-md:flex-wrap max-md:mt-10">
-          <div className="flex-auto">
-            <div className="flex-auto">Date For Travel</div>
-            <div className="flex gap-2 py-2.5 pr-2 pl-7 mt-2 text-lg font-semibold tracking-wide bg-gray-100 rounded-3xl max-w-[636px] text-blue-950 max-md:flex-wrap max-md:pl-5">
-              <input
-                type="date"
-                className="flex-auto my-auto max-md:max-w-full bg-transparent border-none focus:outline-none"
-                placeholder="Enter Date"
-              />
-              <img
-                loading="lazy"
-                src={date}
-                alt="icon"
-                className="shrink-0 aspect-square w-[50px] cursor-pointer"
-              />
-            </div>
-          </div>
-          <div className="flex-auto">
-            <div className="flex-auto">Est Monetary expectation</div>
-            <div className="flex gap-2 py-2.5 pr-2 pl-7 mt-2 text-lg font-semibold tracking-wide bg-gray-100 rounded-3xl max-w-[426px] text-blue-950 max-md:flex-wrap max-md:pl-5">
-              <input
-                type="text"
-                className="flex-auto py-2.5 my-auto max-md:max-w-full bg-transparent border-none focus:outline-none"
-              />
-              <span className="ml-3 py-2.5 pr-2 text-sky-400">Per kg USD</span>
-            </div>
-          </div>
-          <div className="flex-auto">
-            <div className="flex-auto">Recommended</div>
-            <div className="flex gap-2 py-2.5 pr-2 pl-7 mt-2 text-lg font-semibold tracking-wide bg-gray-100 rounded-3xl max-w-[184px] text-blue-950 max-md:flex-wrap max-md:pl-5">
-              <div className="flex-auto py-2.5 my-auto max-md:max-w-full bg-transparent border-none focus:outline-none" />
-              <span className="ml-3 py-2.5 text-sky-400">Per kg USD</span>
-            </div>
-          </div>
-        </div>
-
-        <div className="flex gap-5 mt-5 max-w-[1380px] mx-auto text-xs tracking-wide capitalize text-blue-950 w-[1380px] max-md:flex-wrap max-md:mt-10">
-          <div className="flex-auto">
-            <div className="flex-auto">Expected time of delivery</div>
-            <div className="flex gap-5 py-2.5 pr-2 pl-7 mt-2 text-lg font-semibold tracking-wide bg-gray-100 rounded-3xl max-w-[636px] text-blue-950 max-md:flex-wrap max-md:pl-5">
-              <input
-                type="text"
-                className="flex-auto py-2.5 my-auto max-md:max-w-full bg-transparent border-none focus:outline-none"
-              />
-            </div>
-          </div>
-          <div className="flex-auto">
-            <div className="flex-auto">Source Location</div>
-            <div className="flex gap-5 py-2.5 pr-2 pl-7 mt-2 text-lg font-semibold tracking-wide bg-gray-100 rounded-3xl max-w-[636px] text-blue-950 max-md:flex-wrap max-md:pl-5">
-              <input
-                type="text"
-                className="flex-auto my-auto max-md:max-w-full bg-transparent border-none focus:outline-none"
-              />
-              <img
-                loading="lazy"
-                src="https://cdn.builder.io/api/v1/image/assets/TEMP/02d3a26d6f2a423afe74d7ebea8938f79d59ceaf8af12eb2c7dfae01c51954e9?"
-                alt="icon"
-                className="shrink-0 aspect-square w-[50px] cursor-pointer"
-              />
-            </div>
-          </div>
-        </div>
-        <div className="flex gap-5 mt-5 max-w-[1380px] mx-auto text-xs tracking-wide capitalize text-blue-950 w-[1380px] max-md:flex-wrap max-md:mt-10">
-          <div className="flex-auto">
-            <div className="flex-auto">Time of dept</div>
-            <div className="flex gap-5 py-2.5 pr-2 pl-7 mt-2 text-lg font-semibold tracking-wide bg-gray-100 rounded-3xl max-w-[636px] text-blue-950 max-md:flex-wrap max-md:pl-5">
-              <input
-                type="text"
-                className="flex-auto py-2.5 my-auto max-md:max-w-full bg-transparent border-none focus:outline-none"
-              />
-            </div>
-          </div>
-          <div className="flex-auto">
-            <div className="flex-auto">Items you won’t want to carry</div>
-            <div className="flex gap-5 py-2.5 pr-2 pl-7 mt-2 text-lg font-semibold tracking-wide bg-gray-100 rounded-3xl max-w-[636px] text-blue-950 max-md:flex-wrap max-md:pl-5">
-              <input
-                type="text"
-                className="flex-auto my-auto max-md:max-w-full bg-transparent border-none focus:outline-none"
-              />
-              <img
-                loading="lazy"
-                src="https://cdn.builder.io/api/v1/image/assets/TEMP/02d3a26d6f2a423afe74d7ebea8938f79d59ceaf8af12eb2c7dfae01c51954e9?"
-                alt="icon"
-                className="shrink-0 aspect-square w-[50px] cursor-pointer"
-              />
-            </div>
-          </div>
-        </div>
-        <button className="justify-center items-center mt-16 self-center px-16 py-5 max-w-full text-xl font-medium text-center text-white bg-sky-400 rounded-[31px] w-[349px] max-md:px-5">
+          <button className="justify-center items-center mt-16 self-center px-16 py-5 max-w-full text-xl font-medium text-center text-white bg-sky-400 rounded-[31px] w-[349px] max-md:px-5">
             Create Now
           </button>
-          </form>
+        </form>
 
         <div className="flex flex-col self-center mt-24 max-w-full w-[693px] max-md:mt-10">
-          
-
-
-
           <div className="mt-40 text-lg font-semibold tracking-wide text-rose-500 max-md:mt-10 max-md:max-w-full">
             Disclaimer{" "}
           </div>
