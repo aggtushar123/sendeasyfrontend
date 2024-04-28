@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import logo from "./assets/Group.png";
+import Avatar from "./assets/AvatarIcon.svg";
 import { useSelector, useDispatch } from "react-redux";
 import { logout, reset } from "../features/auth/authSlice";
-import Dropdown from "./Dropdown";
+import Dropdown from "./GoToListingDropdown";
+import CreateListingDropdown from "./CreateAListingDropdown";
 
 const Header = () => {
  
@@ -15,9 +17,11 @@ const Header = () => {
  
   
   const onLogout = () => {
+    let path = `/`
+    navigate(path)
     dispatch(logout())
   dispatch(reset())
-  navigate('/')
+  
   }
   return (
     <div className="flex gap-5 justify-between pt-5 ml-5 mr-5 max-md:flex-wrap max-md:max-w-full">
@@ -46,6 +50,7 @@ const Header = () => {
       </div>
       <div className="flex gap-5 justify-between items-center my-auto text-slate-900 max-md:flex-wrap">
         <div className="flex  self-stretch py-0.5 my-auto capitalize whitespace-nowrap">
+       {user && (<CreateListingDropdown/>)} 
           <Dropdown />
         </div>
    
@@ -61,6 +66,17 @@ const Header = () => {
       
 
         {user ? (
+          <>
+        <Link to="/dashboard">
+        <img
+            loading="lazy"
+            src={Avatar}
+          
+            alt="Company Logo"
+          />
+        </Link>
+             
+          
           <Link
             className="flex flex-col flex-1 justify-center self-stretch font-semibold text-sky-400 whitespace-nowrap"
             
@@ -70,6 +86,8 @@ const Header = () => {
               Logout
             </div>
           </Link>
+          </>
+          
         ) : (
           <>
           {location.pathname !== '/login' &&

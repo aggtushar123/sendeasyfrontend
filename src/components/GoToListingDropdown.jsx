@@ -54,7 +54,7 @@ const Dropdown = () => {
       </button>
       
       {isOpen && ( 
-        user ? (<div
+        <div
           id='dropdownHover'
           className='bg-white z-10 divide-y text-slate-600 rounded-lg shadow w-44 absolute right-0 mt-2 dark:bg-gray-100'
         >
@@ -80,54 +80,9 @@ const Dropdown = () => {
                 Luggage Listing
               </Link>
             </li>
-            <li>
-              <Link
-                to='/createTraveler'
-                className='block px-4 py-2 hover:bg-gray-100 dark:hover:bg-white-600 dark:hover:text-slate-900'
-                onClick={closeDropdown} 
-              >
-                Create Traveler Listing 
-              </Link>
-            </li>
-            <li>
-              <Link
-                to='/createLuggage'
-                className='block px-4 py-2 hover:bg-gray-100 dark:hover:bg-white-600 dark:hover:text-slate-900'
-                onClick={closeDropdown} 
-              >
-                Create Luggage Listing
-              </Link>
-            </li>
+            
           </ul>
-        </div>):(<div
-          id='dropdownHover'
-          className='bg-white z-10 divide-y text-slate-600 rounded-lg shadow w-44 absolute right-0 mt-2 dark:bg-gray-100'
-        >
-          <ul
-            className='py-2 text-sm text-slate-700 dark:text-slate-600'
-            aria-labelledby='dropdownHoverButton'
-          >
-            <li>
-              <Link
-                to='/travelerListing'
-                className='block px-4 py-2 hover:bg-gray-100 dark:hover:bg-white-600 dark:hover:text-slate-900'
-                onClick={closeDropdown} 
-              >
-                Traveler Listing
-              </Link>
-            </li>
-            <li>
-              <Link
-                to='/luggageListing'
-                className='block px-4 py-2 hover:bg-gray-100 dark:hover:bg-white-600 dark:hover:text-slate-900'
-                onClick={closeDropdown} 
-              >
-                Luggage Listing
-              </Link>
-            </li>
-           
-          </ul>
-        </div>)
+        </div>
       )}
     </div>
   );
