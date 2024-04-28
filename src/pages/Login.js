@@ -230,13 +230,16 @@ const Login = () => {
 
             <div
               className='flex gap-3 mt-4 cursor-pointer'
-              onClick={googleAuth}
+              
             >
-              <button className='flex flex-1 justify-center items-center px-16 py-6 bg-gray-100 rounded-3xl max-md:px-5'>
+              <button 
+              onClick={googleAuth}
+              className='flex flex-1 justify-center items-center px-16 py-6 bg-gray-100 rounded-3xl max-md:px-5'>
                 <img
                   loading='lazy'
                   src={GoogleIcon}
                   className='aspect-square w-[25px]'
+                  
                 />
               </button>
               <button className='flex flex-1 justify-center items-center px-16 py-6 bg-gray-100 rounded-3xl max-md:px-5'>

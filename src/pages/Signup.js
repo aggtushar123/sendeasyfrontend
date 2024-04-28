@@ -1,5 +1,5 @@
 import React from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "react-dropdown/style.css";
 import { useSelector, useDispatch } from "react-redux";
@@ -10,13 +10,14 @@ import EmailIcon from "../components/assets/Login/EmailIcon.svg";
 import NameIcon from "../components/assets/Login/NameIcon.svg";
 import PasswordIcon from "../components/assets/Login/PasswordIcon.svg";
 import { toast } from "react-toastify";
-import { register, sendOtp } from "../features/auth/authSlice";
+import { register, sendOtp, googleLogin } from "../features/auth/authSlice";
 import cross from "../components/assets/Login/crossIcon.svg";
 
 const Signup = () => {
   let check = false;
   const [showModal, setShowModal] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
+  const [authWindow, setAuthWindow] = useState(null);
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -27,10 +28,9 @@ const Signup = () => {
     cPassword: "",
   });
 
-
   const { fName, email, password, cPassword } = signupData;
 
-  const [otp, setOtp] = useState('');
+  const [otp, setOtp] = useState("");
 
   const { user, isSuccess, isLoading, message } = useSelector(
     (state) => state.auth
@@ -47,7 +47,7 @@ const Signup = () => {
     const { value } = e.target;
     setOtp(value);
   };
-  const onSubmit = async(e) => {
+  const onSubmit = async (e) => {
     e.preventDefault();
 
     if (password !== cPassword) {
@@ -61,51 +61,68 @@ const Signup = () => {
       };
       try {
         const response = await dispatch(register(userData));
-        if (response.meta.requestStatus === 'fulfilled') {
+        if (response.meta.requestStatus === "fulfilled") {
           setShowModal(true); // Set showModal to true upon successful registration
         } else {
           // Extract and show the specific error message from the response
           const errorMessage = response.error.message;
           toast.error(errorMessage);
-        } 
+        }
       } catch (error) {
         // Handle dispatch error
-        console.error('Dispatch error:', error);
+        console.error("Dispatch error:", error);
         toast.error("An error occurred. Please try again later.");
       }
-      
     }
   };
 
-  const otpOnClick = async(e) => {
+  const otpOnClick = async (e) => {
     e.preventDefault();
-    if(!otp){
+    if (!otp) {
       toast.error("OTP ERROR");
     }
     try {
-      const userVerified = await dispatch(sendOtp(otp))
-      console.log( JSON.stringify(userVerified.payload.data.user))
-      if (userVerified.payload.data){
-          navigate('/')
-          if(check){
-            localStorage.setItem('verified', JSON.stringify(userVerified.payload.data.user.verified));
-            check=false;
-          }
-      }else {
-        localStorage.removeItem('verified');
+      const userVerified = await dispatch(sendOtp(otp));
+
+      if (userVerified.payload.data) {
+        navigate("/");
+        if (check) {
+          localStorage.setItem(
+            "verified",
+            JSON.stringify(userVerified.payload.data.user.verified)
+          );
+          check = false;
+        }
+      } else {
+        localStorage.removeItem("verified");
         check = true;
-    
       }
     } catch (error) {
-      console.error('Error sending OTP:', error);
+      console.error("Error sending OTP:", error);
     }
-    
-    
   };
 
   const handleShowPassword = () => {
     setShowPassword(!showPassword);
   };
+  
+  const googleAuth = async () => {
+    const newAuthWindow = window.open('http://localhost:3001/auth/google/callback');
+   
+    setAuthWindow(newAuthWindow);
+
+  };
+
+  useEffect(() => {
+    if (authWindow) {
+      const intervalId = setInterval(() => {
+        if (authWindow.closed) {
+          clearInterval(intervalId);
+          dispatch(googleLogin());
+        }
+      }, 1000); // Check every second if the authentication window is closed
+    }
+  }, [authWindow, dispatch]);
 
   return (
     <>
@@ -307,7 +324,9 @@ const Signup = () => {
             </div>
 
             <div className="flex gap-3">
-              <button className="flex flex-1 justify-center items-center px-16 py-6 bg-gray-100 rounded-3xl max-md:px-5">
+              <button 
+              onClick={googleAuth}
+              className="flex flex-1 justify-center items-center px-16 py-6 bg-gray-100 rounded-3xl max-md:px-5">
                 <img
                   loading="lazy"
                   src={GoogleIcon}
