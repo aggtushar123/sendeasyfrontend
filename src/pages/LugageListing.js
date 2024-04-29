@@ -6,7 +6,7 @@ import kg from '../components/assets/TravelerListing/kg.svg';
 import luggageListing from '../components/assets/TravelerListing/LuggageListing.svg';
 import ListingLogo from '../components/assets/TravelerListing/ListingLogo.svg';
 import searchButton from '../components/assets/TravelerListing/SearchButton.svg';
-import Dropdown from '../components/Dropdown';
+import Dropdown from '../components/GoToListingDropdown';
 import SortPrice from '../components/SortPrice';
 import { useNavigate } from 'react-router-dom';
 
