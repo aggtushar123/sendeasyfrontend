@@ -62,10 +62,11 @@ const Login = () => {
   const [authWindow, setAuthWindow] = useState(null);
 
   const googleAuth = async () => {
-    const newAuthWindow = window.open('http://localhost:3001/auth/google/callback');
-   
-    setAuthWindow(newAuthWindow);
+    const newAuthWindow = window.open(
+      'http://localhost:3001/auth/google/callback'
+    );
 
+    setAuthWindow(newAuthWindow);
   };
 
   useEffect(() => {
@@ -228,18 +229,15 @@ const Login = () => {
               <div className='justify-center px-2.5 py-1.5 bg-white'>OR</div>
             </div>
 
-            <div
-              className='flex gap-3 mt-4 cursor-pointer'
-              
-            >
-              <button 
-              onClick={googleAuth}
-              className='flex flex-1 justify-center items-center px-16 py-6 bg-gray-100 rounded-3xl max-md:px-5'>
+            <div className='flex gap-3 mt-4 cursor-pointer'>
+              <button
+                onClick={googleAuth}
+                className='flex flex-1 justify-center items-center px-16 py-6 bg-gray-100 rounded-3xl max-md:px-5'
+              >
                 <img
                   loading='lazy'
                   src={GoogleIcon}
                   className='aspect-square w-[25px]'
-                  
                 />
               </button>
               <button className='flex flex-1 justify-center items-center px-16 py-6 bg-gray-100 rounded-3xl max-md:px-5'>
