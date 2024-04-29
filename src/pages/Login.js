@@ -240,7 +240,14 @@ const Login = () => {
                   className='aspect-square w-[25px]'
                 />
               </button>
-              <button className='flex flex-1 justify-center items-center px-16 py-6 bg-gray-100 rounded-3xl max-md:px-5'>
+              <button
+                className='flex flex-1 justify-center items-center px-16 py-6 bg-gray-100 rounded-3xl max-md:px-5'
+                onClick={() => {
+                  window.open(
+                    'http://localhost:3001/authFacebook/facebook/callback'
+                  );
+                }}
+              >
                 <img
                   loading='lazy'
                   src={FacebookIcon}
