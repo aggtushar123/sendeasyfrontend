@@ -58,7 +58,12 @@ const Header = () => {
         {user ? (
           <>
             <Link to='/dashboard'>
-              <img loading='lazy' src={Avatar} alt='Company Logo' />
+              <img
+                loading='lazy'
+                src={Avatar}
+                alt='Company Logo'
+                className='w-[40px]'
+              />
             </Link>
 
             <Link

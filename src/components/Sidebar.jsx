@@ -1,6 +1,7 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
+
 import {
   toggleDashFalse,
   toggleDashTrue,
@@ -70,8 +71,10 @@ function Sidebar() {
     dispatch(toggleUpdateKycFalse());
     dispatch(toggleTnCTrue());
   };
+  const { user } = useSelector((state) => state.auth);
+  console.log(user);
   return (
-    <div className='flex flex-col grow justify-center text-base text-sky-400 max-md:mt-10'>
+    <div className='flex flex-col grow  text-base text-sky-400  mt-5 max-md:mt-10'>
       <div className='flex flex-col self-stretch py-9 -ml-px w-[185px] h-[765px] bg-gray-100 grow-0 rounded-[39px]'>
         <img
           loading='lazy'
