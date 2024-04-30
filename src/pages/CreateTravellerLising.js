@@ -1,6 +1,81 @@
-import React from "react";
-import date from "../components/assets/Home/date.svg";
-function CreateTraveller() {
+import React, { useState } from "react";
+import dateIcon from "../components/assets/Home/date.svg";
+import { toast } from "react-toastify";
+import { useDispatch } from "react-redux";
+
+const CreateTraveller = () => {
+  const [travelerData, setTravelerData] = useState({
+    travelType: "",
+    destinationLocation: "",
+    luggageSpace: "",
+    date: "",
+    expectaion: "",
+    timeOfDelivery: "",
+    sourceLocation: "",
+    departure: "",
+    items: "",
+  });
+  const {
+    travelType,
+    destinationLocation,
+    luggageSpace,
+    date,
+    expectaion,
+    timeOfDelivery,
+    sourceLocation,
+    departure,
+    items,
+  } = travelerData;
+  const dispatch = useDispatch();
+
+  const onChange = (e) => {
+    setTravelerData((prevState) => ({
+      ...prevState,
+      [e.target.name]: e.target.value,
+    }));
+  };
+
+  const onSubmit = async (e) => {
+    e.preventDefault();
+    if (
+      !destinationLocation ||
+      !luggageSpace ||
+      !date ||
+      !expectaion ||
+      !timeOfDelivery ||
+      !sourceLocation ||
+      !departure
+    ) {
+      toast.error("Empty fields not allowed");
+    } else {
+      const TravelerListingData = {
+        travelType,
+        destinationLocation,
+        luggageSpace,
+        date,
+        expectaion,
+        timeOfDelivery,
+        sourceLocation,
+        departure,
+        items,
+      };
+      console.log(TravelerListingData);
+      // try {
+      //   const response = await dispatch(createTraveler(userData));
+      //   if (response.meta.requestStatus === 'fulfilled') {
+      //     console.log("Created") // Set showModal to true upon successful registration
+      //   } else {
+      //     // Extract and show the specific error message from the response
+      //     const errorMessage = response.error.message;
+      //     toast.error(errorMessage);
+      //   }
+      // } catch (error) {
+      //   // Handle dispatch error
+      //   console.error('Dispatch error:', error);
+      //   toast.error('An error occurred. Please try again later.');
+    }
+  };
+
   return (
     <div className="flex justify-center items-center pb-20 rounded-[29px] max-md:px-5">
       <div className="flex flex-col mt-10 w-full max-w-[1304px] max-md:mt-10 max-md:max-w-full">
@@ -9,7 +84,7 @@ function CreateTraveller() {
           listing
         </div>
 
-        <form>
+        <form onSubmit={onSubmit}>
           <div className="flex gap-4 mt-3.5 max-w-full text-lg font-semibold tracking-wide text-center whitespace-nowrap text-blue-950 w-[849px] max-md:flex-wrap">
             <button
               type="button"
@@ -38,6 +113,11 @@ function CreateTraveller() {
                 <input
                   type="text"
                   className="flex-auto my-auto max-md:max-w-full bg-transparent border-none focus:outline-none"
+                  id="destinationLocation"
+                  name="destinationLocation"
+                  value={destinationLocation}
+                  onChange={onChange}
+                  required
                 />
                 <img
                   loading="lazy"
@@ -55,6 +135,11 @@ function CreateTraveller() {
                   min="1"
                   max="20"
                   className="flex-auto py-5 marker:my-auto max-md:max-w-full bg-transparent border-none focus:outline-none"
+                  id="dluggageSpace"
+                  name="luggageSpace"
+                  value={luggageSpace}
+                  onChange={onChange}
+                  required
                 />
                 <span className="ml-3 py-2.5 text-blue-950">Max</span>
                 <span className="ml-3 pr-5 py-2.5 text-sky-400">KG</span>
@@ -70,10 +155,15 @@ function CreateTraveller() {
                   type="date"
                   className="flex-auto my-auto max-md:max-w-full bg-transparent border-none focus:outline-none"
                   placeholder="Enter Date"
+                  id="date"
+                  name="date"
+                  value={date}
+                  onChange={onChange}
+                  required
                 />
                 <img
                   loading="lazy"
-                  src={date}
+                  src={dateIcon}
                   alt="icon"
                   className="shrink-0 aspect-square w-[50px] cursor-pointer"
                 />
@@ -85,6 +175,11 @@ function CreateTraveller() {
                 <input
                   type="text"
                   className="flex-auto py-2.5 my-auto max-md:max-w-full bg-transparent border-none focus:outline-none"
+                  id="expectaion"
+                  name="expectaion"
+                  value={expectaion}
+                  onChange={onChange}
+                  required
                 />
                 <span className="ml-3 py-2.5 pr-2 text-sky-400">
                   Per kg USD
@@ -107,6 +202,11 @@ function CreateTraveller() {
                 <input
                   type="text"
                   className="flex-auto py-2.5 my-auto max-md:max-w-full bg-transparent border-none focus:outline-none"
+                  id="timeOfDelivery"
+                  name="timeOfDelivery"
+                  value={timeOfDelivery}
+                  onChange={onChange}
+                  required
                 />
               </div>
             </div>
@@ -116,6 +216,11 @@ function CreateTraveller() {
                 <input
                   type="text"
                   className="flex-auto my-auto max-md:max-w-full bg-transparent border-none focus:outline-none"
+                  id="sourceLocation"
+                  name="sourceLocation"
+                  value={sourceLocation}
+                  onChange={onChange}
+                  required
                 />
                 <img
                   loading="lazy"
@@ -133,6 +238,11 @@ function CreateTraveller() {
                 <input
                   type="text"
                   className="flex-auto py-2.5 my-auto max-md:max-w-full bg-transparent border-none focus:outline-none"
+                  id="departure"
+                  name="departure"
+                  value={departure}
+                  onChange={onChange}
+                  required
                 />
               </div>
             </div>
@@ -142,6 +252,10 @@ function CreateTraveller() {
                 <input
                   type="text"
                   className="flex-auto my-auto max-md:max-w-full bg-transparent border-none focus:outline-none"
+                  id="items"
+                  name="items"
+                  value={items}
+                  onChange={onChange}
                 />
                 <img
                   loading="lazy"
@@ -178,6 +292,6 @@ function CreateTraveller() {
       </div>
     </div>
   );
-}
+};
 
 export default CreateTraveller;

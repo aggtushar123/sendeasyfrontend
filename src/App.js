@@ -22,6 +22,7 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import LoggedInSuccess from './pages/LoggedInSuccess';
 import CreateLuggageListing from './pages/CreateLuggageListing'
+import PrivateRoute from './components/PrivateRoute';
 
 function App() {
   const ViewHeader = useSelector((state) => state.header.value);
@@ -33,7 +34,9 @@ function App() {
 
         <Routes>
           <Route path='/' element={<Home />} />
+          <Route path='/dashboard' element={<PrivateRoute />} >
           <Route path='/dashboard' element={<Dashboard />} />
+          </Route>
           <Route path='/fp' element={<ForgetPassword />} />
           <Route path='/t&c' element={<Terms />} />
           <Route path='/fo' element={<ForgetOtp />} />
@@ -42,11 +45,15 @@ function App() {
           <Route path='/login' element={<Login />} />
           <Route path='/Signup' element={<Signup />} />
           <Route path='/loggedInSuccess' element={<LoggedInSuccess />} />
-          <Route path='/loggedInSuccess' element={<LoggedInSuccess />} />
           <Route path='/travelerListing' element={<TravelerListing />} />
           <Route path='/luggageListing' element={<LuggageListing />} />
+          <Route path='/createTraveler' element={<PrivateRoute />} >
           <Route path='/createTraveler' element={<CreateTravellerListing />} />
+          </Route>
+          <Route path='/createLuggage' element={<PrivateRoute />} >
           <Route path='/createLuggage' element={<CreateLuggageListing/>} />
+          </Route>
+          
         </Routes>
         {/* <TravelerListing/> */}
         <Footer />

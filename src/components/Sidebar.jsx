@@ -149,17 +149,7 @@ function Sidebar() {
           T&C
         </button>
 
-        {/* CONTACT US */}
-
-        <button className='flex items-center justify-center self-center mt-4 w-[160px] h-[43px] font-medium text-center bg-indigo-100 rounded-[31px] max-md:px-5 '>
-          Contact Us
-        </button>
-
-        {/* LOG OUT */}
-
-        <button className='flex items-center justify-center self-center mt-4 w-[160px] h-[43px] font-medium text-center bg-indigo-100 rounded-[31px] max-md:px-5 '>
-          Log Out
-        </button>
+       
         <NavLink className='self-center w-[160px] h-[43px]  mt-4 font-medium text-center text-rose-500 bg-rose-500 bg-opacity-10 rounded-[31px] max-md:px-5 py-2'>
           Delete Account
         </NavLink>
