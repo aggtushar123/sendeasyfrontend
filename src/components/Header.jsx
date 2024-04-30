@@ -12,7 +12,12 @@ const Header = () => {
 
   const dispatch = useDispatch();
   const location = useLocation();
-
+  let ppUrl;
+  if (user) {
+    if (user.data) {
+      ppUrl = user.data.user.profilePicture;
+    } else ppUrl = user.user.profilePicture;
+  }
   const onLogout = () => {
     dispatch(logout());
     dispatch(reset());
@@ -60,9 +65,9 @@ const Header = () => {
             <Link to='/dashboard'>
               <img
                 loading='lazy'
-                src={Avatar}
+                src={ppUrl}
                 alt='Company Logo'
-                className='w-[40px]'
+                className='w-[40px] rounded-full'
               />
             </Link>
 
