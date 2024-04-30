@@ -73,12 +73,16 @@ function Sidebar() {
   };
   const { user } = useSelector((state) => state.auth);
   console.log(user);
+  let ppUrl;
+  if (user.data) {
+    ppUrl = user.data.user.profilePicture;
+  } else ppUrl = user.user.profilePicture;
   return (
     <div className='flex flex-col grow  text-base text-sky-400  mt-5 max-md:mt-10'>
       <div className='flex flex-col self-stretch py-9 -ml-px w-[185px] h-[765px] bg-gray-100 grow-0 rounded-[39px]'>
         <img
           loading='lazy'
-          srcSet={user.user.profilePicture}
+          srcSet={ppUrl}
           className='self-center w-40 rounded-full border-emerald-600 border-solid aspect-[1.03] border-[6px] stroke-[6px]'
         />
         <div className='flex gap-0.5 self-center mt-1.5 font-semibold whitespace-nowrap leading-[50%] text-slate-900'>
