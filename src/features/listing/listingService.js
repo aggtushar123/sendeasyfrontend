@@ -38,7 +38,7 @@ const createLuggage = async (luggageData, token) => {
             Authorization: `Bearer ${token}`
         }
     }
-    const response = await axios.post(`${API_URL}travelerlisting`, luggageData, config)
+    const response = await axios.post(`${API_URL}luggagelisting`, luggageData, config)
     console.log(response)
 
     return response.data
