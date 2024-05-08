@@ -1,6 +1,83 @@
-import React from "react";
+import React, {useState} from "react";
 import date from "../components/assets/Home/date.svg";
+import { toast } from "react-toastify";
+import { useDispatch } from "react-redux";
+import { createLuggage } from '../features/listing/listingSlice';
+
 function CreateLuggage() {
+  const [travelerData, setTravelerData] = useState({
+    destinationLocation: "",
+    luggageSpace: "",
+    date: "",
+    expectaion: "",
+    timeOfDelivery: "",
+    sourceLocation: "",
+    departure: "",
+    items: "",
+  });
+  const [travelType, setTravelType] = useState("");
+  const {
+    destinationLocation,
+    luggageSpace,
+    date,
+    expectaion,
+    timeOfDelivery,
+    sourceLocation,
+    departure,
+    items,
+  } = travelerData;
+  const dispatch = useDispatch();
+
+  const onChange = (e) => {
+    setTravelerData((prevState) => ({
+      ...prevState,
+      [e.target.name]: e.target.value,
+    }));
+  };
+  const handleButtonClick = (option) => {
+    setTravelType(option);
+  };
+
+  const onSubmit = async (e) => {
+    e.preventDefault();
+    if (
+      !destinationLocation ||
+      !luggageSpace ||
+      !date ||
+      !expectaion ||
+      !timeOfDelivery ||
+      !sourceLocation ||
+      !departure
+    ) {
+      toast.error("Empty fields not allowed");
+    } else {
+      const travelerListingData = {
+        travelType,
+        destinationLocation,
+        luggageSpace,
+        date,
+        expectaion,
+        timeOfDelivery,
+        sourceLocation,
+        departure,
+        items,
+      };
+      console.log(travelerListingData);
+      try {
+        const response = await dispatch(createLuggage(travelerListingData));
+        if (response.meta.requestStatus === 'fulfilled') {
+          console.log("Created") // Set showModal to true upon successful registration
+        } else {
+          // Extract and show the specific error message from the response
+          const errorMessage = response.error.message;
+          toast.error(errorMessage);
+        }
+      } catch (error) {
+        // Handle dispatch error
+        console.error('Dispatch error:', error);
+        toast.error('An error occurred. Please try again later.');}
+    }
+  };
   return (
     <div className="flex justify-center items-center pb-20 rounded-[29px] max-md:px-5">
       <div className="flex flex-col mt-10 w-full max-w-[1304px] max-md:mt-10 max-md:max-w-full">
@@ -9,28 +86,43 @@ function CreateLuggage() {
           listing
         </div>
 
-        <form>
+        <form onSubmit={onSubmit}>
 
         
         <div className="flex gap-4 mt-3.5 max-w-full text-lg font-semibold tracking-wide text-center whitespace-nowrap text-blue-950 w-[849px] max-md:flex-wrap">
-          <button
-            type="button"
-            className="justify-center items-center px-16 py-6 bg-gray-100 rounded-3xl max-md:px-5"
-          >
-            Local
-          </button>
-          <button
-            type="button"
-            className="justify-center items-center px-16 py-6 bg-gray-100 rounded-3xl max-md:px-5"
-          >
-            Outstation
-          </button>
-          <button
-            type="button"
-            className="justify-center items-center px-16 py-6 bg-gray-100 rounded-3xl max-md:px-5"
-          >
-            International
-          </button>
+        <button
+              type="button"
+              className={`justify-center items-center px-16 py-6 rounded-3xl max-md:px-5 ${
+                travelType === "local"
+                  ? "bg-blue-500 text-white border-blue-500"
+                  : "bg-gray-100"
+              }`}
+              onClick={() => handleButtonClick("local")}
+            >
+              Local
+            </button>
+            <button
+              type="button"
+              className={`justify-center items-center px-16 py-6 rounded-3xl max-md:px-5 ${
+                travelType === "outstation"
+                  ? "bg-blue-500 text-white border-blue-500"
+                  : "bg-gray-100"
+              }`}
+              onClick={() => handleButtonClick("outstation")}
+            >
+              Outstation
+            </button>
+            <button
+              type="button"
+              className={`justify-center items-center px-16 py-6 rounded-3xl max-md:px-5 ${
+                travelType === "international"
+                  ? "bg-blue-500 text-white border-blue-500"
+                  : "bg-gray-100"
+              }`}
+              onClick={() => handleButtonClick("international")}
+            >
+              International
+            </button>
         </div>
 
         <div className="flex gap-5 mt-5 max-w-[1380px] mx-auto text-xs tracking-wide capitalize text-blue-950 w-[1380px] max-md:flex-wrap max-md:mt-10">

@@ -12,12 +12,7 @@ const Header = () => {
 
   const dispatch = useDispatch();
   const location = useLocation();
-  let ppUrl;
-  if (user) {
-    if (user.data) {
-      ppUrl = user.data.user.profilePicture;
-    } else ppUrl = user.user.profilePicture;
-  }
+ 
   const onLogout = () => {
     dispatch(logout());
     dispatch(reset());
@@ -65,7 +60,7 @@ const Header = () => {
             <Link to='/dashboard'>
               <img
                 loading='lazy'
-                src={ppUrl}
+                src={ Avatar}
                 alt='Company Logo'
                 className='w-[40px] rounded-full'
               />
@@ -77,7 +72,7 @@ const Header = () => {
               to={'/'}
             >
               <div className='justify-center px-11 py-3 bg-white border-2 border-sky-400 border-solid rounded-[31px] max-md:px-5'>
-                Logout
+              Logout
               </div>
             </Link>
           </>
