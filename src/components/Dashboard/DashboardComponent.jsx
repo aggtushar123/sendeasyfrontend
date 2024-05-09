@@ -9,7 +9,7 @@ function DashboardComponent() {
   const { traveler, isLoading, isError, isSuccess, message } = useSelector(
     (state) => state.listing
   );
-console.log(traveler);
+console.log(traveler.length);
  
   useEffect(() => {
     dispatch(getTravelers());
@@ -36,7 +36,7 @@ console.log(traveler);
                       <div className='text-xl leading-7 text-slate-900'>
                         Ongoing Trip
                       </div>
-                      <div className='mt-5 text-4xl leading-10'>1</div>
+                      <div className='mt-5 text-4xl leading-10'>{traveler.length}</div>
                       <div className='justify-center self-stretch px-11 py-2.5 mt-4 text-sm capitalize bg-indigo-100 rounded-[31px] max-md:px-5'>
                         Check Status
                       </div>

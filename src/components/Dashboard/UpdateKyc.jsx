@@ -2,13 +2,13 @@ import * as React from "react";
 
 function UpdateKyc() {
   return (
-    <div className="flex flex-col bg-white rounded-[29px]">
-      <div className="self-center mt-20 max-w-full w-[926px] max-md:mt-10">
-        <div className="flex gap-5 max-md:flex-col max-md:gap-0">
-          <div className="flex flex-col w-[24%] max-md:ml-0 max-md:w-full">
+   
+      <div className="mt-10 max-w-full w-[926px] max-md:mt-10">
+        <div className="flex max-md:flex-col max-md:gap-0">
+          <div className="flex flex-col w-[14%] max-md:ml-0 max-md:w-full">
             <div className="flex flex-col justify-center text-base text-sky-400 max-md:mt-10" />
           </div>
-          <div className="flex flex-col ml-5 w-[76%] max-md:ml-0 max-md:w-full">
+          <div className="flex flex-col  w-[86%] max-md:ml-0 max-md:w-full">
             <div className="flex flex-col grow px-5 max-md:mt-10 max-md:max-w-full">
               <div className="text-lg font-bold tracking-wide text-blue-950 max-md:max-w-full">
                 Profile Details
@@ -137,7 +137,7 @@ function UpdateKyc() {
           </div>
         </div>
       </div>
-    </div>
+    
   );
 }
 

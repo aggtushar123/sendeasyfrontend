@@ -5,11 +5,12 @@ import LinkedInLogo from '../assets/Profile/LinkedInLogo.svg';
 import InstagramLogo from '../assets/Profile/InstagramLogo.svg';
 function Profile() {
   const { user } = useSelector((state) => state.auth);
+  
   return (
-    <div className='flex flex-col px-24 '>
+    <div className='flex flex-col px-48 '>
       <div className='max-md:pr-5 max-md:max-w-full'>
         <div className='flex gap-5 max-md:flex-col max-md:gap-0'>
-          <div className='flex flex-col w-[80%] max-md:ml-0 max-md:w-full'>
+          <div className='flex flex-col w-[90%] max-md:ml-0 max-md:w-full'>
             <div className='mt-5 max-md:mt-10'>
               <div className='flex overflow-hidden relative flex-col items-end self-center px-16 pt-20 pb-2.5 rounded-full border-sky-400 border-solid aspect-square border-[6px] w-[155px] max-md:pl-5'>
                 <img
