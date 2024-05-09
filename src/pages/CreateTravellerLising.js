@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import {useNavigate} from "react-router-dom"
 import dateIcon from "../components/assets/Home/date.svg";
 import { toast } from "react-toastify";
 import { useDispatch } from "react-redux";
@@ -26,6 +27,7 @@ const CreateTraveller = () => {
     items,
   } = travelerData;
   const dispatch = useDispatch();
+  const navigate = useNavigate()
 
   const onChange = (e) => {
     setTravelerData((prevState) => ({
@@ -66,6 +68,7 @@ const CreateTraveller = () => {
         const response = await dispatch(createTraveler(travelerListingData));
         if (response.meta.requestStatus === 'fulfilled') {
           console.log("Created") // Set showModal to true upon successful registration
+          navigate('/dashboard')
         } else {
           // Extract and show the specific error message from the response
           const errorMessage = response.error.message;

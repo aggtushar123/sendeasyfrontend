@@ -1,4 +1,4 @@
-import React from 'react';
+import React,  {  useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Traveler from '../components/Traveler';
 import location from '../components/assets/Home/location.svg';
@@ -8,14 +8,25 @@ import ListingLogo from '../components/assets/TravelerListing/ListingLogo.svg';
 import searchButton from '../components/assets/TravelerListing/SearchButton.svg';
 import Dropdown from '../components/GoToListingDropdown';
 import SortPrice from '../components/SortPrice';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchLuggageListings } from "../features/listing/listingSlice";
 
 const LuggageListing = () => {
   let navigate = useNavigate();
+  const dispatch = useDispatch();
+  const { luggageListings, isLoading, isError, isSuccess, message } = useSelector(
+    (state) => state.listing
+  );
+  console.log(luggageListings);
   const routeChange = () => {
     let path = `/travelerListing`;
     navigate(path);
   };
+
+  useEffect(() => {
+    dispatch(fetchLuggageListings());
+  }, [dispatch]);
   return (
     <div className='flex flex-col pt-8  rounded-[29px]'>
       <div className='flex flex-col items-center px-20 w-full max-md:px-5 max-md:max-w-full'>
@@ -53,7 +64,7 @@ const LuggageListing = () => {
           </div>
         </div>
 
-        <div className='flex gap-5 mt-12 max-w-full  w-[1147px] max-md:flex-wrap max-md:mt-10'>
+        {/* <div className='flex gap-5 mt-12 max-w-full  w-[1147px] max-md:flex-wrap max-md:mt-10'>
           <div className='relative'>
             <input
               placeholder='Search Destination'
@@ -83,7 +94,7 @@ const LuggageListing = () => {
             {' '}
             <SortPrice />
           </div>
-        </div>
+        </div> */}
 
         <div className='flex gap-5 px-5 mt-16 max-md:flex-wrap max-md:mt-10'>
           <div className='grow mt-5 mr-5 font-medium text-stone-300'>

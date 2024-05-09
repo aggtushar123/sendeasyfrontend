@@ -47,9 +47,9 @@ const Header = () => {
         </div>
 
         <>
-          <Link className='self-stretch my-auto' to='/about'>
+          {/* <Link className='self-stretch my-auto' to='/about'>
             About Us
-          </Link>
+          </Link> */}
           <Link className='flex-auto self-stretch my-auto' to='/contact'>
             Contact Us
           </Link>
