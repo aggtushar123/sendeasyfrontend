@@ -30,11 +30,12 @@ export const createTraveler = createAsyncThunk(
   }
 );
 
-export const getTraveler = createAsyncThunk(
-  "travelers/getAll",
+export const getTravelers = createAsyncThunk(
+  "traveler/get",
   async (travelerData, thunkAPI) => {
     try {
       const token = thunkAPI.getState().auth.user.token;
+      
       return await listingService.getTraveler(token);
     } catch (error) {
       const message =
@@ -67,7 +68,7 @@ export const createLuggage = createAsyncThunk(
 );
 
 export const getLuggage = createAsyncThunk(
-  "luggage/getAll",
+  "luggage/getLuggage",
   async (luggageData, thunkAPI) => {
     try {
       const token = thunkAPI.getState().auth.user.token;
@@ -144,15 +145,17 @@ export const listingSlice = createSlice({
         state.isError = true;
         state.message = action.payload;
       })
-      .addCase(getTraveler.pending, (state) => {
+      .addCase(getTravelers.pending, (state) => {
         state.isLoading = true;
       })
-      .addCase(getTraveler.fulfilled, (state, action) => {
+      .addCase(getTravelers.fulfilled, (state, action) => {
+       
         state.isLoading = false;
         state.isSuccess = true;
-        state.message = action.payload;
+        state.traveler = action.payload;
       })
-      .addCase(getTraveler.rejected, (state, action) => {
+      .addCase(getTravelers.rejected, (state, action) => {
+    
         state.isLoading = false;
         state.isError = true;
         state.message = action.payload;
@@ -178,6 +181,7 @@ export const listingSlice = createSlice({
         state.message = action.payload;
       })
       .addCase(getLuggage.rejected, (state, action) => {
+        console.log(action.payload)
         state.isLoading = false;
         state.isError = true;
         state.message = action.payload;

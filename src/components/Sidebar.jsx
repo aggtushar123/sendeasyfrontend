@@ -72,7 +72,7 @@ function Sidebar() {
     dispatch(toggleTnCTrue());
   };
   const { user } = useSelector((state) => state.auth);
-  console.log(user);
+
   
   return (
     <div className='flex flex-col grow  text-base text-sky-400  mt-5 max-md:mt-10'>

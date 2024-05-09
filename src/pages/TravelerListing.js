@@ -16,7 +16,6 @@ const TravelerListing = () => {
   const { travelers, isLoading, isError, isSuccess, message } = useSelector(
     (state) => state.listing
   );
-  console.log(travelers);
 
   const routeChange = () => {
     let path = `/luggageListing`;
@@ -148,7 +147,7 @@ const TravelerListing = () => {
         </div>
 
         <div>
-          <Traveler />
+          <Traveler travelers={travelers} />
         </div>
         <button className="justify-center items-center px-16 py-5 mt-28 mb-20 max-w-full text-xl font-medium text-center text-sky-400 bg-white border-2 border-sky-400 border-solid rounded-[31px] w-[349px] max-md:px-5 max-md:mt-10">
           See more

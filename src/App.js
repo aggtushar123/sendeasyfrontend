@@ -26,7 +26,7 @@ import PrivateRoute from './components/PrivateRoute';
 
 function App() {
   const ViewHeader = useSelector((state) => state.header.value);
-  console.log(ViewHeader);
+
   return (
     <>
       <Router>

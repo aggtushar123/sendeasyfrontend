@@ -1,6 +1,24 @@
-import * as React from 'react';
+import React, {useEffect} from 'react';
+import { useDispatch, useSelector } from "react-redux";
+import { getTravelers } from "../../features/listing/listingSlice";
+import { useNavigate } from "react-router-dom";
 
 function DashboardComponent() {
+  const dispatch = useDispatch();
+  let navigate = useNavigate();
+  const { traveler, isLoading, isError, isSuccess, message } = useSelector(
+    (state) => state.listing
+  );
+console.log(traveler);
+ 
+  useEffect(() => {
+    dispatch(getTravelers());
+    console.log("Dispatch Traveler")
+  }, [dispatch]);
+  const onClick = () => {
+ 
+    navigate('/createTraveler');
+  };
   return (
     <div className='flex flex-col  rounded-[29px]'>
       <div className='flex flex-col items-center self-center mt-5 w-full max-w-[1296px] max-md:mt-10 max-md:max-w-full'>
@@ -57,13 +75,16 @@ function DashboardComponent() {
             <div className='mt-9 max-md:max-w-full'>
               <div className='flex gap-5 max-md:flex-col max-md:gap-0'>
                 <div className='flex flex-col w-[83%] max-md:ml-0 max-md:w-full'>
-                  <div className='flex flex-col px-10 pt-7 pb-12 w-full bg-gray-100 rounded-[38px] max-md:px-5 max-md:mt-1 max-md:max-w-full'>
+                {traveler.map((travel) => (
+                  <div 
+                  key={travel.id}
+                  className='flex flex-col px-10 pt-7 pb-12 w-full mb-5 bg-gray-100 rounded-[38px] max-md:px-5 max-md:mt-1 max-md:max-w-full'>
                     <div className='flex gap-5 w-full leading-[158.5%] max-md:flex-wrap max-md:max-w-full'>
                       <div className='flex flex-auto gap-3.5 justify-between text-slate-900 max-md:flex-wrap'>
                         <div className='flex flex-col self-start whitespace-nowrap'>
                           <div className='text-xs'>From:</div>
                           <div className='mt-3.5 text-xl font-semibold'>
-                            USA
+                            {travel.sourceLocation}
                           </div>
                         </div>
                         <img
@@ -87,14 +108,14 @@ function DashboardComponent() {
                         <div className='flex flex-col self-start whitespace-nowrap'>
                           <div className='text-xs'>Destination:</div>
                           <div className='mt-3.5 text-xl font-semibold'>
-                            India
+                          {travel.destinationLocation}
                           </div>
                         </div>
                       </div>
                       <div className='flex flex-col self-start text-sky-400'>
                         <div className='text-xs'>Expected Price</div>
                         <div className='mt-2.5 text-xl font-semibold'>
-                          $ 150
+                          $ {travel.expectation}
                         </div>
                       </div>
                     </div>
@@ -135,26 +156,29 @@ function DashboardComponent() {
                         <div className='flex flex-col py-1.5'>
                           <div className='text-xs'>Date:</div>
                           <div className='mt-3.5 text-xl font-semibold'>
-                            21 Sep 2024
+                            {travel.date}
                           </div>
                         </div>
                         <div className='flex flex-col py-2'>
                           <div className='text-xs'>Time:</div>
                           <div className='mt-3.5 text-xl font-semibold'>
-                            2: 25 AM
+                            {travel.timeOfDelivery}
                           </div>
                         </div>
                         <div className='flex flex-col py-2'>
                           <div className='text-xs'>Luggage Space:</div>
                           <div className='mt-2.5 text-xl font-semibold'>
-                            25 KG
+                            {travel.luggageSpace} KG
                           </div>
                         </div>
                       </div>
                     </div>
                   </div>
+                ))}
                 </div>
-                <div className='flex flex-col ml-5 w-[17%] max-md:ml-0 max-md:w-full'>
+                <button 
+                onClick={onClick}
+                className='flex flex-col ml-5 w-[17%] max-md:ml-0 max-md:w-full'>
                   <div className='flex flex-col grow px-7 py-20 w-full text-base font-medium text-center capitalize bg-gray-100 rounded-[31px] text-stone-300 max-md:px-5 max-md:mt-1'>
                     <img
                       loading='lazy'
@@ -163,7 +187,7 @@ function DashboardComponent() {
                     />
                     <div className='mt-3'>Create a Listing</div>
                   </div>
-                </div>
+                </button>
               </div>
             </div>
             <div className='self-start mt-16 ml-5 text-lg font-bold tracking-wide text-blue-950 max-md:mt-10 max-md:ml-2.5'>

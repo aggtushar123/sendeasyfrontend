@@ -14,7 +14,7 @@ function Profile() {
               <div className='flex overflow-hidden relative flex-col items-end self-center px-16 pt-20 pb-2.5 rounded-full border-sky-400 border-solid aspect-square border-[6px] w-[155px] max-md:pl-5'>
                 <img
                   loading='lazy'
-                  srcSet={user.user.profilePicture}
+                  srcSet={FacebookLogo}
                   className='object-cover absolute inset-0 size-full'
                 />
               </div>
@@ -51,12 +51,12 @@ function Profile() {
       </div>
 
       <input
-        placeholder={`${user.user.fName}`}
+        placeholder="name"
         className=' justify-center w-[636px]  px-6 py-6 mt-5 text-sm tracking-wide bg-gray-100 rounded-3xl text-slate-900 max-md:px-5 max-md:max-w-full'
       />
 
       <input
-        placeholder={`${user.user.email}`}
+        placeholder="email"
         className='flex flex-col justify-center w-[636px]  px-6 py-6 mt-5 text-sm tracking-wide bg-gray-100 rounded-3xl text-slate-900 max-md:px-5 max-md:max-w-full'
       />
 
