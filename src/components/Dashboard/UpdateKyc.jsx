@@ -3,17 +3,23 @@ import * as React from "react";
 function UpdateKyc() {
   return (
    
-      <div className="mt-10 max-w-full w-[926px] max-md:mt-10">
+      <div className="mt-5 max-w-full w-[926px] max-md:mt-10">
         <div className="flex max-md:flex-col max-md:gap-0">
           <div className="flex flex-col w-[14%] max-md:ml-0 max-md:w-full">
             <div className="flex flex-col justify-center text-base text-sky-400 max-md:mt-10" />
           </div>
           <div className="flex flex-col  w-[86%] max-md:ml-0 max-md:w-full">
             <div className="flex flex-col grow px-5 max-md:mt-10 max-md:max-w-full">
-              <div className="text-lg font-bold tracking-wide text-blue-950 max-md:max-w-full">
-                Profile Details
-              </div>
-              <div className="flex flex-col justify-center items-start px-4 py-6 mt-5 text-sm tracking-wide bg-gray-100 rounded-3xl text-slate-900 max-md:pr-5 max-md:max-w-full">
+              
+              <div className="flex gap-5 max-md:flex-wrap max-md:max-w-full">
+          <div className="flex-auto justify-center items-center self-start text-lg font-bold tracking-wide text-blue-950">
+            Profile Details
+          </div>
+          <div className="justify-center items-center px-16 py-5 text-xl font-medium text-center text-white bg-sky-400 rounded-[31px] max-md:px-5">
+            Edit Profile
+          </div>
+        </div>
+              <div className="flex flex-col justify-center items-start px-4 py-6 mt-10 text-sm tracking-wide bg-gray-100 rounded-3xl text-slate-900 max-md:pr-5 max-md:max-w-full">
                 <div className="flex gap-5">
                   <img
                     loading="lazy"

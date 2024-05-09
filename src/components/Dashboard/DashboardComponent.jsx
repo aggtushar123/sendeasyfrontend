@@ -2,19 +2,30 @@ import React, {useEffect} from 'react';
 import { useDispatch, useSelector } from "react-redux";
 import { getTravelers } from "../../features/listing/listingSlice";
 import { useNavigate } from "react-router-dom";
+import Spinner from '../Spinner';
 
 function DashboardComponent() {
   const dispatch = useDispatch();
   let navigate = useNavigate();
-  const { traveler, isLoading, isError, isSuccess, message } = useSelector(
-    (state) => state.listing
-  );
-console.log(traveler.length);
- 
   useEffect(() => {
     dispatch(getTravelers());
     console.log("Dispatch Traveler")
   }, [dispatch]);
+
+  const { traveler, isLoading, isError, isSuccess, message } = useSelector(
+    (state) => state.listing
+  );
+console.log(traveler);
+ 
+if(isLoading){
+  return<div>Loading...</div>
+
+}
+if (isError) {
+  return <div>Error: {message}</div>; // Show an error message
+}
+const travelerList = Array.isArray(traveler) ? traveler : [];
+
   const onClick = () => {
  
     navigate('/createTraveler');
@@ -75,7 +86,9 @@ console.log(traveler.length);
             <div className='mt-9 max-md:max-w-full'>
               <div className='flex gap-5 max-md:flex-col max-md:gap-0'>
                 <div className='flex flex-col w-[83%] max-md:ml-0 max-md:w-full'>
-                {traveler.map((travel) => (
+                {travelerList && (
+                  <>
+                  {travelerList.map((travel) => (
                   <div 
                   key={travel.id}
                   className='flex flex-col px-10 pt-7 pb-12 w-full mb-5 bg-gray-100 rounded-[38px] max-md:px-5 max-md:mt-1 max-md:max-w-full'>
@@ -175,6 +188,9 @@ console.log(traveler.length);
                     </div>
                   </div>
                 ))}
+                  </>
+                )}
+                
                 </div>
                 <button 
                 onClick={onClick}
