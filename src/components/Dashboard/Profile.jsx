@@ -1,18 +1,46 @@
-import * as React from 'react';
-import { useSelector } from 'react-redux';
-import FacebookLogo from '../assets/Profile/FacebookLogo.svg';
-import LinkedInLogo from '../assets/Profile/LinkedInLogo.svg';
-import InstagramLogo from '../assets/Profile/InstagramLogo.svg';
+import React from "react";
+import { useSelector, useDispatch } from "react-redux";
+import FacebookLogo from "../assets/Profile/FacebookLogo.svg";
+import LinkedInLogo from "../assets/Profile/LinkedInLogo.svg";
+import InstagramLogo from "../assets/Profile/InstagramLogo.svg";
+import {
+  toggleDashFalse,
+  toggleProfileFalse,
+  toggleNotifFalse,
+  toggleChatFalse,
+  toggleUpdateKycTrue,
+  toggleTnCFalse,
+} from "../../features/dashboardSlice";
+
 function Profile() {
   const { user } = useSelector((state) => state.auth);
-  
+  console.log(user);
+  const dispatch = useDispatch();
+
+  const kycClicked = () => {
+    dispatch(toggleDashFalse());
+    dispatch(toggleProfileFalse());
+    dispatch(toggleNotifFalse());
+    dispatch(toggleChatFalse());
+    dispatch(toggleUpdateKycTrue());
+    dispatch(toggleTnCFalse());
+  };
   return (
     <div className="flex gap-5 justify-between items-start mt-10 max-md:flex-wrap max-md:max-w-full">
       <div className="flex flex-col justify-center text-base text-sky-400" />
       <div className="flex flex-col self-stretch max-md:max-w-full">
-      <div className="text-lg font-bold tracking-wide text-blue-950 max-md:max-w-full">
-                Profile Details
-              </div>
+        <div className="flex gap-5 max-md:flex-wrap max-md:max-w-full">
+          <div className="flex-auto justify-center items-center self-start text-lg font-bold tracking-wide text-blue-950">
+            Profile Details
+          </div>
+          <button
+            onClick={kycClicked}
+            className="justify-center items-center px-16 py-5 text-xl font-medium text-center text-white bg-sky-400 rounded-[31px] max-md:px-5"
+          >
+            Edit Profile
+          </button>
+        </div>
+
         <div className="flex flex-col justify-center items-start px-6 py-6 mt-9 text-sm tracking-wide bg-gray-100 rounded-3xl text-slate-900 max-md:px-5 max-md:max-w-full">
           <div className="flex gap-5">
             <img
@@ -20,7 +48,7 @@ function Profile() {
               src="https://cdn.builder.io/api/v1/image/assets/TEMP/b6064dea33688c741bf584a0e5ed0763eae0305aca86a0da592f3ab1e958f3da?"
               className="shrink-0 w-5 aspect-square"
             />
-            <div>Allison Ekstrom Bothman</div>
+            <div>{user.fName}</div>
           </div>
         </div>
         <div className="flex flex-col justify-center items-start px-6 py-6 mt-4 text-sm tracking-wide whitespace-nowrap bg-gray-100 rounded-3xl text-slate-900 max-md:px-5 max-md:max-w-full">
@@ -30,7 +58,7 @@ function Profile() {
               src="https://cdn.builder.io/api/v1/image/assets/TEMP/55df987dbbe14e21d0f709d80302569953f04bc663f4df8176f415207380e6ff?"
               className="shrink-0 w-5 aspect-square"
             />
-            <div>allison@gmail.com</div>
+            <div>{user.email}</div>
           </div>
         </div>
         <div className="flex flex-col justify-center items-start px-6 py-6 mt-4 text-sm tracking-wide capitalize whitespace-nowrap bg-gray-100 rounded-3xl text-slate-900 max-md:px-5 max-md:max-w-full">
@@ -40,7 +68,7 @@ function Profile() {
               src="https://cdn.builder.io/api/v1/image/assets/TEMP/749df466dcd5279d69d921d0a4d3bd8a0b91805e79674e88afa89d5fb8b6d51a?"
               className="shrink-0 w-5 aspect-square"
             />
-            <div>+695542385</div>
+            <div>{user.mobile}</div>
           </div>
         </div>
         <div className="flex flex-col justify-center items-start px-6 py-6 mt-4 text-sm tracking-wide whitespace-nowrap bg-gray-100 rounded-3xl text-slate-900 max-md:px-5 max-md:max-w-full">

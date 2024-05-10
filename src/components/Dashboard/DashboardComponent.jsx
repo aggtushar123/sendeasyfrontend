@@ -9,13 +9,13 @@ function DashboardComponent() {
   let navigate = useNavigate();
   useEffect(() => {
     dispatch(getTravelers());
-    console.log("Dispatch Traveler")
+   
   }, [dispatch]);
 
   const { traveler, isLoading, isError, isSuccess, message } = useSelector(
     (state) => state.listing
   );
-console.log(traveler);
+
  
 if(isLoading){
   return<div>Loading...</div>

@@ -29,6 +29,23 @@ export const register = createAsyncThunk(
     }
   }
 );
+export const updateUser = createAsyncThunk(
+  'auth/updateUser',
+  async ({ userId, userData }, thunkAPI) => {
+    try {
+      return await authService.updateUser(userId, userData);
+    } catch (error) {
+      const message =
+        (error.response &&
+          error.response.data &&
+          error.response.data.message) ||
+        error.message ||
+        error.toString();
+      return thunkAPI.rejectWithValue(message);
+    }
+  }
+);
+
 export const login = createAsyncThunk('auth/login', async (user, thunkAPI) => {
   try {
     return await authService.login(user);
@@ -47,8 +64,17 @@ export const logout = createAsyncThunk('auth/logout', async () => {
   await authService.logout();
 });
 
-export const googleLogin = createAsyncThunk('auth/google', async () => {
-  return await authService.googleLogin();
+export const googleLogin = createAsyncThunk('auth/google', async (thunkAPI) => {
+  try {
+    return await authService.googleLogin();
+  } catch (error) {
+    const message =
+      (error.response && error.response.data && error.response.data.message) ||
+      error.message ||
+      error.toString();
+    return thunkAPI.rejectWithValue(message);
+  }
+  
 });
 
 export const sendOtp = createAsyncThunk(
@@ -129,19 +155,35 @@ export const authSlice = createSlice({
         state.user = null;
       })
       .addCase(googleLogin.pending, (state) => {
+       
         state.isLoading = true;
         state.user = null;
       })
       .addCase(googleLogin.fulfilled, (state, action) => {
+        
+        state.isLoading = false;
+        state.isSuccess = true;
+        state.user = action.payload.data;
+      })
+      .addCase(googleLogin.rejected, (state, action) => {
+        
+        state.isLoading = false;
+        state.isError = true;
+        state.message = action.payload;
+       
+      })
+      .addCase(updateUser.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(updateUser.fulfilled, (state, action) => {
         state.isLoading = false;
         state.isSuccess = true;
         state.user = action.payload;
       })
-      .addCase(googleLogin.rejected, (state, action) => {
+      .addCase(updateUser.rejected, (state, action) => {
         state.isLoading = false;
         state.isError = true;
         state.message = action.payload;
-        state.user = null;
       });
   },
 });
