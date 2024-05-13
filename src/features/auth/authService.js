@@ -14,6 +14,19 @@ const register = async (userData) => {
 
   return response.data;
 };
+const updateUser = async (userId, userData) => {
+  try {
+    const response = await axiosInstance.put(`${API_URL}user/${userId}`, userData);
+    if (response.data) {
+      localStorage.setItem('user', JSON.stringify(response.data));
+    }
+    return response.data;
+  } catch (error) {
+    throw new Error(
+      error.response?.data?.message || error.message || 'Error updating user'
+    );
+  }
+};
 
 // Login
 const login = async (userData) => {
@@ -47,7 +60,8 @@ const googleLogin = async () => {
   try {
     const url = 'http://localhost:3001/auth/login/success';
     const response = await axios.get(url, { withCredentials: true });
-    localStorage.setItem('user', JSON.stringify(response.data))
+    const userData = response.data; 
+    localStorage.setItem('user', JSON.stringify(userData))
     return response;
   } catch (error) {
     throw new Error(
@@ -64,6 +78,7 @@ const authService = {
   login,
   sendOtp,
   googleLogin,
+  updateUser,
 };
 
 export default authService;
