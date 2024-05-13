@@ -5,6 +5,7 @@ const initialState = {
   travelers: [],
   luggageListings: [],
   traveler: {},
+  luggage: {},
   isError: false,
   isSuccess: false,
   isLoading: false,
@@ -177,10 +178,10 @@ export const listingSlice = createSlice({
       .addCase(getLuggage.fulfilled, (state, action) => {
         state.isLoading = false;
         state.isSuccess = true;
-        state.message = action.payload;
+        state.luggage = action.payload;
       })
       .addCase(getLuggage.rejected, (state, action) => {
-        console.log(action.payload)
+       
         state.isLoading = false;
         state.isError = true;
         state.message = action.payload;

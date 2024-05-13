@@ -38,7 +38,6 @@ function UpdateKyc() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(formData)
     dispatch(updateUser({ userId: user._id, userData: formData }));
   };
   return (
