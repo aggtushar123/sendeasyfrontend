@@ -144,6 +144,7 @@ export const authSlice = createSlice({
         state.user = null;
       })
       .addCase(sendOtp.fulfilled, (state, action) => {
+        
         state.isLoading = false;
         state.isSuccess = true;
         state.user = action.payload;
@@ -176,6 +177,7 @@ export const authSlice = createSlice({
         state.isLoading = true;
       })
       .addCase(updateUser.fulfilled, (state, action) => {
+        console.log(action.payload)
         state.isLoading = false;
         state.isSuccess = true;
         state.user = action.payload;

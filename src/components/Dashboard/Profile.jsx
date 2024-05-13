@@ -3,27 +3,15 @@ import { useSelector, useDispatch } from "react-redux";
 import FacebookLogo from "../assets/Profile/FacebookLogo.svg";
 import LinkedInLogo from "../assets/Profile/LinkedInLogo.svg";
 import InstagramLogo from "../assets/Profile/InstagramLogo.svg";
-import {
-  toggleDashFalse,
-  toggleProfileFalse,
-  toggleNotifFalse,
-  toggleChatFalse,
-  toggleUpdateKycTrue,
-  toggleTnCFalse,
-} from "../../features/dashboardSlice";
+import { useNavigate } from "react-router-dom";
 
 function Profile() {
   const { user } = useSelector((state) => state.auth);
-  console.log(user);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const kycClicked = () => {
-    dispatch(toggleDashFalse());
-    dispatch(toggleProfileFalse());
-    dispatch(toggleNotifFalse());
-    dispatch(toggleChatFalse());
-    dispatch(toggleUpdateKycTrue());
-    dispatch(toggleTnCFalse());
+    navigate('/dashboard/updatekyc')
   };
   return (
     <div className="flex gap-5 justify-between items-start mt-10 max-md:flex-wrap max-md:max-w-full">

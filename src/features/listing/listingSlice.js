@@ -16,7 +16,6 @@ export const createTraveler = createAsyncThunk(
   async (travelerData, thunkAPI) => {
     try {
       const token = thunkAPI.getState().auth.user.token;
-
       return await listingService.createTraveler(travelerData, token);
     } catch (error) {
       const message =

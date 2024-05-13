@@ -1,78 +1,13 @@
-import React from 'react';
-import { NavLink } from 'react-router-dom';
+import React, {useState} from 'react';
+import { NavLink, Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-
-import {
-  toggleDashFalse,
-  toggleDashTrue,
-  toggleProfileTrue,
-  toggleProfileFalse,
-  toggleNotifTrue,
-  toggleNotifFalse,
-  toggleChatTrue,
-  toggleChatFalse,
-  toggleUpdateKycTrue,
-  toggleUpdateKycFalse,
-  toggleTnCTrue,
-  toggleTnCFalse,
-} from '../features/dashboardSlice';
 
 function Sidebar() {
   const dispatch = useDispatch();
 
-  const dashBoardClicked = () => {
-    dispatch(toggleDashTrue());
-    dispatch(toggleProfileFalse());
-    dispatch(toggleNotifFalse());
-    dispatch(toggleChatFalse());
-    dispatch(toggleUpdateKycFalse());
-    dispatch(toggleTnCFalse());
-  };
-
-  const profileClicked = () => {
-    dispatch(toggleDashFalse());
-    dispatch(toggleProfileTrue());
-    dispatch(toggleNotifFalse());
-    dispatch(toggleChatFalse());
-    dispatch(toggleUpdateKycFalse());
-    dispatch(toggleTnCFalse());
-  };
-  const NotificationClicked = () => {
-    dispatch(toggleDashFalse());
-    dispatch(toggleProfileFalse());
-    dispatch(toggleNotifTrue());
-    dispatch(toggleChatFalse());
-    dispatch(toggleUpdateKycFalse());
-    dispatch(toggleTnCFalse());
-  };
-  const chatsClicked = () => {
-    dispatch(toggleDashFalse());
-    dispatch(toggleProfileFalse());
-    dispatch(toggleNotifFalse());
-    dispatch(toggleChatTrue());
-    dispatch(toggleUpdateKycFalse());
-    dispatch(toggleTnCFalse());
-  };
-
-  const kycClicked = () => {
-    dispatch(toggleDashFalse());
-    dispatch(toggleProfileFalse());
-    dispatch(toggleNotifFalse());
-    dispatch(toggleChatFalse());
-    dispatch(toggleUpdateKycTrue());
-    dispatch(toggleTnCFalse());
-  };
-
-  const tncClicked = () => {
-    dispatch(toggleDashFalse());
-    dispatch(toggleProfileFalse());
-    dispatch(toggleNotifFalse());
-    dispatch(toggleChatFalse());
-    dispatch(toggleUpdateKycFalse());
-    dispatch(toggleTnCTrue());
-  };
   const { user } = useSelector((state) => state.auth);
 
+ 
   
   return (
     <div className='flex flex-col grow  text-base text-sky-400  mt-5 max-md:mt-10'>
@@ -97,59 +32,61 @@ function Sidebar() {
         </div>
 
         {/* DASHBOARD */}
-        <button
+        <Link
           className='flex items-center justify-center self-center mt-4 w-[160px] h-[43px] font-medium text-center bg-indigo-100 rounded-[31px] max-md:px-5'
-          onClick={dashBoardClicked}
+          to='/dashboard'
         >
           Dashboard
-        </button>
+        </Link>
         {/* PROFILE */}
-        <button
+        <Link
           className='flex items-center justify-center self-center mt-4 w-[160px] h-[43px] font-medium text-center bg-indigo-100 rounded-[31px] max-md:px-5 '
-          onClick={profileClicked}
+          to='profile'
         >
           Profile
-        </button>
+        </Link>
 
         {/* NOTIFICATIONS */}
-        <button
+        <Link
           className='flex items-center justify-center self-center mt-4 w-[160px] h-[43px] font-medium text-center bg-indigo-100 rounded-[31px] max-md:px-5 '
-          onClick={NotificationClicked}
+          to='notification'
         >
           Notifications
-        </button>
+        </Link>
 
         {/* CHATS */}
 
-        <button
+        <Link
           className='flex items-center justify-center self-center mt-4 w-[160px] h-[43px] font-medium text-center bg-indigo-100 rounded-[31px] max-md:px-5 '
-          onClick={chatsClicked}
+          to='chats'
         >
           Chats
-        </button>
+        </Link>
 
         {/* UPDATE KYC */}
 
-        <button
+        <Link
           className='flex items-center justify-center self-center mt-4 w-[160px] h-[43px] font-medium text-center bg-indigo-100 rounded-[31px] max-md:px-5 '
-          onClick={kycClicked}
+          to='updatekyc'
         >
           Update KYC
-        </button>
+        </Link>
 
         {/* TERMS AND CONDITIONS */}
 
-        <button
+        <Link
           className='flex items-center justify-center self-center mt-4 w-[160px] h-[43px] font-medium text-center bg-indigo-100 rounded-[31px] max-md:px-5 '
-          onClick={tncClicked}
+          to='t&c'
         >
           T&C
-        </button>
+        </Link>
 
        
         <NavLink className='self-center w-[160px] h-[43px]  mt-4 font-medium text-center text-rose-500 bg-rose-500 bg-opacity-10 rounded-[31px] max-md:px-5 py-2'>
           Delete Account
         </NavLink>
+
+     
       </div>
     </div>
   );
