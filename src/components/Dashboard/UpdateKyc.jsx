@@ -68,14 +68,10 @@ function UpdateKyc() {
                 />
               </div>
 
-              <input
-                type="email"
-                name="email"
-                value={formData.email}
-                onChange={handleChange}
-                placeholder="Enter Email"
+              <div
+                
                 className="flex flex-col justify-center items-start px-4 py-6 mt-4 text-sm tracking-wide whitespace-nowrap bg-gray-100 rounded-3xl text-slate-900 max-md:pr-5 max-md:max-w-full"
-              />
+              >{formData.email}</div>
               <div className="flex gap-5">
                 <img
                   loading="lazy"

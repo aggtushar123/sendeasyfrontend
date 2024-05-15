@@ -9,7 +9,7 @@ const CreateTraveller = () => {
     destinationLocation: "",
     luggageSpace: "",
     date: "",
-    expectaion: "",
+    expectation: "",
     timeOfDelivery: "",
     sourceLocation: "",
     departure: "",
@@ -20,7 +20,7 @@ const CreateTraveller = () => {
     destinationLocation,
     luggageSpace,
     date,
-    expectaion,
+    expectation,
     timeOfDelivery,
     sourceLocation,
     departure,
@@ -45,7 +45,7 @@ const CreateTraveller = () => {
       !destinationLocation ||
       !luggageSpace ||
       !date ||
-      !expectaion ||
+      !expectation ||
       !timeOfDelivery ||
       !sourceLocation ||
       !departure
@@ -57,7 +57,7 @@ const CreateTraveller = () => {
         destinationLocation,
         luggageSpace,
         date,
-        expectaion,
+        expectation,
         timeOfDelivery,
         sourceLocation,
         departure,
@@ -195,9 +195,9 @@ const CreateTraveller = () => {
                 <input
                   type="text"
                   className="flex-auto py-2.5 my-auto max-md:max-w-full bg-transparent border-none focus:outline-none"
-                  id="expectaion"
-                  name="expectaion"
-                  value={expectaion}
+                  id="expectation"
+                  name="expectation"
+                  value={expectation}
                   onChange={onChange}
                   required
                 />
