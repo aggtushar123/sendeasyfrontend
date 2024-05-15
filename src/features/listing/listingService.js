@@ -8,6 +8,7 @@ const axiosInstance = axios.create({
 });
 
 const createTraveler = async (travelerData, token) => {
+  
   const config = {
     headers: {
       Authorization: `Bearer ${token}`,
@@ -18,17 +19,19 @@ const createTraveler = async (travelerData, token) => {
     travelerData,
     config
   );
-
+  console.log(response);
   return response.data;
 };
 
 const getTraveler = async (token) => {
+  console.log(token)
   const config = {
     headers: {
       Authorization: `Bearer ${token}`,
     },
   };
   const response = await axios.get(`${API_URL}travelerlisting`, config);
+  console.log(response);
 
   return response.data;
 };
@@ -55,7 +58,7 @@ const getLuggage = async (token) => {
     },
   };
   const response = await axios.get(`${API_URL}luggagelisting`, config);
-  console.log(response);
+
   return response.data;
 };
 

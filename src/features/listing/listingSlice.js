@@ -34,6 +34,7 @@ export const getTravelers = createAsyncThunk(
   "traveler/get",
   async (travelerData, thunkAPI) => {
     try {
+      
       const token = thunkAPI.getState().auth.user.token;
       
       return await listingService.getTraveler(token);
@@ -155,7 +156,7 @@ export const listingSlice = createSlice({
         state.traveler = action.payload;
       })
       .addCase(getTravelers.rejected, (state, action) => {
-    
+    console.log(action.payload)
         state.isLoading = false;
         state.isError = true;
         state.message = action.payload;

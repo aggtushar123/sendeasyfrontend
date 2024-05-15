@@ -16,13 +16,11 @@ function DashboardComponent() {
     (state) => state.listing
   );
 
-  console.log(traveler);
+  // console.log(traveler);
   if (isLoading) {
     return <div>Loading...</div>;
   }
-  if (isError) {
-    return <div>Error: {message}</div>; // Show an error message
-  }
+  
   const travelerList = Array.isArray(traveler) ? traveler : [];
   let ongoingTrips = 0;
   let finishedTrips = 0;

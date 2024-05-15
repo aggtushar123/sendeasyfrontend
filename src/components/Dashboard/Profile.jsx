@@ -18,14 +18,14 @@ function Profile() {
     navigate("/dashboard/updatekyc");
   };
   return (
-    <div className="flex gap-5 justify-between items-start mt-10 max-md:flex-wrap max-md:max-w-full">
-      <div className="flex flex-col justify-center text-base text-sky-400" />
+    <div className="mt-5 max-w-full w-[926px] max-md:mt-10">
+    <div className="flex max-md:flex-col max-md:gap-0">
       <div className="flex flex-col w-[14%] max-md:ml-0 max-md:w-full">
         <div className="flex flex-col justify-center text-base text-sky-400 max-md:mt-10" />
       </div>
-      <div className="flex flex-col self-stretch max-md:max-w-full">
-        <div className="flex gap-5 max-md:flex-wrap max-md:max-w-full">
-          <div className="flex-auto justify-center items-center self-start text-lg font-bold tracking-wide text-blue-950">
+      <div className="flex flex-col  w-[86%] max-md:ml-0 max-md:w-full">
+        <div className="flex flex-col grow px-5 max-md:mt-10 max-md:max-w-full">
+          <div className="text-lg font-bold tracking-wide text-blue-950 max-md:max-w-full">
             Profile Details
           </div>
           <button
@@ -107,7 +107,7 @@ function Profile() {
         <div className="mt-10 mr-auto text-xs font-semibold tracking-wide leading-5 text-right text-sky-400 max-md:max-w-full">
           Luggage listing
         </div>
-            <div className="flex flex-col  mt-4 rounded-[38px] max-md:px-5 max-md:max-w-full">
+        <div className="flex flex-col  mt-4 rounded-[38px] max-md:px-5 max-md:max-w-full">
           {travelerList && (
             <>
               {travelerList.map((travel) => {
@@ -144,6 +144,7 @@ function Profile() {
           />
         </Link>
       </div>
+    </div>
     </div>
   );
 }

@@ -1,13 +1,26 @@
-import React from "react";
+import React, {useState} from "react";
+import {  useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { getUser } from "../features/auth/authSlice";
 
 const Traveler = ({ travelers }) => {
-  
+  const [currentTraveler, setCurrentTraveler] = useState(null); 
+  const navigate = useNavigate()
+  const dispatch = useDispatch()
+  const handleClick = (traveler) => {
+    dispatch(getUser(traveler.user));
+    setCurrentTraveler(traveler); // Set the current traveler
+    navigate('/travelerListing/travelerdetails', { state: { travelerDetails: traveler } });
+  };
   return (
     <div>
       {travelers.map((traveler) => (
-        <div 
-         key={traveler.id}
-        className="flex gap-5 justify-between items-start px-7 pt-7 pb-12 mt-16 w-full bg-gray-100 max-w-[1239px] rounded-[38px] max-md:flex-wrap max-md:px-5 max-md:mt-10 max-md:max-w-full">
+        <div
+          key={traveler.id}
+          
+          className="flex gap-5 justify-between items-start px-7 pt-7 pb-12 mt-16 w-full bg-gray-100 max-w-[1239px] rounded-[38px] max-md:flex-wrap max-md:px-5 max-md:mt-10 max-md:max-w-full"
+        >
+        
           <img
             loading="lazy"
             srcSet="https://s3-alpha-sig.figma.com/img/049d/8973/a367dd32260621365d9cdf0b6cf3ea5f?Expires=1714348800&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=Frzff7iksjDZ8bNvA3w77PPqEW75kIgAf57S1QiGlmysvxryHsoe2oqAdtvpnVVbWdl8XHVBaRTyop66XCGaXS1HmEgYAri7QMi1G0AWgwaeUzgyjTXP4ccudMBP8A5swGpET5tY~LsM-NVkQ8eUdb3QcGpe6kTbItw9T5JxkuiW0HCDocnvAqa8s2-OEeDFl5B6oM3iIBtRzykTaRsgG9nxd5nvFvxeMADu8wMaFivfDGOVCJzu3gDhfq682jo40W-~rLYynbIGOUrKKm2wJpateBcbwkr6BvnP6UQPS0ApWl~HHSTw14AkPmgfwVoo5gqpNkgoCLG2X-cj~rOyNg__"
@@ -17,7 +30,10 @@ const Traveler = ({ travelers }) => {
             <div className="flex gap-5 justify-between px-px leading-[158.5%] text-slate-900 max-md:flex-wrap">
               <div className="flex flex-col self-start whitespace-nowrap">
                 <div className="text-xs">From:</div>
-                <div className="mt-3.5 text-xl font-semibold">{traveler.sourceLocation}</div>
+                <div className="mt-3.5 text-xl font-semibold">
+                  {traveler.sourceLocation}
+                  
+                </div>
               </div>
               <img
                 loading="lazy"
@@ -39,7 +55,9 @@ const Traveler = ({ travelers }) => {
               />
               <div className="flex flex-col self-start whitespace-nowrap">
                 <div className="text-xs">Destination:</div>
-                <div className="mt-3.5 text-xl font-semibold">{traveler.destinationLocation}</div>
+                <div className="mt-3.5 text-xl font-semibold">
+                  {traveler.destinationLocation}
+                </div>
               </div>
             </div>
             <div className="flex gap-5 mt-16 w-full max-md:flex-wrap max-md:mt-10 max-md:max-w-full">
@@ -82,11 +100,15 @@ const Traveler = ({ travelers }) => {
                 </div>
                 <div className="flex flex-col py-2">
                   <div className="text-xs">Time:</div>
-                  <div className="mt-3.5 text-xl font-semibold">{traveler.timeOfDelivery}</div>
+                  <div className="mt-3.5 text-xl font-semibold">
+                    {traveler.timeOfDelivery}
+                  </div>
                 </div>
                 <div className="flex flex-col py-2">
                   <div className="text-xs">Luggage Space:</div>
-                  <div className="mt-2.5 text-xl font-semibold">{traveler.luggageSpace} KG</div>
+                  <div className="mt-2.5 text-xl font-semibold">
+                    {traveler.luggageSpace} KG
+                  </div>
                 </div>
               </div>
             </div>
@@ -124,7 +146,13 @@ const Traveler = ({ travelers }) => {
                 src="https://cdn.builder.io/api/v1/image/assets/TEMP/73552b36b8c3d58faba037db1fd35fff9dc2b0b3fe363beda8f6703a660968fc?"
                 className="shrink-0 w-6 aspect-square"
               />
-              <div className="flex-auto my-auto">Contact Now</div>
+              <button
+                onClick={() => handleClick(traveler)}
+                className="flex-auto my-auto"
+              >
+                Contact Now
+              </button>
+              
             </div>
           </div>
         </div>
