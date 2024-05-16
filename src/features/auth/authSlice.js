@@ -6,6 +6,7 @@ const user = JSON.parse(localStorage.getItem('user'));
 
 const initialState = {
   user: user ? user : null,
+  gUser: null,
   isVerified: false,
   isError: false,
   isSuccess: false,
@@ -34,6 +35,22 @@ export const updateUser = createAsyncThunk(
   async ({ userId, userData }, thunkAPI) => {
     try {
       return await authService.updateUser(userId, userData);
+    } catch (error) {
+      const message =
+        (error.response &&
+          error.response.data &&
+          error.response.data.message) ||
+        error.message ||
+        error.toString();
+      return thunkAPI.rejectWithValue(message);
+    }
+  }
+);
+export const getUser = createAsyncThunk(
+  'auth/getUser',
+  async (userId, thunkAPI) => {
+    try {
+      return await authService.getUser(userId);
     } catch (error) {
       const message =
         (error.response &&
@@ -129,6 +146,7 @@ export const authSlice = createSlice({
         state.isLoading = true;
       })
       .addCase(login.fulfilled, (state, action) => {
+       
         state.isLoading = false;
         state.isSuccess = true;
         state.user = action.payload;
@@ -144,10 +162,10 @@ export const authSlice = createSlice({
         state.user = null;
       })
       .addCase(sendOtp.fulfilled, (state, action) => {
-        
+        console.log(action.payload.data.user)
         state.isLoading = false;
         state.isSuccess = true;
-        state.user = action.payload;
+        state.user = action.payload.data.user;
       })
       .addCase(sendOtp.rejected, (state, action) => {
         state.isLoading = false;
@@ -161,10 +179,10 @@ export const authSlice = createSlice({
         state.user = null;
       })
       .addCase(googleLogin.fulfilled, (state, action) => {
-        
+       
         state.isLoading = false;
         state.isSuccess = true;
-        state.user = action.payload.data;
+        state.user = action.payload.data.user;
       })
       .addCase(googleLogin.rejected, (state, action) => {
         
@@ -172,6 +190,20 @@ export const authSlice = createSlice({
         state.isError = true;
         state.message = action.payload;
        
+      })
+      .addCase(getUser.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(getUser.fulfilled, (state, action) => {
+       
+        state.isLoading = false;
+        state.isSuccess = true;
+        state.gUser = action.payload;
+      })
+      .addCase(getUser.rejected, (state, action) => {
+        state.isLoading = false;
+        state.isError = true;
+        state.message = action.payload;
       })
       .addCase(updateUser.pending, (state) => {
         state.isLoading = true;
@@ -187,6 +219,7 @@ export const authSlice = createSlice({
         state.isError = true;
         state.message = action.payload;
       });
+
   },
 });
 export const { reset } = authSlice.actions;

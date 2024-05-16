@@ -11,11 +11,11 @@ const Trips = ({ tripData }) => {
               <div className="flex gap-5 justify-between self-stretch my-auto leading-[158.5%] text-slate-900 max-md:flex-wrap max-md:mt-10 max-md:max-w-full">
                 <div className="flex flex-col py-2 whitespace-nowrap">
                   <div className="text-xs">From:</div>
-                  <div className="mt-3.5 text-xl font-semibold">USA</div>
+                  <div className="mt-3.5 text-xl font-semibold">{tripData.sourceLocation}</div>
                 </div>
                 <div className="flex flex-col py-2 whitespace-nowrap">
                   <div className="text-xs">Destination:</div>
-                  <div className="mt-3.5 text-xl font-semibold">India</div>
+                  <div className="mt-3.5 text-xl font-semibold">{tripData.destinationLocation}</div>
                 </div>
                 <div className="flex flex-col py-1.5">
                   <div className="text-xs">Before:</div>

@@ -8,6 +8,7 @@ const axiosInstance = axios.create({
 });
 
 const createTraveler = async (travelerData, token) => {
+  
   const config = {
     headers: {
       Authorization: `Bearer ${token}`,
@@ -23,6 +24,7 @@ const createTraveler = async (travelerData, token) => {
 };
 
 const getTraveler = async (token) => {
+
   const config = {
     headers: {
       Authorization: `Bearer ${token}`,
@@ -30,8 +32,22 @@ const getTraveler = async (token) => {
   };
   const response = await axios.get(`${API_URL}travelerlisting`, config);
 
+
   return response.data;
 };
+
+const updateTravelerTripsStatus = async (userId, tripStatus, token) => {
+
+  const config = {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  };
+  const response = await axiosInstance.put(`${API_URL}travelerlisting/${userId}/updatetripstatus`, tripStatus, config);
+
+  return response.data;
+};
+
 const createLuggage = async (luggageData, token) => {
   const config = {
     headers: {
@@ -55,7 +71,7 @@ const getLuggage = async (token) => {
     },
   };
   const response = await axios.get(`${API_URL}luggagelisting`, config);
-  console.log(response);
+
   return response.data;
 };
 
@@ -80,6 +96,7 @@ const listingService = {
   getLuggage,
   fetchTravelerListings,
   fetchLuggageListings,
+  updateTravelerTripsStatus
 };
 
 export default listingService;

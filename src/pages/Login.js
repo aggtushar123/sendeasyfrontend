@@ -9,7 +9,7 @@ import image from '../components/assets/Login/main.svg';
 import GoogleIcon from '../components/assets/Login/GoogleIcon.svg';
 import FacebookIcon from '../components/assets/Login/FaebookIcon.svg';
 import cross from '../components/assets/Login/crossIcon.svg';
-import { login, reset, googleLogin } from '../features/auth/authSlice';
+import { login, reset } from '../features/auth/authSlice';
 import { toast } from 'react-toastify';
 
 const Login = () => {
@@ -59,26 +59,11 @@ const Login = () => {
     dispatch(login(userData));
   };
 
-  const [authWindow, setAuthWindow] = useState(null);
 
-  const googleAuth = async () => {
-    const newAuthWindow = window.open(
-      'http://localhost:3001/auth/google/callback'
-    );
-
-    setAuthWindow(newAuthWindow);
+  const googleAuth = () => {
+    window.location.href = 'http://localhost:3001/auth/google/callback';
   };
 
-  useEffect(() => {
-    if (authWindow) {
-      const intervalId = setInterval(() => {
-        if (authWindow.closed) {
-          clearInterval(intervalId);
-          dispatch(googleLogin());
-        }
-      }, 1000); // Check every second if the authentication window is closed
-    }
-  }, [authWindow, dispatch]);
 
   return (
     <>

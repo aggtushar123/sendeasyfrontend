@@ -11,7 +11,6 @@ const axiosInstance = axios.create({
 // Register user
 const register = async (userData) => {
   const response = await axiosInstance.post(`${API_URL}signup`, userData);
-
   return response.data;
 };
 const updateUser = async (userId, userData) => {
@@ -27,7 +26,16 @@ const updateUser = async (userId, userData) => {
     );
   }
 };
-
+const getUser = async (userId) => {
+  try {
+    const response = await axiosInstance.get(`${API_URL}user/${userId}`);
+    return response.data;
+  } catch (error) {
+    throw new Error(
+      error.response?.data?.message || error.message || 'Error getting user'
+    );
+  }
+};
 // Login
 const login = async (userData) => {
   const response = await axiosInstance.post(`${API_URL}login`, userData);
@@ -41,9 +49,9 @@ const login = async (userData) => {
 const sendOtp = async (otpData) => {
   try {
     const response = await axiosInstance.post(`${API_URL}sendOtp`, otpData);
-   
+  
     if (response.data) {
-      localStorage.setItem('user', JSON.stringify(response.data));
+      localStorage.setItem('user', JSON.stringify(response.data.user));
     }
     return response;
   } catch (error) {
@@ -79,6 +87,7 @@ const authService = {
   sendOtp,
   googleLogin,
   updateUser,
+  getUser,
 };
 
 export default authService;
