@@ -14,6 +14,8 @@ function Profile() {
     (state) => state.listing
   );
   const [showModal, setShowModal] = useState(false);
+  const [showAllTravelerListings, setShowAllTravelerListings] = useState(false);
+  const [showAllLuggageListings, setShowAllLuggageListings] = useState(false);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const travelerList = Array.isArray(traveler) ? traveler : [];
@@ -187,16 +189,28 @@ function Profile() {
             <div className="flex flex-col  mt-4 rounded-[38px] max-md:px-5 max-md:max-w-full">
               {travelerList && (
                 <>
-                  {travelerList.map((travel) => {
-                    if (travel.trips === "finished") {
-                      // Check if the trip is ongoing
-                      return (
-                        <TravelerTrips key={travel.id} tripData={travel} />
-                      ); // Render the Trips component
-                    }
-                    return null; // Skip rendering if the trip is not ongoing
-                  })}
+                  {travelerList
+                    .slice(0, showAllTravelerListings ? travelerList.length : 2)
+                    .map((travel) => {
+                      if (travel.trips === "finished") {
+                        // Check if the trip is ongoing
+                        return (
+                          <TravelerTrips key={travel.id} tripData={travel} />
+                        ); // Render the Trips component
+                      }
+                      return null; // Skip rendering if the trip is not ongoing
+                    })}
                 </>
+              )}
+              {travelerList.length > 2 && (
+                <button
+                  onClick={() =>
+                    setShowAllTravelerListings(!showAllTravelerListings)
+                  }
+                  className="justify-center items-center self-center px-16 py-5 mt-7 max-w-full text-xl font-medium text-center text-sky-400 bg-white border-2 border-sky-400 border-solid rounded-[31px] w-[349px] max-md:px-5"
+                >
+                  {showAllTravelerListings ? "Show Less" : "Show More"}
+                </button>
               )}
             </div>
 

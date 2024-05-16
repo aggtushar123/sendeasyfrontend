@@ -11,8 +11,13 @@ function DashboardComponent() {
   let navigate = useNavigate();
   const [showModal, setShowModal] = useState(false);
   const [ongoingTripsData, setOngoingTripsData] = useState([]);
-  const [finshedTripsData, setFinishedTripsData] = useState([]);
+  const [finishedTripsData, setFinishedTripsData] = useState([]);
   const [cancelledTripsData, setCancelledTripsData] = useState([]);
+  const [showAllTravelerListings, setShowAllTravelerListings] = useState(false);
+  const [showAllFinishedListings, setShowAllFinishedListings] = useState(false);
+  const [showAllCancelledListings, setShowAllCancelledListings] =
+    useState(false);
+  const [showAllOngoingListings, setShowAllOngoingListings] = useState(false);
   const [modalType, setModalType] = useState("");
   useEffect(() => {
     dispatch(getTravelers());
@@ -63,6 +68,12 @@ function DashboardComponent() {
         break;
     }
   });
+  useEffect(() => {
+    if (ongoingTripsData.length === 0 && showModal) {
+      setShowModal(false);
+      window.location.reload();
+    }
+  }, [ongoingTripsData, showModal]);
 
   if (isLoading) {
     return <div>Loading...</div>;
@@ -70,20 +81,20 @@ function DashboardComponent() {
 
   const openOngoingModal = () => {
     if (ongoingTripsData.length > 0) {
-    setModalType("ongoing");
-    setShowModal(true);
+      setModalType("ongoing");
+      setShowModal(true);
     }
   };
   const openFinishedModal = () => {
-    if (finshedTripsData.length > 0) {
-    setModalType("finished");
-    setShowModal(true);
+    if (finishedTripsData.length > 0) {
+      setModalType("finished");
+      setShowModal(true);
     }
   };
   const openCancelledModal = () => {
     if (cancelledTripsData.length > 0) {
-    setModalType("cancelled");
-    setShowModal(true);
+      setModalType("cancelled");
+      setShowModal(true);
     }
   };
   const onClick = () => {
@@ -110,13 +121,29 @@ function DashboardComponent() {
                     <div className="self-center text-xl font-semibold leading-7 text-center text-slate-900">
                       Ongoing Trips
                     </div>
-                    {ongoingTripsData.map((travel) => (
-                     
-                      <TravelerModal  key={travel.id} travel={travel} status="ongoing" />
-                    ))}
-                    <div className="justify-center items-center self-center px-16 py-5 mt-7 max-w-full text-xl font-medium text-center text-sky-400 bg-white border-2 border-sky-400 border-solid rounded-[31px] w-[349px] max-md:px-5">
-                      See more
-                    </div>
+                    {ongoingTripsData
+                      .slice(
+                        0,
+                        showAllOngoingListings ? ongoingTripsData.length : 2
+                      )
+                      .map((travel) => (
+                        <TravelerModal
+                          key={travel.id}
+                          travel={travel}
+                          status="ongoing"
+                        />
+                      ))}
+                    {ongoingTripsData.length > 2 && (
+                      <button
+                        onClick={() =>
+                          setShowAllOngoingListings(!showAllOngoingListings)
+                        }
+                        type="button"
+                        className="justify-center items-center self-center px-16 py-5 mt-7 max-w-full text-xl font-medium text-center text-sky-400 bg-white border-2 border-sky-400 border-solid rounded-[31px] w-[349px] max-md:px-5"
+                      >
+                        {showAllTravelerListings ? "Show Less" : "Show More"}
+                      </button>
+                    )}
                   </div>
                 )}
                 {modalType === "finished" && (
@@ -124,13 +151,29 @@ function DashboardComponent() {
                     <div className="self-center text-xl font-semibold leading-7 text-center text-slate-900">
                       Previous Trips
                     </div>
-                    {finshedTripsData.map((travel) => (
-
-                      <TravelerModal key={travel.id} travel={travel}  status="finished" />
-                    ))}
-                    <div className="justify-center items-center self-center px-16 py-5 mt-7 max-w-full text-xl font-medium text-center text-sky-400 bg-white border-2 border-sky-400 border-solid rounded-[31px] w-[349px] max-md:px-5">
-                      See more
-                    </div>
+                    {finishedTripsData
+                      .slice(
+                        0,
+                        showAllFinishedListings ? finishedTripsData.length : 2
+                      )
+                      .map((travel) => (
+                        <TravelerModal
+                          key={travel.id}
+                          travel={travel}
+                          status="finished"
+                        />
+                      ))}
+                    {finishedTripsData.length > 2 && (
+                      <button
+                        onClick={() =>
+                          setShowAllFinishedListings(!showAllFinishedListings)
+                        }
+                        type="button"
+                        className="justify-center items-center self-center px-16 py-5 mt-7 max-w-full text-xl font-medium text-center text-sky-400 bg-white border-2 border-sky-400 border-solid rounded-[31px] w-[349px] max-md:px-5"
+                      >
+                        {showAllFinishedListings ? "Show Less" : "Show More"}
+                      </button>
+                    )}
                   </div>
                 )}
                 {modalType === "cancelled" && (
@@ -138,12 +181,29 @@ function DashboardComponent() {
                     <div className="self-center text-xl font-semibold leading-7 text-center text-slate-900">
                       Cancelled Trips
                     </div>
-                    {cancelledTripsData.map((travel) => (
-                      <TravelerModal key={travel.id} travel={travel} status="cancelled"/>
-                    ))}
-                    <div className="justify-center items-center self-center px-16 py-5 mt-7 max-w-full text-xl font-medium text-center text-sky-400 bg-white border-2 border-sky-400 border-solid rounded-[31px] w-[349px] max-md:px-5">
-                      See more
-                    </div>
+                    {cancelledTripsData
+                      .slice(
+                        0,
+                        showAllCancelledListings ? cancelledTripsData.length : 2
+                      )
+                      .map((travel) => (
+                        <TravelerModal
+                          key={travel.id}
+                          travel={travel}
+                          status="cancelled"
+                        />
+                      ))}
+                    {cancelledTripsData.length > 2 && (
+                      <button
+                        onClick={() =>
+                          setShowAllCancelledListings(!showAllCancelledListings)
+                        }
+                        type="button"
+                        className="justify-center items-center self-center px-16 py-5 mt-7 max-w-full text-xl font-medium text-center text-sky-400 bg-white border-2 border-sky-400 border-solid rounded-[31px] w-[349px] max-md:px-5"
+                      >
+                        {showAllCancelledListings ? "Show Less" : "Show More"}
+                      </button>
+                    )}
                   </div>
                 )}
               </div>
@@ -219,28 +279,46 @@ function DashboardComponent() {
               <div className="mt-9 max-md:max-w-full">
                 <div className="flex gap-5 max-md:flex-col max-md:gap-0">
                   <div className="flex flex-col w-[83%] max-md:ml-0 max-md:w-full">
-                    {travelerList && (
+                    {ongoingTripsData && (
                       <>
-                        {travelerList.map((travel) => {
-                          if (travel.trips === "ongoing") {
-                            // Check if the trip is ongoing
-                            return (
-                              <TravelerTrips
-                                key={travel.id}
-                                tripData={travel}
-                              />
-                            ); // Render the Trips component
-                          }
-                          return null; // Skip rendering if the trip is not ongoing
-                        })}
+                        {ongoingTripsData
+                          .slice(
+                            0,
+                            showAllTravelerListings
+                              ? ongoingTripsData.length
+                              : 1
+                          )
+                          .map((travel, index) => {
+                            if (travel.trips === "ongoing") {
+                              // Check if the trip is ongoing
+                              return (
+                                <TravelerTrips
+                                  key={travel.id}
+                                  tripData={travel}
+                                />
+                              ); // Render the Trips component
+                            }
+                            return null; // Skip rendering if the trip is not ongoing
+                          })}
                       </>
+                    )}
+
+                    {ongoingTripsData.length > 1 && (
+                      <button
+                        onClick={() =>
+                          setShowAllTravelerListings(!showAllTravelerListings)
+                        }
+                        className="justify-center items-center self-center px-16 py-5 mt-7 max-w-full text-xl font-medium text-center text-sky-400 bg-white border-2 border-sky-400 border-solid rounded-[31px] w-[349px] max-md:px-5"
+                      >
+                        {showAllTravelerListings ? "Show Less" : "Show More"}
+                      </button>
                     )}
                   </div>
                   <button
                     onClick={onClick}
                     className="flex flex-col ml-5 w-[17%] max-md:ml-0 max-md:w-full"
                   >
-                    <div className="flex flex-col grow px-7 py-20 w-full text-base font-medium text-center capitalize bg-gray-100 rounded-[31px] text-stone-300 max-md:px-5 max-md:mt-1">
+                    <div className="flex flex-col  px-7 py-20 w-full text-base font-medium text-center capitalize bg-gray-100 rounded-[31px] text-stone-300 max-md:px-5 max-md:mt-1">
                       <img
                         loading="lazy"
                         src="https://cdn.builder.io/api/v1/image/assets/TEMP/c1bb8ddabbdf1c47ce14310afe8cd532ac176314285e17a4f9f6729e6410f36a?"
@@ -307,21 +385,11 @@ function DashboardComponent() {
                   </div>
                 </div>
               </div>
-              <div className="self-start mt-14 ml-5 text-lg font-bold tracking-wide text-blue-950 max-md:mt-10 max-md:ml-2.5">
+              {/* <div className="self-start mt-14 ml-5 text-lg font-bold tracking-wide text-blue-950 max-md:mt-10 max-md:ml-2.5">
                 New Notifications
-              </div>
+              </div> */}
             </div>
           </div>
-          <img
-            loading="lazy"
-            srcSet="..."
-            className="mt-6 max-w-full aspect-[6.25] w-[808px]"
-          />
-          <img
-            loading="lazy"
-            srcSet="..."
-            className="mt-7 max-w-full aspect-[6.25] w-[808px]"
-          />
         </div>
       </div>
     </>

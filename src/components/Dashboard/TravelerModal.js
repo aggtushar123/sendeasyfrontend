@@ -3,12 +3,16 @@ import { useDispatch } from 'react-redux';
 import { updateTravelerTripsStatus } from "../../features/listing/listingSlice";
 
 const TravelerModal = ({ travel, status }) => {
+  
   const [tripStatus, setTripStatus] = useState({trips: ''})
   const { sourceLocation, destinationLocation, user, _id } = travel;
   const dispatch = useDispatch();
  
   const userId = _id;
-
+  if(travel.length<1){
+    console.log("O")
+    
+  }
   const handleFinishTrip = () => {
     setTripStatus({ trips: 'finished' });
     dispatchUpdate({ trips: 'finished' }); // Pass the updated status directly
