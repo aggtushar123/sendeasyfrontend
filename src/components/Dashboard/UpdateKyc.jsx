@@ -26,20 +26,20 @@ function UpdateKyc() {
     token: user.token,
   });
   
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    dispatch(updateUser({ userId: user._id, userData: formData }));
+  };
 
   const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData((prevData) => ({
-      ...prevData,
-      [name]: value,
+    setFormData((prevState) => ({
+      ...prevState,
+      [e.target.name]: e.target.value,
     }));
   };
 
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    dispatch(updateUser({ userId: user._id, userData: formData }));
-  };
+ 
   return (
     <form onSubmit={handleSubmit}>
       <div className="mt-5 max-w-full w-[926px] max-md:mt-10">

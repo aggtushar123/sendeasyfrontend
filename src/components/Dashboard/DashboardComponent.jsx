@@ -42,7 +42,7 @@ function DashboardComponent() {
     setFinishedTripsData(filteredFinishedTrips);
     setCancelledTripsData(filteredCancelledTrips);
   }, [travelerList]);
-  console.log(ongoingTripsData)
+
   let ongoingTrips = 0;
   let finishedTrips = 0;
   let cancelledTrips = 0;
@@ -69,16 +69,22 @@ function DashboardComponent() {
   }
 
   const openOngoingModal = () => {
+    if (ongoingTripsData.length > 0) {
     setModalType("ongoing");
     setShowModal(true);
+    }
   };
   const openFinishedModal = () => {
+    if (finshedTripsData.length > 0) {
     setModalType("finished");
     setShowModal(true);
+    }
   };
   const openCancelledModal = () => {
+    if (cancelledTripsData.length > 0) {
     setModalType("cancelled");
     setShowModal(true);
+    }
   };
   const onClick = () => {
     navigate("/createTraveler");
@@ -106,7 +112,7 @@ function DashboardComponent() {
                     </div>
                     {ongoingTripsData.map((travel) => (
                      
-                      <TravelerModal key={travel.id} travel={travel}/>
+                      <TravelerModal  key={travel.id} travel={travel} status="ongoing" />
                     ))}
                     <div className="justify-center items-center self-center px-16 py-5 mt-7 max-w-full text-xl font-medium text-center text-sky-400 bg-white border-2 border-sky-400 border-solid rounded-[31px] w-[349px] max-md:px-5">
                       See more
@@ -120,7 +126,7 @@ function DashboardComponent() {
                     </div>
                     {finshedTripsData.map((travel) => (
 
-                      <TravelerModal key={travel.id} travel={travel}/>
+                      <TravelerModal key={travel.id} travel={travel}  status="finished" />
                     ))}
                     <div className="justify-center items-center self-center px-16 py-5 mt-7 max-w-full text-xl font-medium text-center text-sky-400 bg-white border-2 border-sky-400 border-solid rounded-[31px] w-[349px] max-md:px-5">
                       See more
@@ -133,7 +139,7 @@ function DashboardComponent() {
                       Cancelled Trips
                     </div>
                     {cancelledTripsData.map((travel) => (
-                      <TravelerModal key={travel.id} travel={travel}/>
+                      <TravelerModal key={travel.id} travel={travel} status="cancelled"/>
                     ))}
                     <div className="justify-center items-center self-center px-16 py-5 mt-7 max-w-full text-xl font-medium text-center text-sky-400 bg-white border-2 border-sky-400 border-solid rounded-[31px] w-[349px] max-md:px-5">
                       See more
