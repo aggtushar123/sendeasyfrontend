@@ -84,7 +84,7 @@ const fetchTravelerListings = async () => {
 
 const fetchLuggageListings = async () => {
   const response = await axiosInstance.get(
-    "/api/listing/travelerlisting/getall"
+    "/api/listing/luggagelisting/getall"
   );
 
   return response.data;

@@ -1,28 +1,21 @@
-import React, {useState} from "react";
-import { useDispatch } from 'react-redux';
+import React, { useState } from "react";
+import { useDispatch } from "react-redux";
 import { updateTravelerTripsStatus } from "../../features/listing/listingSlice";
 
 const TravelerModal = ({ travel, status }) => {
-  
-  const [tripStatus, setTripStatus] = useState({trips: ''})
+  const [tripStatus, setTripStatus] = useState({ trips: "" });
   const { sourceLocation, destinationLocation, user, _id } = travel;
   const dispatch = useDispatch();
- 
+
   const userId = _id;
-  if(travel.length<1){
-    console.log("O")
-    
+  if (travel.length < 1) {
+    console.log("O");
   }
   const handleFinishTrip = () => {
-    setTripStatus({ trips: 'finished' });
-    dispatchUpdate({ trips: 'finished' }); // Pass the updated status directly
+    setTripStatus({ trips: "finished" });
+    dispatchUpdate({ trips: "finished" }); // Pass the updated status directly
   };
-  
-  const handleCancelTrip = () => {
-    setTripStatus({ trips: 'cancelled' });
-    dispatchUpdate({ trips: 'cancelled' }); // Pass the updated status directly
-  };
-  
+
   const dispatchUpdate = (updatedStatus) => {
     dispatch(updateTravelerTripsStatus({ userId, tripStatus: updatedStatus }));
   };
@@ -111,18 +104,11 @@ const TravelerModal = ({ travel, status }) => {
           {status === "ongoing" && (
             <div className="flex flex-auto gap-5 justify-end items-center self-end mt-4">
               <button
-              type="button"
-                className="px-4 py-2 bg-green-500 text-white rounded-md hover:bg-green-600"
+                type="button"
+                className="justify-center items-center px-4 py-2 text-xl font-medium text-center text-white bg-sky-400 max-w-[349px] rounded-[31px]"
                 onClick={() => handleFinishTrip()}
               >
-                Finish Trip
-              </button>
-              <button
-              type="button"
-                className="px-4 py-2 bg-red-500 text-white rounded-md hover:bg-red-600"
-                onClick={() => handleCancelTrip()}
-              >
-                Cancel Trip
+                Trip Completed
               </button>
             </div>
           )}

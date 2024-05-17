@@ -1,9 +1,23 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 function LuggageDetails() {
+  const { user, gUser } = useSelector((state) => state.auth);
+  const location = useLocation();
+  const luggageDetails = location.state?.luggageDetails;
+  const navigate = useNavigate();
+  useEffect(() => {
+    if (!user) {
+      navigate("/signup");
+    } 
+  }, [user, navigate]);
+  if (!user || !gUser) {
+    return null; // Or you can render a loading indicator or message here
+  }
   return (
-    <div className="flex flex-col pt-20 bg-white rounded-[29px]">
-      <div className="flex gap-5 items-start self-center mt-16 ml-28 max-md:flex-wrap max-md:mt-10">
+    <div className="flex flex-col rounded-[29px]">
+      <div className="flex gap-5 items-start self-center mt-10 ml-28 max-md:flex-wrap max-md:mt-10">
         <div className="flex flex-col items-center self-start py-3.5 pr-3 pl-1.5 text-base font-semibold bg-neutral-100 rounded-[39px] max-sm:mx-auto">
           <img
             loading="lazy"
@@ -25,19 +39,26 @@ function LuggageDetails() {
             Report Spam
           </div>
         </div>
+        <div className="flex flex-col w-[5%] max-md:ml-0 max-md:w-full">
+          <div className="flex flex-col justify-center text-base text-sky-400 max-md:mt-10" />
+        </div>
         <div className="flex flex-col grow shrink-0 items-start self-end pb-14 mt-8 basis-0 w-fit max-md:max-w-full">
           <div className="flex gap-5 justify-between items-start self-stretch px-px max-md:flex-wrap max-md:max-w-full max-sm:self-center">
             <div className="flex flex-col self-stretch mt-2">
               <div className="text-2xl font-semibold leading-10 text-sky-400">
-                Kadin Septimus
+                {gUser.fName}
               </div>
               <div className="flex gap-5 py-1 mt-6 text-xl tracking-wide text-blue-950">
                 <div className="flex-auto capitalize">destination</div>
-                <div className="flex-auto font-semibold">New Delhi, India</div>
+                <div className="flex-auto font-semibold">
+                  {luggageDetails.destinationLocation}
+                </div>
               </div>
               <div className="flex gap-5 py-1 mt-3 text-xl tracking-wide text-blue-950">
                 <div className="grow capitalize">Pickup Location</div>
-                <div className="flex-auto font-semibold">New York</div>
+                <div className="flex-auto font-semibold">
+                  {luggageDetails.sourceLocation}
+                </div>
               </div>
               <div className="flex gap-5 py-1 mt-3 text-xl tracking-wide text-blue-950">
                 <div className="flex-auto capitalize">Traveling Via</div>
@@ -70,20 +91,6 @@ function LuggageDetails() {
                   <div className="justify-center px-5 py-2.5 bg-indigo-100 rounded-[31px]">
                     Jewlery
                   </div>
-                </div>
-              </div>
-              <div className="flex gap-5 justify-between mt-4 max-w-full text-xl tracking-wide text-blue-950 w-[367px]">
-                <div className="flex flex-col self-start mt-1 capitalize whitespace-nowrap">
-                  <div>Age</div>
-                  <div className="mt-4">Gender</div>
-                  <div className="mt-6">Occupation</div>
-                  <div className="mt-5">Location</div>
-                </div>
-                <div className="flex flex-col font-semibold">
-                  <div>20</div>
-                  <div className="mt-6">Male</div>
-                  <div className="mt-5">Student </div>
-                  <div className="mt-6">51 west road, NYC</div>
                 </div>
               </div>
               <div className="mt-7 text-lg font-bold tracking-wide text-blue-950">
@@ -159,19 +166,33 @@ function LuggageDetails() {
               <img
                 loading="lazy"
                 srcSet="..."
-                className="aspect-[1.04] w-[73px] max-sm:mx-auto max-sm:-mt-px"
+                className="aspect-[1.04] w-[73px] max-sm:mx-auto"
+              />
+              <img
+                loading="lazy"
+                srcSet="..."
+                className="mt-6 aspect-[1.04] w-[73px] max-sm:mx-auto"
+              />
+              <img
+                loading="lazy"
+                srcSet="..."
+                className="mt-6 aspect-[1.04] w-[73px] max-sm:mx-auto max-sm:max-w-[66px]"
               />
             </div>
-            <img
-              loading="lazy"
-              srcSet="..."
-              className="mt-6 aspect-[1.04] w-[73px] max-sm:mx-auto max-sm:mt-0 max-sm:max-w-[66px]"
-            />
-            <img
-              loading="lazy"
-              srcSet="..."
-              className="mt-6 aspect-[1.04] w-[73px] max-sm:mx-auto"
-            />
+          </div>
+          <div className="flex gap-5 justify-between mt-4 max-w-full text-xl tracking-wide text-blue-950 w-[367px]">
+            <div className="flex flex-col self-start mt-1 capitalize whitespace-nowrap">
+              <div>Age</div>
+              <div className="mt-4">Gender</div>
+              <div className="mt-6">Occupation</div>
+              <div className="mt-5">Location</div>
+            </div>
+            <div className="flex flex-col font-semibold">
+              <div>20</div>
+              <div className="mt-6">Male</div>
+              <div className="mt-5">Student </div>
+              <div className="mt-6">51 west road, NYC</div>
+            </div>
           </div>
           <div className="flex gap-2.5 mt-12 whitespace-nowrap max-md:flex-wrap max-md:mt-10 max-sm:mx-auto">
             <div className="flex flex-col justify-center px-6 py-5 bg-sky-400 rounded-3xl max-md:px-5">

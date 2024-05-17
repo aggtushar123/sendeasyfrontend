@@ -13,21 +13,19 @@ import { fetchTravelerListings } from "../features/listing/listingSlice";
 const TravelerListing = () => {
   let navigate = useNavigate();
   const dispatch = useDispatch();
-  const { travelers, isLoading, isError, isSuccess, message } = useSelector(
-    (state) => state.listing
-  );
+  
 
-  const routeChange = () => {
-    let path = `/luggageListing`;
-    navigate(path);
-  };
+  // const routeChange = () => {
+  //   let path = `/luggageListing`;
+  //   navigate(path);
+  // };
 
   useEffect(() => {
     dispatch(fetchTravelerListings());
   }, [dispatch]);
 
   return (
-    <div className="flex flex-col pt-8  rounded-[29px]">
+    <div className="flex flex-col pt-8 pb-20 rounded-[29px]">
       <div className="flex flex-col items-center px-20 w-full max-md:px-5 max-md:max-w-full">
         <div className="mt-7 w-full max-w-[1441px] max-md:max-w-full">
           <div className="flex gap-5 max-md:flex-col max-md:gap-0">
@@ -147,11 +145,9 @@ const TravelerListing = () => {
         </div>
 
         <div>
-          <Traveler travelers={travelers} />
+          <Traveler  />
         </div>
-        <button className="justify-center items-center px-16 py-5 mt-28 mb-20 max-w-full text-xl font-medium text-center text-sky-400 bg-white border-2 border-sky-400 border-solid rounded-[31px] w-[349px] max-md:px-5 max-md:mt-10">
-          See more
-        </button>
+       
       </div>
     </div>
   );

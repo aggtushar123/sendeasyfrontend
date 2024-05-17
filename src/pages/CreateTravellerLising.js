@@ -68,7 +68,7 @@ const CreateTraveller = () => {
         const response = await dispatch(createTraveler(travelerListingData));
         if (response.meta.requestStatus === 'fulfilled') {
           console.log("Created") // Set showModal to true upon successful registration
-          navigate('/dashboard')
+          navigate('/travelerListing')
         } else {
           // Extract and show the specific error message from the response
           const errorMessage = response.error.message;

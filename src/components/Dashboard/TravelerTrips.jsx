@@ -1,6 +1,22 @@
-import React from "react";
+import React, { useState } from "react";
+import { useDispatch } from "react-redux";
+import { updateTravelerTripsStatus } from "../../features/listing/listingSlice";
 
 const Trips = ({ tripData }) => {
+  const [tripStatus, setTripStatus] = useState({ trips: "" });
+  const dispatch = useDispatch();
+  const userId = tripData._id;
+  const handleCancelTrip = () => {
+    setTripStatus({ trips: "cancelled" });
+    dispatchUpdate({ trips: "cancelled" }); // Pass the updated status directly
+  };
+  const handleStartTrip = () => {
+    setTripStatus({ trips: "ongoing" });
+    dispatchUpdate({ trips: "ongoing" }); // Pass the updated status directly
+  };
+  const dispatchUpdate = (updatedStatus) => {
+    dispatch(updateTravelerTripsStatus({ userId, tripStatus: updatedStatus }));
+  };
   return (
     <div
       key={tripData.id}
@@ -96,8 +112,35 @@ const Trips = ({ tripData }) => {
               {tripData.luggageSpace} KG
             </div>
           </div>
+          <div className="flex flex-col space-y-2">
+      <button
+        type="button"
+        className="w-40 px-4 py-1 bg-red-500 text-white rounded-md hover:bg-red-600"
+        onClick={() => handleStartTrip()}
+      >
+        Start Trip
+      </button>
+      <button
+        type="button"
+        className="w-40 px-4 py-1 bg-blue-500 text-white rounded-md hover:bg-blue-600"
+        onClick={() => handleCancelTrip()}
+      >
+        Cancel Trip
+      </button>
+      
+    </div>
+    
         </div>
+        
       </div>
+      <button
+        type="button"
+        className="justify-center w-40 px-4 py-1 mt-4 bg-green-500 text-white rounded-md hover:bg-green-600"
+        onClick={() => handleCancelTrip()}
+      >
+        Edit 
+
+      </button>
     </div>
   );
 };

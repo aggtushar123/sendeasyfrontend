@@ -13,11 +13,13 @@ function DashboardComponent() {
   const [ongoingTripsData, setOngoingTripsData] = useState([]);
   const [finishedTripsData, setFinishedTripsData] = useState([]);
   const [cancelledTripsData, setCancelledTripsData] = useState([]);
+  const [createdTripsData, setCreatedTripsData] = useState([]);
   const [showAllTravelerListings, setShowAllTravelerListings] = useState(false);
   const [showAllFinishedListings, setShowAllFinishedListings] = useState(false);
-  const [showAllCancelledListings, setShowAllCancelledListings] =
-    useState(false);
+  const [showAllCancelledListings, setShowAllCancelledListings] = useState(false);
   const [showAllOngoingListings, setShowAllOngoingListings] = useState(false);
+  
+  const [component, setComponent] = useState(false)
   const [modalType, setModalType] = useState("");
   useEffect(() => {
     dispatch(getTravelers());
@@ -43,9 +45,13 @@ function DashboardComponent() {
     const filteredCancelledTrips = travelerList.filter(
       (travel) => travel.trips === "cancelled"
     );
+    const filteredCreatedTrips = travelerList.filter(
+      (travel) => travel.trips === "created"
+    );
     setOngoingTripsData(filteredOngoingTrips);
     setFinishedTripsData(filteredFinishedTrips);
     setCancelledTripsData(filteredCancelledTrips);
+    setCreatedTripsData(filteredCreatedTrips)
   }, [travelerList]);
 
   let ongoingTrips = 0;
@@ -68,12 +74,6 @@ function DashboardComponent() {
         break;
     }
   });
-  useEffect(() => {
-    if (ongoingTripsData.length === 0 && showModal) {
-      setShowModal(false);
-      window.location.reload();
-    }
-  }, [ongoingTripsData, showModal]);
 
   if (isLoading) {
     return <div>Loading...</div>;
@@ -96,6 +96,10 @@ function DashboardComponent() {
       setModalType("cancelled");
       setShowModal(true);
     }
+  };
+  const closeModal = () => {
+    setShowModal(false);
+    window.location.reload()
   };
   const onClick = () => {
     navigate("/createTraveler");
@@ -133,6 +137,12 @@ function DashboardComponent() {
                           status="ongoing"
                         />
                       ))}
+                      <>
+                      {ongoingTripsData.length === 0 && (
+                        
+                        closeModal()  )} 
+                      </>
+                      
                     {ongoingTripsData.length > 2 && (
                       <button
                         onClick={() =>
@@ -247,6 +257,7 @@ function DashboardComponent() {
                           {finishedTrips}
                         </div>
                         <button
+                        type="button"
                           onClick={openFinishedModal}
                           className="justify-center self-stretch px-11 py-2.5 mt-4 text-sm capitalize bg-indigo-100 rounded-[31px] max-md:px-5"
                         >
@@ -279,17 +290,17 @@ function DashboardComponent() {
               <div className="mt-9 max-md:max-w-full">
                 <div className="flex gap-5 max-md:flex-col max-md:gap-0">
                   <div className="flex flex-col w-[83%] max-md:ml-0 max-md:w-full">
-                    {ongoingTripsData && (
+                    {createdTripsData && (
                       <>
-                        {ongoingTripsData
+                        {createdTripsData
                           .slice(
                             0,
                             showAllTravelerListings
-                              ? ongoingTripsData.length
+                              ? createdTripsData.length
                               : 1
                           )
                           .map((travel, index) => {
-                            if (travel.trips === "ongoing") {
+                            if (travel.trips === "created") {
                               // Check if the trip is ongoing
                               return (
                                 <TravelerTrips
@@ -303,7 +314,7 @@ function DashboardComponent() {
                       </>
                     )}
 
-                    {ongoingTripsData.length > 1 && (
+                    {createdTripsData.length > 1 && (
                       <button
                         onClick={() =>
                           setShowAllTravelerListings(!showAllTravelerListings)
