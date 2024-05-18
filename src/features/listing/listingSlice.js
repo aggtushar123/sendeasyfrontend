@@ -103,6 +103,24 @@ export const updateTravelerTripsStatus = createAsyncThunk(
   }
 );
 
+export const updateLuggageTripsStatus = createAsyncThunk(
+  "luggage/updateTrips",
+  async ({ userId, tripStatus }, thunkAPI) => {
+    try {
+      const token = thunkAPI.getState().auth.user.token;
+      return await listingService.updateLuggageTripsStatus(userId, tripStatus, token);
+    } catch (error) {
+      const message =
+        (error.response &&
+          error.response.data &&
+          error.response.data.message) ||
+        error.message ||
+        error.toString();
+      return thunkAPI.rejectWithValue(message);
+    }
+  }
+);
+
 export const fetchTravelerListings = createAsyncThunk(
   "listing/fetchTravelerListings",
   async (_, thunkAPI) => {
@@ -188,6 +206,21 @@ export const listingSlice = createSlice({
         state.traveler = action.payload;
       })
       .addCase(updateTravelerTripsStatus.rejected, (state, action) => {
+    
+        state.isLoading = false;
+        state.isError = true;
+        state.message = action.payload;
+      })
+      .addCase(updateLuggageTripsStatus.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(updateLuggageTripsStatus.fulfilled, (state, action) => {
+       
+        state.isLoading = false;
+        state.isSuccess = true;
+        state.luggage = action.payload;
+      })
+      .addCase(updateLuggageTripsStatus.rejected, (state, action) => {
     
         state.isLoading = false;
         state.isError = true;

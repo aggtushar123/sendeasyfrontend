@@ -1,58 +1,94 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getTravelers, getLuggage } from "../../features/listing/listingSlice";
+import { setShowModal, setModalType, setOngoingTripsData, setFinishedTripsData, setCancelledTripsData, setCreatedTripsData, setOngoingLuggageTripsData, setFinishedLuggageTripsData, setCancelledLuggageTripsData, setCreatedLuggageTripsData  }  from "../../features/modalSlice";
 import { useNavigate } from "react-router-dom";
 import Spinner from "../Spinner";
 import TravelerTrips from "./TravelerTrips";
+import LuggageModal from "./LuggageModal"
+import LuggageTrips from "./LuggageTrips";
 import cross from "../../components/assets/Login/crossIcon.svg";
 import TravelerModal from "./TravelerModal";
 function DashboardComponent() {
   const dispatch = useDispatch();
   let navigate = useNavigate();
-  const [showModal, setShowModal] = useState(false);
-  const [ongoingTripsData, setOngoingTripsData] = useState([]);
-  const [finishedTripsData, setFinishedTripsData] = useState([]);
-  const [cancelledTripsData, setCancelledTripsData] = useState([]);
-  const [createdTripsData, setCreatedTripsData] = useState([]);
+
+  const showModal = useSelector((state) => state.modal.showModal);
+  const modalType = useSelector((state) => state.modal.modalType);
+
+  const ongoingTripsData = useSelector((state) => state.modal.ongoingTripsData);
+  const finishedTripsData = useSelector((state) => state.modal.finishedTripsData);
+  const cancelledTripsData = useSelector((state) => state.modal.cancelledTripsData);
+  const createdTripsData = useSelector((state) => state.modal.createdTripsData);
+  const ongoingLuggageTripsData = useSelector((state) => state.modal.ongoingLuggageTripsData);
+  const finishedLuggageTripsData = useSelector((state) => state.modal.finishedLuggageTripsData);
+  const cancelledLuggageTripsData = useSelector((state) => state.modal.cancelledLuggageTripsData);
+  const createdLuggageTripsData = useSelector((state) => state.modal.createdLuggageTripsData);
+  //Show More, Show Less Button
   const [showAllTravelerListings, setShowAllTravelerListings] = useState(false);
   const [showAllFinishedListings, setShowAllFinishedListings] = useState(false);
   const [showAllCancelledListings, setShowAllCancelledListings] = useState(false);
   const [showAllOngoingListings, setShowAllOngoingListings] = useState(false);
   
-  const [component, setComponent] = useState(false)
-  const [modalType, setModalType] = useState("");
+
+  
   useEffect(() => {
     dispatch(getTravelers());
     dispatch(getLuggage());
   }, [dispatch]);
 
-  const { traveler, isLoading, isError, isSuccess, message } = useSelector(
+  const { traveler, luggage, isLoading, isError, isSuccess, message } = useSelector(
     (state) => state.listing
   );
 
   // console.log(traveler);
 
   const travelerList = Array.isArray(traveler) ? traveler : [];
+  const luggageList = Array.isArray(luggage) ? luggage : []; 
 
   useEffect(() => {
-    // Filter the travelerList to get only ongoing trips data
-    const filteredOngoingTrips = travelerList.filter(
-      (travel) => travel.trips === "ongoing"
-    );
-    const filteredFinishedTrips = travelerList.filter(
-      (travel) => travel.trips === "finished"
-    );
-    const filteredCancelledTrips = travelerList.filter(
-      (travel) => travel.trips === "cancelled"
-    );
-    const filteredCreatedTrips = travelerList.filter(
-      (travel) => travel.trips === "created"
-    );
-    setOngoingTripsData(filteredOngoingTrips);
-    setFinishedTripsData(filteredFinishedTrips);
-    setCancelledTripsData(filteredCancelledTrips);
-    setCreatedTripsData(filteredCreatedTrips)
-  }, [travelerList]);
+    if (travelerList.length) {
+      const filteredOngoingTrips = travelerList.filter(
+        (travel) => travel.trips === "ongoing"
+      );
+      const filteredFinishedTrips = travelerList.filter(
+        (travel) => travel.trips === "finished"
+      );
+      const filteredCancelledTrips = travelerList.filter(
+        (travel) => travel.trips === "cancelled"
+      );
+      const filteredCreatedTrips = travelerList.filter(
+        (travel) => travel.trips === "created"
+      );
+
+      dispatch(setOngoingTripsData(filteredOngoingTrips));
+      dispatch(setFinishedTripsData(filteredFinishedTrips));
+      dispatch(setCancelledTripsData(filteredCancelledTrips));
+      dispatch(setCreatedTripsData(filteredCreatedTrips));
+    }
+  }, [travelerList, dispatch]);
+
+  useEffect(() => {
+    if (luggageList.length) {
+      const filteredOngoingLuggageTrips = luggageList.filter(
+        (luggage) => luggage.trips === "ongoing"
+      );
+      const filteredFinishedLuggageTrips = luggageList.filter(
+        (luggage) => luggage.trips === "finished"
+      );
+      const filteredCancelledLuggageTrips = luggageList.filter(
+        (luggage) => luggage.trips === "cancelled"
+      );
+      const filteredCreatedLuggageTrips = luggageList.filter(
+        (luggage) => luggage.trips === "created"
+      );
+
+      dispatch(setOngoingLuggageTripsData(filteredOngoingLuggageTrips));
+      dispatch(setFinishedLuggageTripsData(filteredFinishedLuggageTrips));
+      dispatch(setCancelledLuggageTripsData(filteredCancelledLuggageTrips));
+      dispatch(setCreatedLuggageTripsData(filteredCreatedLuggageTrips));
+    }
+  }, [luggageList, dispatch]);
 
   let ongoingTrips = 0;
   let finishedTrips = 0;
@@ -74,31 +110,46 @@ function DashboardComponent() {
         break;
     }
   });
+  luggageList.forEach((travel) => {
+    switch (travel.trips) {
+      case "ongoing":
+        ongoingTrips++;
+        break;
+      case "finished":
+        finishedTrips++;
+        break;
+      case "cancelled":
+        cancelledTrips++;
+        break;
+      default:
+        break;
+    }
+  });
 
   if (isLoading) {
     return <div>Loading...</div>;
   }
 
   const openOngoingModal = () => {
-    if (ongoingTripsData.length > 0) {
-      setModalType("ongoing");
-      setShowModal(true);
+    if ((ongoingTripsData.length + ongoingLuggageTripsData.length) > 0) {
+      dispatch(setModalType("ongoing"));
+      dispatch(setShowModal(true));
     }
   };
   const openFinishedModal = () => {
-    if (finishedTripsData.length > 0) {
-      setModalType("finished");
-      setShowModal(true);
+    if ((finishedTripsData.length + finishedLuggageTripsData.length) > 0) {
+      dispatch(setModalType("finished"));
+      dispatch(setShowModal(true));
     }
   };
   const openCancelledModal = () => {
-    if (cancelledTripsData.length > 0) {
-      setModalType("cancelled");
-      setShowModal(true);
+    if ((cancelledTripsData.length + cancelledLuggageTripsData.length) > 0) {
+      dispatch(setModalType("cancelled"));
+      dispatch(setShowModal(true));
     }
   };
   const closeModal = () => {
-    setShowModal(false);
+    dispatch(setShowModal(false));
     window.location.reload()
   };
   const onClick = () => {
@@ -115,7 +166,7 @@ function DashboardComponent() {
                 <div
                   className="absolute left-[750px] top-4 cursor-pointer"
                   onClick={() => {
-                    setShowModal(false);
+                    dispatch(setShowModal(false));
                   }}
                 >
                   <img src={cross} alt="" />
@@ -137,13 +188,25 @@ function DashboardComponent() {
                           status="ongoing"
                         />
                       ))}
+                      {ongoingLuggageTripsData
+                      .slice(
+                        0,
+                        showAllOngoingListings ? ongoingLuggageTripsData.length : 2
+                      )
+                      .map((luggage) => (
+                        <LuggageModal
+                          key={luggage.id}
+                          luggage={luggage}
+                          status="ongoing"
+                        />
+                      ))}
                       <>
-                      {ongoingTripsData.length === 0 && (
+                      {(ongoingTripsData.length + ongoingLuggageTripsData.length) === 0 && (
                         
                         closeModal()  )} 
                       </>
                       
-                    {ongoingTripsData.length > 2 && (
+                    {(ongoingTripsData.length + ongoingLuggageTripsData.length) > 2 && (
                       <button
                         onClick={() =>
                           setShowAllOngoingListings(!showAllOngoingListings)
@@ -173,7 +236,19 @@ function DashboardComponent() {
                           status="finished"
                         />
                       ))}
-                    {finishedTripsData.length > 2 && (
+                      {finishedLuggageTripsData
+                      .slice(
+                        0,
+                        showAllFinishedListings ? finishedLuggageTripsData.length : 2
+                      )
+                      .map((luggage) => (
+                        <LuggageModal
+                          key={luggage.id}
+                          luggage={luggage}
+                          status="finished"
+                        />
+                      ))}
+                    {(finishedTripsData.length + finishedLuggageTripsData.length) > 2 && (
                       <button
                         onClick={() =>
                           setShowAllFinishedListings(!showAllFinishedListings)
@@ -203,7 +278,19 @@ function DashboardComponent() {
                           status="cancelled"
                         />
                       ))}
-                    {cancelledTripsData.length > 2 && (
+                      {cancelledLuggageTripsData
+                      .slice(
+                        0,
+                        showAllCancelledListings ? cancelledLuggageTripsData.length : 2
+                      )
+                      .map((luggage) => (
+                        <LuggageModal
+                          key={luggage.id}
+                          luggage={luggage}
+                          status="cancelled"
+                        />
+                      ))}
+                    {(cancelledTripsData.length + cancelledLuggageTripsData.length) > 2 && (
                       <button
                         onClick={() =>
                           setShowAllCancelledListings(!showAllCancelledListings)
@@ -311,10 +398,29 @@ function DashboardComponent() {
                             }
                             return null; // Skip rendering if the trip is not ongoing
                           })}
+                          {createdLuggageTripsData
+                          .slice(
+                            0,
+                            showAllTravelerListings
+                              ? createdLuggageTripsData.length
+                              : 1
+                          )
+                          .map((luggage, index) => {
+                            if (luggage.trips === "created") {
+                              // Check if the trip is ongoing
+                              return (
+                                <LuggageTrips
+                                  key={luggage.id}
+                                  luggage={luggage}
+                                />
+                              ); // Render the Trips component
+                            }
+                            return null; // Skip rendering if the trip is not ongoing
+                          })}
                       </>
                     )}
 
-                    {createdTripsData.length > 1 && (
+                    {(createdTripsData.length + createdLuggageTripsData.length)  > 1 && (
                       <button
                         onClick={() =>
                           setShowAllTravelerListings(!showAllTravelerListings)

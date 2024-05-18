@@ -7,9 +7,11 @@ const Traveler = () => {
   const [currentTraveler, setCurrentTraveler] = useState(null);
   const [showAllTravelerListings, setShowAllTravelerListings] = useState(false);
   const [ongoingTripsData, setOngoingTripsData] = useState([]);
+  const [userDetails, setUserDetails] = useState({});
   const { travelers, isLoading, isError, isSuccess, message } = useSelector(
     (state) => state.listing
   );
+  console.log(travelers);
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const handleClick = (traveler) => {
@@ -24,24 +26,64 @@ const Traveler = () => {
     const filteredOngoingTrips = travelers.filter(
       (travel) => travel.trips === "created"
     );
-    
     setOngoingTripsData(filteredOngoingTrips);
-  
   }, [travelers]);
-  
+
+  useEffect(() => {
+    // Fetch user details for each traveler in ongoing trips
+    const fetchUserDetails = async () => {
+      for (const traveler of ongoingTripsData) {
+        if (!userDetails[traveler.user]) {
+          const action = await dispatch(getUser(traveler.user));
+          if (action.payload) {
+            setUserDetails((prevDetails) => ({
+              ...prevDetails,
+              [traveler.user]: action.payload,
+            }));
+          }
+        }
+      }
+    };
+    if (ongoingTripsData.length > 0) {
+      fetchUserDetails();
+    }
+  }, [ongoingTripsData, dispatch, userDetails]);
+
   return (
     <div>
-      {ongoingTripsData.slice(0, showAllTravelerListings ? ongoingTripsData.length : 2).map(
-        (traveler) =>
+      {ongoingTripsData
+        .slice(0, showAllTravelerListings ? ongoingTripsData.length : 2)
+        .map((traveler) => {
+          const userDetail = userDetails[traveler.user];
+          
+          return (
             <div
               key={traveler.id}
               className="flex gap-5 justify-between items-start px-7 pt-7 pb-12 mt-16 mb-10 w-full bg-gray-100 max-w-[1239px] rounded-[38px] max-md:flex-wrap max-md:px-5 max-md:mt-10 max-md:max-w-full"
             >
-              <img
-                loading="lazy"
-                srcSet="https://s3-alpha-sig.figma.com/img/049d/8973/a367dd32260621365d9cdf0b6cf3ea5f?Expires=1714348800&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=Frzff7iksjDZ8bNvA3w77PPqEW75kIgAf57S1QiGlmysvxryHsoe2oqAdtvpnVVbWdl8XHVBaRTyop66XCGaXS1HmEgYAri7QMi1G0AWgwaeUzgyjTXP4ccudMBP8A5swGpET5tY~LsM-NVkQ8eUdb3QcGpe6kTbItw9T5JxkuiW0HCDocnvAqa8s2-OEeDFl5B6oM3iIBtRzykTaRsgG9nxd5nvFvxeMADu8wMaFivfDGOVCJzu3gDhfq682jo40W-~rLYynbIGOUrKKm2wJpateBcbwkr6BvnP6UQPS0ApWl~HHSTw14AkPmgfwVoo5gqpNkgoCLG2X-cj~rOyNg__"
-                className="shrink-0 my-auto max-w-full w-[79px] rounded-full border-green-500 border-4"
-              />
+              <div className="flex flex-col pr-4 max-md:ml-0 max-md:w-full">
+                <div className="flex gap-5 justify-between max-md:mt-10">
+                <div className="flex flex-col items-center font-semibold">
+                    <img
+                      loading="lazy"
+                      srcSet="..."
+                      className="aspect-[1.03] w-[86px]"
+                    />
+                    <div className="self-stretch mt-1 text-base leading-6 text-sky-400">
+                    
+                    </div>
+                    <div className="flex gap-0.5 mt-2.5 text-xs leading-loose text-slate-900">
+                      <img
+                        loading="lazy"
+                        src="https://cdn.builder.io/api/v1/image/assets/TEMP/12fa56c1f59dd970aca6c251a796b3783cbe34dc570bfbeda374ae6ec76517dd?"
+                        className="shrink-0 aspect-square w-[22px]"
+                      />
+                      <div className="my-auto">4.9 (16)</div>
+                    </div>
+                  </div>
+                  
+                </div>
+              </div>
               <div className="flex flex-col max-md:max-w-full">
                 <div className="flex gap-5 justify-between px-px leading-[158.5%] text-slate-900 max-md:flex-wrap">
                   <div className="flex flex-col self-start whitespace-nowrap">
@@ -170,16 +212,16 @@ const Traveler = () => {
                 </div>
               </div>
             </div>
-          
-      )}
+          );
+        })}
       {ongoingTripsData.length > 2 && (
         <div className="flex justify-center  mb-20">
-        <button
-          onClick={() => setShowAllTravelerListings(!showAllTravelerListings)}
-          className="justify-center items-center px-16 py-5 mt-20 mb-20 max-w-full text-xl font-medium text-center text-sky-400 bg-white border-2 border-sky-400 border-solid rounded-[31px] w-[349px] max-md:px-5 max-md:mt-10"
-        >
-          {showAllTravelerListings ? "Show Less" : "Show More"}
-        </button>
+          <button
+            onClick={() => setShowAllTravelerListings(!showAllTravelerListings)}
+            className="justify-center items-center px-16 py-5 mt-20 mb-20 max-w-full text-xl font-medium text-center text-sky-400 bg-white border-2 border-sky-400 border-solid rounded-[31px] w-[349px] max-md:px-5 max-md:mt-10"
+          >
+            {showAllTravelerListings ? "Show Less" : "Show More"}
+          </button>
         </div>
       )}
     </div>

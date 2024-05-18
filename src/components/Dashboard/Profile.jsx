@@ -4,7 +4,8 @@ import FacebookLogo from "../assets/Profile/FacebookLogo.svg";
 import LinkedInLogo from "../assets/Profile/LinkedInLogo.svg";
 import InstagramLogo from "../assets/Profile/InstagramLogo.svg";
 import { useNavigate, Link } from "react-router-dom";
-import TravelerTrips from "./TravelerTrips";
+import PastTravelerTrips from "./PastTravelerTrips";
+import PastLuggageTrips from "./PastLuggageTrips";
 import cross from "../../components/assets/Login/crossIcon.svg";
 import Luggage from "../assets/Profile/Luggage.svg";
 import Traveler from "../assets/Profile/Traveler.svg";
@@ -196,7 +197,7 @@ function Profile() {
                       if (travel.trips === "finished") {
                         // Check if the trip is ongoing
                         return (
-                          <TravelerTrips key={travel.id} tripData={travel} />
+                          <PastTravelerTrips key={travel.id} tripData={travel} />
                         ); // Render the Trips component
                       }
                       return null; // Skip rendering if the trip is not ongoing
@@ -225,7 +226,7 @@ function Profile() {
                     if (luggage.trips === "finished") {
                       // Check if the trip is ongoing
                       return (
-                        <LuggageTrips key={luggage.id} tripData={luggage} />
+                        <PastLuggageTrips key={luggage.id} tripData={luggage} />
                       ); // Render the Trips component
                     }
                     return null; // Skip rendering if the trip is not ongoing
