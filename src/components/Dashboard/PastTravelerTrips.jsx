@@ -1,32 +1,20 @@
-import React, { useState } from "react";
-import { useDispatch } from "react-redux";
-import { updateTravelerTripsStatus } from "../../features/listing/listingSlice";
+import React from "react";
 
-const TravelerModal = ({ travel, status }) => {
-  const [tripStatus, setTripStatus] = useState({ trips: "" });
-  const { sourceLocation, destinationLocation, user, _id } = travel;
-  const dispatch = useDispatch();
 
-  const userId = _id;
-  if (travel.length < 1) {
-    console.log("O");
-  }
-  const handleFinishTrip = () => {
-    setTripStatus({ trips: "finished" });
-    dispatchUpdate({ trips: "finished" }); // Pass the updated status directly
-  };
-
-  const dispatchUpdate = (updatedStatus) => {
-    dispatch(updateTravelerTripsStatus({ userId, tripStatus: updatedStatus }));
-    window.location.reload()
-  };
+const PastTravelerTrips = ({ tripData }) => {
+ 
   return (
-    <div className="flex flex-col px-10 pt-7 pb-12 mt-7 bg-gray-100 rounded-[38px] max-md:px-5 max-md:max-w-full">
+    <div
+      key={tripData.id}
+      className="flex flex-col px-10 pt-7 pb-12 w-full mb-5 bg-gray-100 rounded-[38px] max-md:px-5 max-md:mt-1 max-md:max-w-full"
+    >
       <div className="flex gap-5 w-full leading-[158.5%] max-md:flex-wrap max-md:max-w-full">
-        <div className="flex flex-auto gap-3.5 justify-between text-slate-900 max-md:flex-wrap max-md:max-w-[300px]">
+        <div className="flex flex-auto gap-3.5 justify-between text-slate-900 max-md:flex-wrap">
           <div className="flex flex-col self-start whitespace-nowrap">
             <div className="text-xs">From:</div>
-            <div className="mt-3.5 text-xl font-semibold">{sourceLocation}</div>
+            <div className="mt-3.5 text-xl font-semibold">
+              {tripData.sourceLocation}
+            </div>
           </div>
           <img
             loading="lazy"
@@ -37,7 +25,7 @@ const TravelerModal = ({ travel, status }) => {
             <img
               loading="lazy"
               src="https://cdn.builder.io/api/v1/image/assets/TEMP/cb0915405607aca567de60aa5d650b42762448e0826befbffa6d2d0854b03c9a?"
-              className="self-center w-11 aspect-[1.52]"
+              className="self-center aspect-[1.61] w-[47px]"
             />
             <div className="mt-1">Travel Via</div>
           </div>
@@ -49,32 +37,34 @@ const TravelerModal = ({ travel, status }) => {
           <div className="flex flex-col self-start whitespace-nowrap">
             <div className="text-xs">Destination:</div>
             <div className="mt-3.5 text-xl font-semibold">
-              {destinationLocation}
+              {tripData.destinationLocation}
             </div>
           </div>
         </div>
         <div className="flex flex-col self-start text-sky-400">
           <div className="text-xs">Expected Price</div>
-          <div className="mt-2.5 text-xl font-semibold">$ 150</div>
+          <div className="mt-2.5 text-xl font-semibold">
+            $ {tripData.expectation}
+          </div>
         </div>
       </div>
-      <div className="flex gap-5 mt-4 w-full max-md:flex-wrap max-md:mt-10 max-md:max-w-full">
-        <div className="flex flex-auto gap-5 justify-between items-center self-start">
+      <div className="flex gap-5 mt-16 w-full max-md:flex-wrap max-md:mt-10 max-md:max-w-full">
+        <div className="flex flex-auto gap-5 justify-between items-center self-start px-0.5">
           <div className="flex flex-col self-stretch">
             <div className="flex gap-1 pr-3.5">
               <img
                 loading="lazy"
-                src="https://cdn.builder.io/api/v1/image/assets/TEMP/d823d78b993bb8776d2a36c0c166bd06da6653ef60349a72f0608a82d4f5bb1b?"
+                src="https://cdn.builder.io/api/v1/image/assets/TEMP/60030bc9c8e5a8a4c7f8475adbfdf3b3e6f73dd2a0e6b91e22adfaec6ca5510c?"
                 className="shrink-0 w-6 aspect-square"
               />
               <img
                 loading="lazy"
-                src="https://cdn.builder.io/api/v1/image/assets/TEMP/d823d78b993bb8776d2a36c0c166bd06da6653ef60349a72f0608a82d4f5bb1b?"
+                src="https://cdn.builder.io/api/v1/image/assets/TEMP/60030bc9c8e5a8a4c7f8475adbfdf3b3e6f73dd2a0e6b91e22adfaec6ca5510c?"
                 className="shrink-0 w-6 aspect-square"
               />
               <img
                 loading="lazy"
-                src="https://cdn.builder.io/api/v1/image/assets/TEMP/20701a5830447ea2c8554b63a45c659ef11dc3b61983c9bba8bd28780b7fa20b?"
+                src="https://cdn.builder.io/api/v1/image/assets/TEMP/a53154cabd88a723d9c16ba5a84ddeebc7afb70b08b39a0469148f0d0f9b4436?"
                 className="shrink-0 w-6 aspect-square"
               />
             </div>
@@ -90,33 +80,30 @@ const TravelerModal = ({ travel, status }) => {
             <div className="text-xs">Past QD</div>
             <div className="mt-3 text-xl font-semibold">12</div>
           </div>
-          <div className="flex flex-col self-stretch my-auto leading-[158.5%] text-slate-900">
+        </div>
+        <div className="flex flex-auto gap-5 justify-between px-0.5 leading-[158.5%] text-slate-900">
+          <div className="flex flex-col py-1.5">
             <div className="text-xs">Date:</div>
-            <div className="mt-3 text-xl font-semibold">21 Sep 2024</div>
+            <div className="mt-3.5 text-xl font-semibold">{tripData.date}</div>
           </div>
-          <div className="flex flex-col self-stretch my-auto leading-[158.5%] text-slate-900">
+          <div className="flex flex-col py-2">
             <div className="text-xs">Time:</div>
-            <div className="mt-3 text-xl font-semibold">2: 25 AM</div>
-          </div>
-          <div className="flex flex-col self-stretch my-auto leading-[158.5%] text-slate-900">
-            <div className="text-xs">Luggage Space:</div>
-            <div className="mt-3 text-xl font-semibold">25 KG</div>
-          </div>
-          {status === "ongoing" && (
-            <div className="flex flex-auto gap-5 justify-end items-center self-end mt-4">
-              <button
-                type="button"
-                className="justify-center items-center px-4 py-2 text-xl font-medium text-center text-white bg-sky-400 max-w-[349px] rounded-[31px]"
-                onClick={() => handleFinishTrip()}
-              >
-                Trip Completed
-              </button>
+            <div className="mt-3.5 text-xl font-semibold">
+              {tripData.timeOfDelivery}
             </div>
-          )}
+          </div>
+          <div className="flex flex-col py-2">
+            <div className="text-xs">Luggage Space:</div>
+            <div className="mt-2.5 text-xl font-semibold">
+              {tripData.luggageSpace} KG
+            </div>
+          </div>
+         
         </div>
       </div>
+      
     </div>
   );
 };
 
-export default TravelerModal;
+export default PastTravelerTrips;

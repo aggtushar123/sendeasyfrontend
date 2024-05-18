@@ -4,13 +4,15 @@ import FacebookLogo from "../assets/Profile/FacebookLogo.svg";
 import LinkedInLogo from "../assets/Profile/LinkedInLogo.svg";
 import InstagramLogo from "../assets/Profile/InstagramLogo.svg";
 import { useNavigate, Link } from "react-router-dom";
-import TravelerTrips from "./TravelerTrips";
+import PastTravelerTrips from "./PastTravelerTrips";
+import PastLuggageTrips from "./PastLuggageTrips";
 import cross from "../../components/assets/Login/crossIcon.svg";
 import Luggage from "../assets/Profile/Luggage.svg";
 import Traveler from "../assets/Profile/Traveler.svg";
+import LuggageTrips from "./LuggageTrips";
 function Profile() {
   const { user } = useSelector((state) => state.auth);
-  const { traveler, isLoading, isError, isSuccess, message } = useSelector(
+  const { traveler, luggage, isLoading, isError, isSuccess, message } = useSelector(
     (state) => state.listing
   );
   const [showModal, setShowModal] = useState(false);
@@ -19,7 +21,7 @@ function Profile() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const travelerList = Array.isArray(traveler) ? traveler : [];
-
+  const luggageList = Array.isArray(luggage) ? luggage : [];
   const createListing = () => {
     setShowModal(true);
   };
@@ -195,7 +197,7 @@ function Profile() {
                       if (travel.trips === "finished") {
                         // Check if the trip is ongoing
                         return (
-                          <TravelerTrips key={travel.id} tripData={travel} />
+                          <PastTravelerTrips key={travel.id} tripData={travel} />
                         ); // Render the Trips component
                       }
                       return null; // Skip rendering if the trip is not ongoing
@@ -218,13 +220,13 @@ function Profile() {
               Luggage listing
             </div>
             <div className="flex flex-col  mt-4 rounded-[38px] max-md:px-5 max-md:max-w-full">
-              {travelerList && (
+              {luggageList && (
                 <>
-                  {travelerList.map((travel) => {
-                    if (travel.trips === "finished") {
+                  {luggageList.map((luggage) => {
+                    if (luggage.trips === "finished") {
                       // Check if the trip is ongoing
                       return (
-                        <TravelerTrips key={travel.id} tripData={travel} />
+                        <PastLuggageTrips key={luggage.id} tripData={luggage} />
                       ); // Render the Trips component
                     }
                     return null; // Skip rendering if the trip is not ongoing

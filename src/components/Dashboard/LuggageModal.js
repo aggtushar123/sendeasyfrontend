@@ -1,14 +1,14 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { updateTravelerTripsStatus } from "../../features/listing/listingSlice";
+import { updateLuggageTripsStatus } from "../../features/listing/listingSlice";
 
-const TravelerModal = ({ travel, status }) => {
+const LuggageModal = ({ luggage, status }) => {
   const [tripStatus, setTripStatus] = useState({ trips: "" });
-  const { sourceLocation, destinationLocation, user, _id } = travel;
+  const { sourceLocation, destinationLocation, user, _id } = luggage;
   const dispatch = useDispatch();
 
   const userId = _id;
-  if (travel.length < 1) {
+  if (luggage.length < 1) {
     console.log("O");
   }
   const handleFinishTrip = () => {
@@ -17,7 +17,7 @@ const TravelerModal = ({ travel, status }) => {
   };
 
   const dispatchUpdate = (updatedStatus) => {
-    dispatch(updateTravelerTripsStatus({ userId, tripStatus: updatedStatus }));
+    dispatch(updateLuggageTripsStatus({ userId, tripStatus: updatedStatus }));
     window.location.reload()
   };
   return (
@@ -119,4 +119,4 @@ const TravelerModal = ({ travel, status }) => {
   );
 };
 
-export default TravelerModal;
+export default LuggageModal;

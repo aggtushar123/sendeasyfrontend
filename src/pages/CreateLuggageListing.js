@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import {useNavigate} from "react-router-dom"
 import date from "../components/assets/Home/date.svg";
 import { toast } from "react-toastify";
 import { useDispatch } from "react-redux";
@@ -33,7 +34,7 @@ function CreateLuggage() {
     note,
   } = luggageData;
   const dispatch = useDispatch();
-
+  const navigate = useNavigate()
   const onChange = (e) => {
     setLuggageData((prevState) => ({
       ...prevState,
@@ -80,7 +81,8 @@ function CreateLuggage() {
       try {
         const response = await dispatch(createLuggage(luggageListingData));
         if (response.meta.requestStatus === "fulfilled") {
-          console.log("Created"); // Set showModal to true upon successful registration
+          console.log("Created");
+          navigate('/luggageListing') // Set showModal to true upon successful registration
         } else {
           // Extract and show the specific error message from the response
           const errorMessage = response.error.message;
