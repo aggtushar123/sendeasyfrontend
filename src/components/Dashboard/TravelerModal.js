@@ -21,7 +21,7 @@ const TravelerModal = ({ travel, status }) => {
     window.location.reload()
   };
   return (
-    <div className="flex flex-col px-10 pt-7 pb-12 mt-7 bg-gray-100 rounded-[38px] max-md:px-5 max-md:max-w-full">
+    <div className="flex flex-col px-10 pt-7 pb-6 mt-7 bg-gray-100 rounded-[38px] max-md:px-5 max-md:max-w-full">
       <div className="flex gap-5 w-full leading-[158.5%] max-md:flex-wrap max-md:max-w-full">
         <div className="flex flex-auto gap-3.5 justify-between text-slate-900 max-md:flex-wrap max-md:max-w-[300px]">
           <div className="flex flex-col self-start whitespace-nowrap">
@@ -102,8 +102,11 @@ const TravelerModal = ({ travel, status }) => {
             <div className="text-xs">Luggage Space:</div>
             <div className="mt-3 text-xl font-semibold">25 KG</div>
           </div>
-          {status === "ongoing" && (
-            <div className="flex flex-auto gap-5 justify-end items-center self-end mt-4">
+         
+        </div>
+      </div>
+      {status === "ongoing" && (
+            <div className="flex flex-auto gap-5 justify-center items-center mt-4">
               <button
                 type="button"
                 className="justify-center items-center px-4 py-2 text-xl font-medium text-center text-white bg-sky-400 max-w-[349px] rounded-[31px]"
@@ -113,8 +116,6 @@ const TravelerModal = ({ travel, status }) => {
               </button>
             </div>
           )}
-        </div>
-      </div>
     </div>
   );
 };
