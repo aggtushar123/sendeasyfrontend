@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const baseURL = 'http://localhost:3001'; // Change the port to 5000 or your desired backend port
+const baseURL = 'https://sendeasy-backend.onrender.com'; // Change the port to 5000 or your desired backend port
 const API_URL = `${baseURL}/api/users/`;
 
 // Create an Axios instance with the specified base URL
@@ -66,7 +66,7 @@ const logout = () => localStorage.removeItem('user');
 
 const googleLogin = async () => {
   try {
-    const url = 'http://localhost:3001/auth/login/success';
+    const url = 'https://sendeasy-backend.onrender.com/auth/login/success';
     const response = await axios.get(url, { withCredentials: true });
     const userData = response.data; 
     localStorage.setItem('user', JSON.stringify(userData))

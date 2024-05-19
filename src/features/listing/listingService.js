@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const baseURL = "http://localhost:3001";
+const baseURL = "https://sendeasy-backend.onrender.com";
 const API_URL = `${baseURL}/api/listing/`;
 
 const axiosInstance = axios.create({
