@@ -1,6 +1,7 @@
 import React from "react";
 
 const PastLuggageTrips = ({ luggage }) => {
+    console.log(luggage)
   return (
     <div className="px-7 pt-6 pb-14 mb-5 bg-gray-100 max-w-[885px] rounded-[38px] max-md:pl-5">
     <div className="flex gap-5 max-md:flex-col max-md:gap-0">
@@ -8,27 +9,24 @@ const PastLuggageTrips = ({ luggage }) => {
         <div className="flex gap-5 justify-between self-stretch my-auto leading-[158.5%] text-slate-900 max-md:flex-wrap max-md:mt-10 max-md:max-w-full">
           <div className="flex flex-col py-2 whitespace-nowrap">
             <div className="text-xs">From:</div>
-            <div className="mt-3.5 text-xl font-semibold">USA</div>
+            <div className="mt-3.5 text-xl font-semibold">{luggage.sourceLocation}</div>
           </div>
           <div className="flex flex-col py-2 whitespace-nowrap">
             <div className="text-xs">Destination:</div>
-            <div className="mt-3.5 text-xl font-semibold">India</div>
+            <div className="mt-3.5 text-xl font-semibold">{luggage.destinationLocation}</div>
           </div>
           <div className="flex flex-col py-1.5">
             <div className="text-xs">Before:</div>
-            <div className="mt-3.5 text-xl font-semibold">21 Sep 2024</div>
+            <div className="mt-3.5 text-xl font-semibold">{luggage.dateRange}</div>
           </div>
           <div className="flex flex-col py-2">
             <div className="text-xs">Available bags:</div>
-            <div className="mt-2.5 text-xl font-semibold">2</div>
+            <div className="mt-2.5 text-xl font-semibold">{luggage.numberOfBags}</div>
           </div>
+          
           <div className="flex flex-col py-2">
             <div className="text-xs">Weight:</div>
-            <div className="mt-2.5 text-xl font-semibold">4 KG</div>
-          </div>
-          <div className="flex flex-col py-2">
-            <div className="text-xs">Weight:</div>
-            <div className="mt-2.5 text-xl font-semibold">4 KG</div>
+            <div className="mt-2.5 text-xl font-semibold">{luggage.totalWeight} KG</div>
           </div>
         </div>
       </div>
@@ -43,7 +41,7 @@ const PastLuggageTrips = ({ luggage }) => {
               Item type:
             </div>
             <div className="justify-center px-5 py-2.5 text-sm font-semibold text-center text-sky-400 whitespace-nowrap bg-indigo-100 rounded-[31px] max-md:px-5">
-              Jewlery
+              {luggage.typeOfItems}
             </div>
           </div>
         </div>

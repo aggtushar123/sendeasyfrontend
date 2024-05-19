@@ -9,7 +9,7 @@ import PastLuggageTrips from "./PastLuggageTrips";
 import cross from "../../components/assets/Login/crossIcon.svg";
 import Luggage from "../assets/Profile/Luggage.svg";
 import Traveler from "../assets/Profile/Traveler.svg";
-import LuggageTrips from "./LuggageTrips";
+
 function Profile() {
   const { user } = useSelector((state) => state.auth);
   const { traveler, luggage, isLoading, isError, isSuccess, message } = useSelector(
@@ -222,16 +222,28 @@ function Profile() {
             <div className="flex flex-col  mt-4 rounded-[38px] max-md:px-5 max-md:max-w-full">
               {luggageList && (
                 <>
-                  {luggageList.map((luggage) => {
+                  {luggageList
+                    .slice(0, showAllLuggageListings ? luggageList.length : 2)
+                  .map((luggage) => {
                     if (luggage.trips === "finished") {
                       // Check if the trip is ongoing
                       return (
-                        <PastLuggageTrips key={luggage.id} tripData={luggage} />
+                        <PastLuggageTrips key={luggage.id} luggage={luggage} />
                       ); // Render the Trips component
                     }
                     return null; // Skip rendering if the trip is not ongoing
                   })}
                 </>
+              )}
+              {luggageList.length > 2 && (
+                <button
+                  onClick={() =>
+                    setShowAllLuggageListings(!showAllLuggageListings)
+                  }
+                  className="justify-center items-center self-center px-16 py-5 mt-7 max-w-full text-xl font-medium text-center text-sky-400 bg-white border-2 border-sky-400 border-solid rounded-[31px] w-[349px] max-md:px-5"
+                >
+                  {showAllLuggageListings ? "Show Less" : "Show More"}
+                </button>
               )}
             </div>
           </div>

@@ -92,7 +92,7 @@ const Trips = ({ tripData }) => {
             </div>
           </div>
         </div>
-        <div className="flex gap-5 mt-16 w-full max-md:flex-wrap max-md:mt-10 max-md:max-w-full">
+        <div className="flex gap-5 mt-6 w-full max-md:flex-wrap max-md:mt-10 max-md:max-w-full">
           <div className="flex flex-auto gap-5 justify-between items-center self-start px-0.5">
             <div className="flex flex-col self-stretch">
               <div className="flex gap-1 pr-3.5">
@@ -144,7 +144,10 @@ const Trips = ({ tripData }) => {
                 {tripData.luggageSpace} KG
               </div>
             </div>
-            <div className="flex flex-col space-y-2">
+          
+          </div>
+        </div>
+        <div className="flex flex-row gap-5 justify-center mt-4 space-y-2">
               <button
                 type="button"
                 className="w-40 px-4 py-1 bg-red-500 text-white rounded-md hover:bg-red-600"
@@ -159,16 +162,14 @@ const Trips = ({ tripData }) => {
               >
                 Cancel Trip
               </button>
-            </div>
-          </div>
-        </div>
-        <button
+              <button
           type="button"
           className="justify-center w-40 px-4 py-1 mt-4 bg-green-500 text-white rounded-md hover:bg-green-600"
           onClick={() => editPost(tripData)}
         >
           Edit
         </button>
+            </div>
       </div>
     </>
   );
