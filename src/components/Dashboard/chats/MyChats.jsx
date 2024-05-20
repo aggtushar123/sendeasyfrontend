@@ -34,7 +34,7 @@ function MyChats({fetchAgain}) {
         <div className="flex flex-col w-[86%] max-md:ml-0 max-md:w-full">
           <div className="flex flex-col pt-10 pr-9 pb-6 pl-3 mt-3.5 w-full rounded-3xl bg-neutral-100 leading-[158.5%] max-md:pr-5 max-md:max-w-full">
             <div className="text-2xl font-medium leading-8 text-sky-400 uppercase tracking-[8.81px] max-md:max-w-full">
-              Messages
+              
             </div>
 
             {isLoadingChat ? (
