@@ -108,7 +108,7 @@ const Signup = () => {
 
   const googleAuth = async () => {
     const newAuthWindow = window.open(
-      'https://sendeasy-backend.onrender.com/auth/google/callback'
+      `${process.env.SENDEASY_BACKEND_URL}/auth/google/callback`
     );
 
     setAuthWindow(newAuthWindow);
@@ -339,7 +339,7 @@ const Signup = () => {
                 className='flex flex-1 justify-center items-center px-16 py-6 bg-gray-100 rounded-3xl max-md:px-5'
                 onClick={() => {
                   window.open(
-                    'https://sendeasy-backend.onrender.com/authFacebook/facebook/callback'
+                    `${process.env.REACT_APP_API_URL}/authFacebook/facebook/callback`
                   );
                 }}
               >

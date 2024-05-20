@@ -1,55 +1,29 @@
-import React from "react";
-import PlacesAutocomplete, {
-  geocodeByAddress,
-  getLatLng
-} from "react-places-autocomplete";
-
-export default function App() {
-  const [address, setAddress] = React.useState("");
-  const [coordinates, setCoordinates] = React.useState({
-    lat: null,
-    lng: null
-  });
-
-  const handleSelect = async value => {
-    const results = await geocodeByAddress(value);
-    const latLng = await getLatLng(results[0]);
-    setAddress(value);
-    setCoordinates(latLng);
-  };
+import React, { useState} from "react";
+import { useSelector } from "react-redux";
+import { searchUser } from "../../features/auth/authSlice";
+import { accessChat, fetchChats, reset } from "../../features/chats/chatSlice";
+import Spinner from "../Spinner";
+import MyChats from "./chats/MyChats";
+import SearchSideDrawer from "./chats/SearchSideDrawer";
+import Chatbox from "./chats/Chatbox";
+function Chats() {
+  const { user, searchResult, isLoading: isLoadingAuth } = useSelector((state) => state.auth);
+  const [fetchAgain, setFetchAgain] = useState(false);
 
   return (
-    <div>
-      <PlacesAutocomplete
-        value={address}
-        onChange={setAddress}
-        onSelect={handleSelect}
-      >
-        {({ getInputProps, suggestions, getSuggestionItemProps, loading }) => (
-          <div>
-         
-
-            <input {...getInputProps({ placeholder: "Type address" })} />
-
-            <div>
-              {loading ? <div>...loading</div> : null}
-
-              {suggestions.map(suggestion => {
-                console.log(suggestion)
-                const style = {
-                  backgroundColor: suggestion.active ? "#41b6e6" : "#fff"
-                };
-
-                return (
-                  <div {...getSuggestionItemProps(suggestion, { style })}>
-                    {suggestion.description}
-                  </div>
-                );
-              })}
-            </div>
-          </div>
+    
+<div >
+      {user && <SearchSideDrawer />}
+     
+        {user && <MyChats fetchAgain={fetchAgain} />}
+        {user && (
+          <Chatbox fetchAgain={fetchAgain} setFetchAgain={setFetchAgain} />
         )}
-      </PlacesAutocomplete>
+      
     </div>
+      
+    
   );
 }
+
+export default Chats;

@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const baseURL = 'https://sendeasy-backend.onrender.com'; // Change the port to 5000 or your desired backend port
+const baseURL = process.env.REACT_APP_API_URL // Change the port to 5000 or your desired backend port
 const API_URL = `${baseURL}/api/users/`;
 
 // Create an Axios instance with the specified base URL
@@ -36,6 +36,18 @@ const getUser = async (userId) => {
     );
   }
 };
+
+const searchUser = async (searchData,token) => {
+
+  const config = {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  };
+  const response = await axios.get(`${API_URL}searchuser?search=${searchData}`, config);
+  return response.data;
+};
+
 // Login
 const login = async (userData) => {
   const response = await axiosInstance.post(`${API_URL}login`, userData);
@@ -66,7 +78,7 @@ const logout = () => localStorage.removeItem('user');
 
 const googleLogin = async () => {
   try {
-    const url = 'https://sendeasy-backend.onrender.com/auth/login/success';
+    const url = `${process.env.SENDEASY_BACKEND_URL}/auth/login/success`;
     const response = await axios.get(url, { withCredentials: true });
     const userData = response.data; 
     localStorage.setItem('user', JSON.stringify(userData))
@@ -88,6 +100,7 @@ const authService = {
   googleLogin,
   updateUser,
   getUser,
+  searchUser
 };
 
 export default authService;
