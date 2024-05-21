@@ -7,6 +7,7 @@ function LuggageListing() {
   const [currentTraveler, setCurrentTraveler] = useState(null);
   const [showAllLuggageListings, setShowAllLuggageListings] = useState(false);
   const [ongoingTripsData, setOngoingTripsData] = useState([]);
+  const [userDetails, setUserDetails] = useState({});
   const { luggageListings, isLoading, isError, isSuccess, message } =
     useSelector((state) => state.listing);
 
@@ -28,13 +29,39 @@ function LuggageListing() {
     setOngoingTripsData(filteredOngoingTrips);
   
   }, [luggageListings]);
+
+
+  useEffect(() => {
+    // Fetch user details for each traveler in ongoing trips
+    const fetchUserDetails = async () => {
+      for (const i of ongoingTripsData) {
+        if (!userDetails[i.user]) {
+          const action = await dispatch(getUser(i.user));
+          
+          if (action.payload) {
+            setUserDetails((prevDetails) => ({
+              ...prevDetails,
+              [i.user]: action.payload,
+            }));
+          }
+        }
+      }
+    };
+    if (ongoingTripsData.length > 0) {
+      fetchUserDetails();
+    }
+  }, [ongoingTripsData, dispatch, userDetails]);
+
   return (
     <div>
-      {ongoingTripsData.slice(0, showAllLuggageListings ? ongoingTripsData.length : 2).map(
-        (luggage) =>
-          luggage.trips === "created" && (
-            <div
+      {ongoingTripsData
+      .slice(0, showAllLuggageListings ? ongoingTripsData.length : 2)
+      .map((luggage) => {
+          const userDetail = userDetails[luggage.user];
+          console.log(userDetail)
+          return (<div
               key={luggage.id}
+              onClick={() => handleClick(luggage)}
               className="flex gap-5 justify-between items-start px-7 pt-7 pb-12 mt-16 mb-10 w-full bg-gray-100 max-w-[1239px] rounded-[38px] max-md:flex-wrap max-md:px-5 max-md:mt-10 max-md:max-w-full"
             >
               <div className="flex flex-col w-[23%] max-md:ml-0 max-md:w-full">
@@ -46,7 +73,7 @@ function LuggageListing() {
                       className="aspect-[1.03] w-[86px]"
                     />
                     <div className="self-stretch mt-1 text-base leading-6 text-sky-400">
-                      Ahmad L.
+                    {userDetail?.fName ?? " "}
                     </div>
                     <div className="flex gap-0.5 mt-2.5 text-xs leading-loose text-slate-900">
                       <img
@@ -140,7 +167,7 @@ function LuggageListing() {
                           />
                    
                           <button
-                    onClick={() => handleClick(luggage)}
+                    
                     className="flex-auto my-auto"
                   >
                     Contact Now
@@ -151,9 +178,9 @@ function LuggageListing() {
                   </div>
                 </div>
               </div>
-            </div>
-          )
-      )}
+            </div>)
+          
+        })}
       {ongoingTripsData.length > 2 && (
         <div className="flex justify-center mb-20">
         <button
