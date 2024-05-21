@@ -147,27 +147,28 @@ const Trips = ({ tripData }) => {
           
           </div>
         </div>
-        <div className="flex flex-row gap-5 justify-center mt-4 space-y-2">
-              <button
-                type="button"
-                className="w-40 px-4 py-1 bg-red-500 text-white rounded-md hover:bg-red-600"
-                onClick={() => handleStartTrip()}
-              >
-                Start Trip
-              </button>
-              <button
-                type="button"
-                className="w-40 px-4 py-1 bg-blue-500 text-white rounded-md hover:bg-blue-600"
-                onClick={() => handleCancelTrip()}
-              >
-                Cancel Trip
-              </button>
-              <button
+        <div className="flex flex-row gap-5 justify-end mt-4 ">
+        <button
           type="button"
-          className="justify-center w-40 px-4 py-1 mt-4 bg-green-500 text-white rounded-md hover:bg-green-600"
+          className="justify-center px-10 py-3 mt-5 text-lg font-medium text-center text-white bg-sky-400 rounded-[31px] max-md:px-5"
+          onClick={() => handleCancelTrip()}
+        >
+          Start Gig
+        </button>
+        
+        <button
+          type="button"
+          className="justify-center px-10 py-3 mt-5 text-lg font-medium text-center text-sky-400 bg-sky-100 rounded-[31px] max-md:px-5"
           onClick={() => editPost(tripData)}
         >
-          Edit
+          Edit Gig
+        </button>
+        <button
+          type="button"
+          className="justify-center px-10 py-3 mt-5 text-lg font-medium text-center text-rose-500 bg-rose-200 rounded-[31px] max-md:px-5"
+          onClick={() => handleCancelTrip()}
+        >
+          Cancel Gig
         </button>
             </div>
       </div>
