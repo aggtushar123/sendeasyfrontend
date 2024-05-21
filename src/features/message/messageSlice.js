@@ -30,7 +30,7 @@ export const fetchMessage = createAsyncThunk(
 
 export const sendMessage = createAsyncThunk(
   "message/sendMessage",
-  async ({content, chatId}, thunkAPI) => {
+  async ({ content, chatId }, thunkAPI) => {
     try {
       const token = thunkAPI.getState().auth.user.token;
       return await messageService.sendMessage(content, chatId, token);
@@ -46,7 +46,7 @@ export const sendMessage = createAsyncThunk(
   }
 );
 
-export const messageSlice = createSlice({
+const messageSlice = createSlice({
   name: 'message',
   initialState,
   reducers: {

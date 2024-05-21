@@ -8,6 +8,7 @@ import {
   addMessage,
   addNotification,
 } from "../../../features/message/messageSlice";
+import { setSelectedChat } from "../../../features/chats/chatSlice";
 import ScrollableChat from "./ScrollableChat";
 import io from "socket.io-client";
 const ENDPOINT = process.env.REACT_APP_API_URL;
@@ -35,7 +36,7 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
     socket.on("connected", () => setSocketConnected(true));
     socket.on("typing", () => setIsTyping(true));
     socket.on("stop typing", () => setIsTyping(false));
-  }, []);
+  }, [user]);
 
   useEffect(() => {
     if (selectedChat) {
@@ -70,19 +71,21 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
   const handleSendMessage = async (event) => {
     if (event.key === "Enter" && currentMessage) {
         socket.emit("stop typing", selectedChat._id);
-      try {
-        const action = await dispatch(
-          sendMessage({ content: currentMessage, chatId: selectedChat._id })
-        );
-        if (action.meta.requestStatus === "fulfilled") {
-             socket.emit("new message", action.payload);
+        try {
+            const action = await dispatch(sendMessage({ content: currentMessage, chatId: selectedChat._id }));
+
+            if (action.meta.requestStatus === "fulfilled") {
+                // Emit the new message to the socket
+                socket.emit("new message", action.payload);
+
+                // Clear the current message input
+                setCurrentMessage("");
+            }
+        } catch (error) {
+            console.log(error);
         }
-        setCurrentMessage("");
-      } catch (error) {
-        console.log(error);
-      }
     }
-  };
+};
   const typingHandler = (e) => {
     setCurrentMessage(e.target.value);
     if (!socketConnected) return;
@@ -102,6 +105,9 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
       }
     }, timerLength);
   };
+  const handleBackButtonClick = () => {
+    dispatch(setSelectedChat(""));
+  };
   return (
     <>
       {selectedChat ? (
@@ -111,6 +117,7 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
               <div className="flex flex-col w-[86%] h-[720px] bg-neutral-100 max-md:ml-0 max-md:w-full">
                 <div className="flex gap-5 justify-between items-center px-7 py-3.5 w-full bg-white max-md:flex-wrap max-md:px-5 max-md:max-w-full">
                   <div className="flex gap-5 justify-center self-stretch font-medium max-md:flex-wrap">
+                  <button onClick={handleBackButtonClick}>Back</button>
                     <img
                       loading="lazy"
                       srcSet="..."
@@ -137,7 +144,7 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
                     <Spinner />
                   ) : (
                     <div>
-                      <ScrollableChat />
+                      <ScrollableChat messages={messages}/>
                     </div>
                   )}
                 </div>

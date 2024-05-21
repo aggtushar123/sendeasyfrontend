@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { searchUser } from "../../../features/auth/authSlice";
+import { searchUser, emptySearch } from "../../../features/auth/authSlice";
 import { accessChat, fetchChats, reset } from "../../../features/chats/chatSlice";
 import Spinner from "../../Spinner";
 
@@ -34,6 +34,7 @@ function SearchSideDrawer() {
   const handleAccessChat = async (userId) => {
     try {
       await dispatch(accessChat(userId)).unwrap();
+      dispatch(emptySearch())
     } catch (error) {
       console.error("Failed to access chat:", error);
     }
@@ -63,7 +64,7 @@ function SearchSideDrawer() {
             </button>
           </div>
 
-          <div className="flex flex-col pt-10 pr-9 pb-6 pl-3 mt-3.5 w-full rounded-3xl bg-neutral-100 leading-[158.5%] max-md:pr-5 max-md:max-w-full">
+          <div>
             {isLoadingAuth || isLoadingChat ? (
               <Spinner />
             ) : (

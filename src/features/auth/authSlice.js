@@ -141,6 +141,9 @@ export const authSlice = createSlice({
       state.message = '';
       state.isVerified = false;
     },
+    emptySearch: (state) =>{
+      state.searchResult = [];
+    }
   },
   extraReducers: (builder) => {
     builder
@@ -255,5 +258,5 @@ export const authSlice = createSlice({
 
   },
 });
-export const { reset } = authSlice.actions;
+export const { reset, emptySearch } = authSlice.actions;
 export default authSlice.reducer;
