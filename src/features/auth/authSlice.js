@@ -7,6 +7,7 @@ const user = JSON.parse(localStorage.getItem('user'));
 const initialState = {
   user: user ? user : null,
   gUser: null,
+  searchResult:[],
   isVerified: false,
   isError: false,
   isSuccess: false,
@@ -51,6 +52,24 @@ export const getUser = createAsyncThunk(
   async (userId, thunkAPI) => {
     try {
       return await authService.getUser(userId);
+    } catch (error) {
+      const message =
+        (error.response &&
+          error.response.data &&
+          error.response.data.message) ||
+        error.message ||
+        error.toString();
+      return thunkAPI.rejectWithValue(message);
+    }
+  }
+);
+export const searchUser = createAsyncThunk(
+  "auth/searchUser",
+  async (searchData, thunkAPI) => {
+    try {
+      const token = thunkAPI.getState().auth.user.token;
+
+      return await authService.searchUser(searchData, token);
     } catch (error) {
       const message =
         (error.response &&
@@ -122,6 +141,9 @@ export const authSlice = createSlice({
       state.message = '';
       state.isVerified = false;
     },
+    emptySearch: (state) =>{
+      state.searchResult = [];
+    }
   },
   extraReducers: (builder) => {
     builder
@@ -205,6 +227,20 @@ export const authSlice = createSlice({
         state.isError = true;
         state.message = action.payload;
       })
+      .addCase(searchUser.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(searchUser.fulfilled, (state, action) => {
+       
+        state.isLoading = false;
+        state.isSuccess = true;
+        state.searchResult = action.payload;
+      })
+      .addCase(searchUser.rejected, (state, action) => {
+        state.isLoading = false;
+        state.isError = true;
+        state.message = action.payload;
+      })
       .addCase(updateUser.pending, (state) => {
         state.isLoading = true;
       })
@@ -222,5 +258,5 @@ export const authSlice = createSlice({
 
   },
 });
-export const { reset } = authSlice.actions;
+export const { reset, emptySearch } = authSlice.actions;
 export default authSlice.reducer;

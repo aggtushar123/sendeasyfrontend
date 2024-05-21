@@ -114,12 +114,12 @@ function Sidebar() {
           </Link>
 
           {/* NOTIFICATIONS */}
-          <Link
+          {/* <Link
             className="flex items-center justify-center self-center mt-4 w-[160px] h-[43px] font-medium text-center bg-indigo-100 rounded-[31px] max-md:px-5 "
             to="notification"
           >
             Notifications
-          </Link>
+          </Link> */}
 
           {/* CHATS */}
 

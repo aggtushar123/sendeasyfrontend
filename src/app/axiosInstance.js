@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const baseURL = 'https://sendeasy-backend.onrender.com'; // Update with your API base URL
+const baseURL = process.env.REACT_APP_API_URL
 
 const axiosInstance = axios.create({
   baseURL,

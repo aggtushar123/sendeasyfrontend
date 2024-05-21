@@ -27,6 +27,7 @@ import TravelerDetails from "./pages/TravelerDetails";
 import GoogleAuthSuccess from "./components/GoogleAuthSuccess";
 import LuggageDetails from "./pages/LuggageDetails";
 import EditTraveler from "./pages/EditTravelerListing";
+import Editluggage from "./pages/EditLuggageListing";
 function App() {
 
   return (
@@ -59,6 +60,7 @@ function App() {
           <Route path="/travelerListing" element={<TravelerListing />} />
           <Route path="/travelerListing/travelerdetails" element={<TravelerDetails />} />
           <Route path="/edittravelerListing" element={<EditTraveler/>} />
+          <Route path="/editluggageListing" element={<EditTraveler/>} />
           <Route path="/luggageListing" element={<LuggageListing />} />
           <Route path="/luggageListing/luggagedetails" element={<LuggageDetails />} />
           <Route path="/createTraveler" element={<PrivateRoute />}>

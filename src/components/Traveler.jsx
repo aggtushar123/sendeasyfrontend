@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getUser } from "../features/auth/authSlice";
 
@@ -11,7 +11,7 @@ const Traveler = () => {
   const { travelers, isLoading, isError, isSuccess, message } = useSelector(
     (state) => state.listing
   );
-  console.log(travelers);
+
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const handleClick = (traveler) => {
@@ -32,13 +32,14 @@ const Traveler = () => {
   useEffect(() => {
     // Fetch user details for each traveler in ongoing trips
     const fetchUserDetails = async () => {
-      for (const traveler of ongoingTripsData) {
-        if (!userDetails[traveler.user]) {
-          const action = await dispatch(getUser(traveler.user));
+      for (const i of ongoingTripsData) {
+        if (!userDetails[i.user]) {
+          const action = await dispatch(getUser(i.user));
+          
           if (action.payload) {
             setUserDetails((prevDetails) => ({
               ...prevDetails,
-              [traveler.user]: action.payload,
+              [i.user]: action.payload,
             }));
           }
         }
@@ -55,22 +56,25 @@ const Traveler = () => {
         .slice(0, showAllTravelerListings ? ongoingTripsData.length : 2)
         .map((traveler) => {
           const userDetail = userDetails[traveler.user];
-          
+         
           return (
             <div
               key={traveler.id}
+              onClick={() => handleClick(traveler)}
               className="flex gap-5 justify-between items-start px-7 pt-7 pb-12 mt-16 mb-10 w-full bg-gray-100 max-w-[1239px] rounded-[38px] max-md:flex-wrap max-md:px-5 max-md:mt-10 max-md:max-w-full"
             >
               <div className="flex flex-col pr-4 max-md:ml-0 max-md:w-full">
                 <div className="flex gap-5 justify-between max-md:mt-10">
-                <div className="flex flex-col items-center font-semibold">
+                <div 
+                
+                className="flex flex-col items-center font-semibold">
                     <img
                       loading="lazy"
                       srcSet="..."
                       className="aspect-[1.03] w-[86px]"
                     />
                     <div className="self-stretch mt-1 text-base leading-6 text-sky-400">
-                    
+                    {userDetail?.fName ?? " "}
                     </div>
                     <div className="flex gap-0.5 mt-2.5 text-xs leading-loose text-slate-900">
                       <img
@@ -190,11 +194,14 @@ const Traveler = () => {
                       src="https://cdn.builder.io/api/v1/image/assets/TEMP/05837094a9bbfcd0543d8bfad4056edf315ad88eb2b9e1174c7cff73a4b0c171?"
                       className="shrink-0 w-8 aspect-square"
                     />
+                  
                     <img
                       loading="lazy"
                       src="https://cdn.builder.io/api/v1/image/assets/TEMP/29daa0f8450483a2071e63756aba7eeb8d4d4067f2db7427c7c150e8c797d74d?"
                       className="shrink-0 w-8 aspect-square"
                     />
+                    
+                    
                   </div>
                 </div>
                 <div className="flex gap-2 px-3 py-3.5 mt-6 text-base font-medium text-center text-white bg-sky-400 rounded-[31px]">
@@ -204,7 +211,7 @@ const Traveler = () => {
                     className="shrink-0 w-6 aspect-square"
                   />
                   <button
-                    onClick={() => handleClick(traveler)}
+                    
                     className="flex-auto my-auto"
                   >
                     Contact Now
