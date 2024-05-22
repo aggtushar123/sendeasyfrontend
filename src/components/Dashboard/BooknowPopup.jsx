@@ -4,6 +4,8 @@ import Traveler from "../assets/Profile/Traveler.svg";
 import { Link } from "react-router-dom";
 
 const BookNowPopup = (state) => {
+
+    
   return (
     <div>
     

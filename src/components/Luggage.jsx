@@ -36,6 +36,7 @@ function LuggageListing() {
   };
   const handleContactNow = (userId) =>{
     console.log(userId)
+    navigate('/dashboard/chats')
   }
   const travelerList = Array.isArray(traveler) ? traveler : []; 
   useEffect(() => {

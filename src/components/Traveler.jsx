@@ -76,6 +76,7 @@ const Traveler = () => {
 
   const handleContactNow = (userId) => {
     console.log(userId);
+    navigate('/dashboard/chats')
   };
 
   return (

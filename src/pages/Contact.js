@@ -8,50 +8,43 @@ const contact = () => {
   return (
     <div className='flex flex-col items-center pt-8 rounded-[29px]'>
       <div className='justify-between px-5 mt-16 max-w-full w-[745px] max-md:mt-10'>
-        <div className='flex gap-5 max-md:flex-col max-md:gap-0'>
-          <div className='flex flex-col w-[33%] max-md:ml-0 max-md:w-full'>
-            <div className='flex flex-col grow items-center text-center rounded-2xl text-slate-900'>
-              <img loading='lazy' src={office} className='w-8 aspect-square' />
-              <div className='mt-2.5 text-xl font-semibold leading-7'>
-                Office
-              </div>
-              <div className='self-stretch mt-2.5 text-base leading-6'>
-                Duis aute irure dolor in reprehenderit in voluptate velit esse
-                cillum dolore eu fugiat n
-              </div>
-            </div>
-          </div>
-          <div className='flex flex-col ml-5 w-[33%] max-md:ml-0 max-md:w-full'>
-            <div className='flex flex-col px-20 text-center rounded-2xl text-slate-900 max-md:px-5'>
+       
+        <div className="justify-between max-w-[745px]">
+      <div className="flex gap-5 max-md:flex-col max-md:gap-0">
+        <div className="flex flex-col w-6/12 max-md:ml-0 max-md:w-full">
+          <div className="flex grow justify-center items-center px-16 text-center rounded-2xl text-slate-900 max-md:px-5">
+            <div className="flex flex-col items-center max-w-full w-[116px]">
               <img
-                loading='lazy'
-                src={phone}
-                className='self-center w-8 aspect-square'
+                loading="lazy"
+                src="https://cdn.builder.io/api/v1/image/assets/TEMP/63dd1dda038054991f54aeb3bd7c10b9c1243483ca8df0420fa282f2adb0d29b?"
+                className="w-8 aspect-square"
               />
-              <div className='mt-2.5 text-xl font-semibold leading-7 max-md:mr-0.5'>
+              <div className="mt-2.5 text-xl font-semibold leading-7">
                 Phone
               </div>
-              <div className='mt-2.5 text-base leading-6 max-md:mr-0.5'>
-                +123456790+123456790
-              </div>
-            </div>
-          </div>
-          <div className='flex flex-col ml-5 w-[33%] max-md:ml-0 max-md:w-full'>
-            <div className='flex flex-col items-center px-8 text-center whitespace-nowrap rounded-2xl text-slate-900 max-md:px-5'>
-              <img
-                loading='lazy'
-                src={location}
-                className='w-8 aspect-square'
-              />
-              <div className='mt-2.5 text-xl font-semibold leading-7'>
-                Location
-              </div>
-              <div className='self-stretch mt-2.5 text-base leading-6'>
-                hello@yourewebsite.com
+              <div className="self-stretch mt-2.5 text-base leading-6">
+                +91 7973426726
               </div>
             </div>
           </div>
         </div>
+        <div className="flex flex-col ml-5 w-6/12 max-md:ml-0 max-md:w-full">
+          <div className="flex flex-col grow items-center px-20 text-center whitespace-nowrap rounded-2xl text-slate-900 max-md:px-5">
+            <img
+              loading="lazy"
+              src="https://cdn.builder.io/api/v1/image/assets/TEMP/2bed6b93e0f6827dbf0b317b3e3461dce36069636396e15993c6eb1e39d39af4?"
+              className="w-8 aspect-square"
+            />
+            <div className="mt-2.5 text-xl font-semibold leading-7">
+              Location
+            </div>
+            <div className="mt-2.5 text-base leading-6">
+              sendalong93@gmail.com
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
       </div>
       <div className='mt-32 text-xs font-semibold tracking-wide text-sky-400 uppercase max-md:mt-10'>
         contact form
@@ -127,11 +120,11 @@ const contact = () => {
       <div className='mt-5 text-4xl font-semibold leading-10 text-center text-sky-400 max-md:max-w-full'>
         You've got questions. we've got answers.
       </div>
-      <div className='flex flex-col p-8 mt-16 max-w-full bg-gray-100 rounded-xl w-[750px] max-md:px-5 max-md:mt-10'>
+      <div className='flex flex-col p-8 mt-16 mb-28 max-w-full bg-gray-100 rounded-xl w-[750px] max-md:px-5 max-md:mt-10'>
         <Accordion />
       </div>
 
-      <div className='flex flex-col items-center px-20 mt-32 max-w-full font-semibold text-slate-900 w-[1140px] max-md:px-5 max-md:mt-10'>
+      {/* <div className='flex flex-col items-center px-20 mt-32 max-w-full font-semibold text-slate-900 w-[1140px] max-md:px-5 max-md:mt-10'>
         <div className='text-xs tracking-wide uppercase'>contact us</div>
         <div className='mt-5 text-4xl text-center text-sky-400 max-md:max-w-full'>
           Get in touch
@@ -151,7 +144,7 @@ const contact = () => {
           referrerpolicy='no-referrer-when-downgrade'
           className='my-10 rounded-xl'
         ></iframe>
-      </div>
+      </div> */}
     </div>
   );
 };
