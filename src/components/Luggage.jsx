@@ -2,17 +2,27 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getUser } from "../features/auth/authSlice";
+import { getTravelers } from "../features/listing/listingSlice";
+import TravelerModal from "./Dashboard/TravelerModal";
+import cross from "../components/assets/Login/crossIcon.svg";
 
 function LuggageListing() {
   const [currentTraveler, setCurrentTraveler] = useState(null);
   const [showAllLuggageListings, setShowAllLuggageListings] = useState(false);
   const [ongoingTripsData, setOngoingTripsData] = useState([]);
   const [userDetails, setUserDetails] = useState({});
-  const { luggageListings, isLoading, isError, isSuccess, message } =
+  const [showModal, setShowModal] = useState(false)
+  const [showAllOngoingListings, setShowAllOngoingListings] = useState(false);
+  const [createdTravelerList, setCreatedTravelerList] = useState([])
+  const { luggageListings, traveler, isLoading, isError, isSuccess, message } =
     useSelector((state) => state.listing);
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(getTravelers());
+  }, [dispatch]);
+
   const handleClick = (luggage) => {
     dispatch(getUser(luggage.user));
     setCurrentTraveler(luggage); // Set the current traveler
@@ -20,16 +30,29 @@ function LuggageListing() {
       state: { luggageDetails: luggage },
     });
   };
+  const handleBookNow = () => {
+    setShowModal(true)
+  };
+  const handleContactNow = (userId) =>{
+    console.log(userId)
+  }
+  const travelerList = Array.isArray(traveler) ? traveler : []; 
   useEffect(() => {
     // Filter the travelerList to get only ongoing trips data
     const filteredOngoingTrips = luggageListings.filter(
       (travel) => travel.trips === "created"
     );
-    
+
     setOngoingTripsData(filteredOngoingTrips);
-  
   }, [luggageListings]);
 
+  useEffect(()=> {
+    const filteredCreatedTravelerTrips = travelerList.filter(
+      (travel) => travel.trips === "created"
+    );
+    setCreatedTravelerList(filteredCreatedTravelerTrips)
+  }, [travelerList])
+ 
 
   useEffect(() => {
     // Fetch user details for each traveler in ongoing trips
@@ -37,7 +60,7 @@ function LuggageListing() {
       for (const i of ongoingTripsData) {
         if (!userDetails[i.user]) {
           const action = await dispatch(getUser(i.user));
-          
+
           if (action.payload) {
             setUserDetails((prevDetails) => ({
               ...prevDetails,
@@ -53,13 +76,72 @@ function LuggageListing() {
   }, [ongoingTripsData, dispatch, userDetails]);
 
   return (
-    <div>
+    <>
+      {showModal && (
+        <form className="flex justify-center items-center">
+          <div className="fixed inset-0 z-10 w-screen overflow-y-auto">
+            <div className="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
+              <div className="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div>
+              <div className="relative transform overflow-hidden rounded-2xl bg-white text-left shadow-xl transition-all sm:my-8 sm:max-w-4xl py-2">
+                <div
+                  className="absolute left-[750px] top-4 cursor-pointer"
+                  onClick={() => {
+                    setShowModal(false);
+                  }}
+                >
+                  <img src={cross} alt="" />
+                </div>
+                
+                  <div className="flex flex-col px-4 py-11 bg-white max-w-[980px] rounded-[51px] max-md:px-5">
+                    <div className="self-center text-xl font-semibold leading-7 text-center text-slate-900">
+                      Created Listings
+                    </div>
+                   
+                      {createdTravelerList
+                      .slice(
+                        0,
+                        showAllOngoingListings ? createdTravelerList.length : 2
+                      )
+                      .map((travel) => (
+                        <TravelerModal
+                          key={travel.id}
+                          travel={travel}
+                          status="created"
+                        />
+                      ))}
+                      <>
+                      {(createdTravelerList.length) === 0 && (
+                        console.log("empty")  )} 
+                      </>
+                      
+                    {(createdTravelerList.length) > 2 && (
+                      <button
+                        onClick={() =>
+                          setShowAllOngoingListings(!showAllOngoingListings)
+                        }
+                        type="button"
+                        className="justify-center items-center self-center px-16 py-5 mt-7 max-w-full text-xl font-medium text-center text-sky-400 bg-white border-2 border-sky-400 border-solid rounded-[31px] w-[349px] max-md:px-5"
+                      >
+                        {showAllLuggageListings ? "Show Less" : "Show More"}
+                      </button>
+                    )}
+                  </div>
+                
+               
+                
+              </div>
+            </div>
+          </div>
+        </form>
+      )}
+      <div>
       {ongoingTripsData
-      .slice(0, showAllLuggageListings ? ongoingTripsData.length : 2)
-      .map((luggage) => {
+        .slice(0, showAllLuggageListings ? ongoingTripsData.length : 2)
+        .map((luggage) => {
           const userDetail = userDetails[luggage.user];
-          console.log(userDetail)
-          return (<div
+     
+          return (
+            <div
               key={luggage.id}
               onClick={() => handleClick(luggage)}
               className="flex gap-5 justify-between items-start px-7 pt-7 pb-12 mt-16 mb-10 w-full bg-gray-100 max-w-[1239px] rounded-[38px] max-md:flex-wrap max-md:px-5 max-md:mt-10 max-md:max-w-full"
@@ -73,7 +155,7 @@ function LuggageListing() {
                       className="aspect-[1.03] w-[86px]"
                     />
                     <div className="self-stretch mt-1 text-base leading-6 text-sky-400">
-                    {userDetail?.fName ?? " "}
+                      {userDetail?.fName ?? " "}
                     </div>
                     <div className="flex gap-0.5 mt-2.5 text-xs leading-loose text-slate-900">
                       <img
@@ -159,39 +241,67 @@ function LuggageListing() {
                             />
                           </div>
                         </div>
-                        <div className="flex gap-2 px-3 py-3.5 mt-4 text-base font-medium text-center text-white bg-sky-400 rounded-[31px]">
+                        <div
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            handleBookNow();
+                          }}
+                          className="flex gap-2 px-3 py-3.5 mt-4 text-base font-medium text-center text-white bg-sky-400 rounded-[31px]"
+                        >
+                          <button
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              handleBookNow();
+                            }}
+                            className="flex-auto my-auto"
+                          >
+                            Book Now
+                          </button>
+                        </div>
+                        <div
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            handleBookNow();
+                          }}
+                          className="flex gap-2 px-3 py-3.5 mt-4 text-base font-medium text-center text-white bg-sky-400 rounded-[31px]"
+                        >
                           <img
                             loading="lazy"
                             src="https://cdn.builder.io/api/v1/image/assets/TEMP/73552b36b8c3d58faba037db1fd35fff9dc2b0b3fe363beda8f6703a660968fc?"
                             className="shrink-0 w-6 aspect-square"
                           />
-                   
+
                           <button
-                    
-                    className="flex-auto my-auto"
-                  >
-                    Contact Now
-                  </button>
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              handleContactNow(userDetail._id)
+                            }}
+                            className="flex-auto my-auto"
+                          >
+                            Contact Now
+                          </button>
                         </div>
                       </div>
                     </div>
                   </div>
                 </div>
               </div>
-            </div>)
-          
+            </div>
+          );
         })}
       {ongoingTripsData.length > 2 && (
         <div className="flex justify-center mb-20">
-        <button
-          onClick={() => setShowAllLuggageListings(!showAllLuggageListings)}
-          className="justify-center items-center px-16 py-5 mt-20 mb-20 max-w-full text-xl font-medium text-center text-sky-400 bg-white border-2 border-sky-400 border-solid rounded-[31px] w-[349px] max-md:px-5 max-md:mt-10"
-        >
-          {showAllLuggageListings ? "Show Less" : "Show More"}
-        </button>
+          <button
+            onClick={() => setShowAllLuggageListings(!showAllLuggageListings)}
+            className="justify-center items-center px-16 py-5 mt-20 mb-20 max-w-full text-xl font-medium text-center text-sky-400 bg-white border-2 border-sky-400 border-solid rounded-[31px] w-[349px] max-md:px-5 max-md:mt-10"
+          >
+            {showAllLuggageListings ? "Show Less" : "Show More"}
+          </button>
         </div>
       )}
     </div>
+    </>
+    
   );
 }
 
