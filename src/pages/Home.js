@@ -12,6 +12,7 @@ import CountUpComponent from '../components/CountUp';
 import Card from '../components/Card';
 import Newsletter from '../components/Newsletter';
 import TravellerShipper from '../components/TravellerShipper';
+import AboutUsCard from '../components/AboutUsCard';
 function Home1() {
   return (
     <div className='flex flex-col items-center pt-20 rounded-[29px]'>
@@ -37,15 +38,15 @@ function Home1() {
             </div>
           </div>
         </div>
-        <div className='self-start mt-32 ml-7 text-4xl font-semibold text-sky-400 max-md:mt-10 max-md:ml-2.5'>
+        <div className='mt-32 ml-7 text-4xl font-semibold text-sky-400 max-md:mt-10 max-md:ml-2.5'>
           How it works
-          <div className='self-end mt-12 text-base text-slate-900 max-md:mt-10 max-md:max-w-full font-normal'>
+          {/* <div className='self-end mt-12 text-base text-slate-900 max-md:mt-10 max-md:max-w-full font-normal'>
             dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
             incididunt ut labore et dolore magna aliqua. Ut enim ad minim
             veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex
             ea commodo consequat. Duis aute irure dolor in reprehenderit in
             voluptate velit esse cillum dolore eu fugiat nulla pariatur. 
-          </div>
+          </div> */}
         </div>
 
         <div className='mt-16 max-w-full w-[1131px] max-md:mt-10'>
@@ -113,13 +114,13 @@ function Home1() {
         </div>
         <div className='flex gap-5 justify-between mt-6 max-w-full text-base text-center text-slate-900 w-[1127px] max-md:flex-wrap'>
           <div className='w-[292px]'>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit
+          Save sitting at home or earn while you travel
           </div>
           <div className='w-[292px]'>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit
+          0 wait time!! Delivery begins as soon as you handover the package
           </div>
           <div className='w-[292px]'>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit
+          Reduce pollution by cutting down on logistics related trips
           </div>
         </div>
         <CountUpComponent />
@@ -133,7 +134,7 @@ function Home1() {
           <Card />
           <Card />
         </div>
-        <div className='max-w-[996px] mt-20'>
+        {/* <div className='max-w-[996px] mt-20'>
           <div className='flex gap-5 max-md:flex-col max-md:gap-0'>
             <div className='flex flex-col w-6/12 max-md:ml-0 max-md:w-full'>
               <div className='flex flex-col px-5 text-sky-400 max-md:mt-10 max-md:max-w-full'>
@@ -161,9 +162,26 @@ function Home1() {
               />
             </div>
           </div>
+        </div> */}
+        <div className='mt-20 text-4xl font-semibold leading-10 text-center text-sky-400 max-md:mt-10 max-md:max-w-full '>
+        Get to know our team
+      </div>
+      <div className='mt-5 px-20 text-base leading-5 text-center text-slate-900 max-md:max-w-full w-[80%]'>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+        veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
+      </div>
+      <div className='px-5 max-w-full w-[915px] max-md:mt-10'>
+        <div className='flex gap-5 max-md:flex-col max-md:gap-0'>
+          <div className='w-full flex space-x-12 overflow-x-scroll p-12 snap-x snap-mandatory mt-20 '>
+            <AboutUsCard />
+            <AboutUsCard />
+            <AboutUsCard />
+          </div>
         </div>
+      </div>
 
-        <Newsletter />
+        {/* <Newsletter /> */}
       </div>
     </div>
   );

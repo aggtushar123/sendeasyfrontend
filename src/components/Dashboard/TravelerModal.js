@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { updateTravelerTripsStatus } from "../../features/listing/listingSlice";
+import { addNotification } from "../../features/message/messageSlice";
 
 const TravelerModal = ({ travel, status }) => {
   const [tripStatus, setTripStatus] = useState({ trips: "" });
@@ -17,6 +18,7 @@ const TravelerModal = ({ travel, status }) => {
   };
   const handleSendDetails = (details) => {
     console.log(details)
+    // dispatch(addNotification(details))
   }
 
   const dispatchUpdate = (updatedStatus) => {

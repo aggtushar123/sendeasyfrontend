@@ -9,12 +9,12 @@ import PastLuggageTrips from "./PastLuggageTrips";
 import cross from "../../components/assets/Login/crossIcon.svg";
 import Luggage from "../assets/Profile/Luggage.svg";
 import Traveler from "../assets/Profile/Traveler.svg";
+import CreateListingPopup from "./CreateListingPopup";
 
 function Profile() {
   const { user } = useSelector((state) => state.auth);
-  const { traveler, luggage, isLoading, isError, isSuccess, message } = useSelector(
-    (state) => state.listing
-  );
+  const { traveler, luggage, isLoading, isError, isSuccess, message } =
+    useSelector((state) => state.listing);
   const [showModal, setShowModal] = useState(false);
   const [showAllTravelerListings, setShowAllTravelerListings] = useState(false);
   const [showAllLuggageListings, setShowAllLuggageListings] = useState(false);
@@ -46,10 +46,10 @@ function Profile() {
                 >
                   <img src={cross} alt="" />
                 </div>
-                <div className="bg-white px-4 pb-4  sm:p-6 sm:pb-4">
+                <div>
                   <div className="sm:flex items-center">
-                    <div className="mt-3 text-left px-4 sm:mt-0 ">
-                      <h3
+                    <div className="flex flex-col px-4 py-11 bg-white max-w-[980px] rounded-[51px] max-md:px-5">
+                      {/* <h3
                         className="font-semibold leading-6 text-gray-900"
                         id="modal-title"
                       >
@@ -90,15 +90,9 @@ function Profile() {
                             </Link>
                           </div>
                         </div>
-                      </h3>
-                      <div className="relative mt-5 mx-5">
-                        <div
-                          className="absolute inset-y-0 left-0 pl-3  
-                      flex items-center  
-                      pointer-events-none"
-                        ></div>
-                      </div>
-
+                      </h3> */}
+                      <CreateListingPopup/>
+                    
                       <div>
                         {/* <button className="justify-center items-center self-center px-16 py-4 mt-10  ml-8 max-w-full text-base font-bold tracking-wide text-center text-white whitespace-nowrap bg-sky-400 rounded-[29px] w-[278px] ">
                           Next
@@ -197,7 +191,10 @@ function Profile() {
                       if (travel.trips === "finished") {
                         // Check if the trip is ongoing
                         return (
-                          <PastTravelerTrips key={travel.id} tripData={travel} />
+                          <PastTravelerTrips
+                            key={travel.id}
+                            tripData={travel}
+                          />
                         ); // Render the Trips component
                       }
                       return null; // Skip rendering if the trip is not ongoing
@@ -224,15 +221,18 @@ function Profile() {
                 <>
                   {luggageList
                     .slice(0, showAllLuggageListings ? luggageList.length : 2)
-                  .map((luggage) => {
-                    if (luggage.trips === "finished") {
-                      // Check if the trip is ongoing
-                      return (
-                        <PastLuggageTrips key={luggage.id} luggage={luggage} />
-                      ); // Render the Trips component
-                    }
-                    return null; // Skip rendering if the trip is not ongoing
-                  })}
+                    .map((luggage) => {
+                      if (luggage.trips === "finished") {
+                        // Check if the trip is ongoing
+                        return (
+                          <PastLuggageTrips
+                            key={luggage.id}
+                            luggage={luggage}
+                          />
+                        ); // Render the Trips component
+                      }
+                      return null; // Skip rendering if the trip is not ongoing
+                    })}
                 </>
               )}
               {luggageList.length > 2 && (

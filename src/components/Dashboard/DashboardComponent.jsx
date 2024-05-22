@@ -9,12 +9,14 @@ import LuggageModal from "./LuggageModal"
 import LuggageTrips from "./LuggageTrips";
 import cross from "../../components/assets/Login/crossIcon.svg";
 import TravelerModal from "./TravelerModal";
+import CreateListingPopup from "./CreateListingPopup";
 function DashboardComponent() {
   const dispatch = useDispatch();
   let navigate = useNavigate();
 
   const showModal = useSelector((state) => state.modal.showModal);
   const modalType = useSelector((state) => state.modal.modalType);
+  const [showCreateListingModal, setShowCreateListingModal] = useState(false)
 
   const ongoingTripsData = useSelector((state) => state.modal.ongoingTripsData);
   const finishedTripsData = useSelector((state) => state.modal.finishedTripsData);
@@ -152,8 +154,8 @@ function DashboardComponent() {
     dispatch(setShowModal(false));
     window.location.reload()
   };
-  const onClick = () => {
-    navigate("/createTraveler");
+  const handleCreateListing = () => {
+    setShowCreateListingModal(true)
   };
   return (
     <>
@@ -308,6 +310,44 @@ function DashboardComponent() {
           </div>
         </form>
       )}
+      {showCreateListingModal && (
+        <form className="flex justify-center items-center">
+          <div className="fixed inset-0 z-10 w-screen overflow-y-auto">
+            <div className="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
+              {" "}
+              <div className="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div>
+              <div className="relative transform overflow-hidden rounded-2xl bg-white text-left shadow-xl transition-all sm:my-8 sm:max-w-lg py-12 ">
+                <div
+                  className="absolute left-[450px] top-4 cursor-pointer"
+                  onClick={() => {
+                    setShowCreateListingModal(false);
+                  }}
+                >
+                  <img src={cross} alt="" />
+                </div>
+                <div>
+                  <div className="sm:flex items-center">
+                    <div className="mt-3 text-left px-4 sm:mt-0 ">
+                      <CreateListingPopup/>
+                      <div className="relative mt-5 mx-5">
+                        <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none"></div>
+                      </div>
+
+                      <div>
+                        {/* <button className="justify-center items-center self-center px-16 py-4 mt-10  ml-8 max-w-full text-base font-bold tracking-wide text-center text-white whitespace-nowrap bg-sky-400 rounded-[29px] w-[278px] ">
+                          Next
+                        </button> */}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div className=" px-4 py-3 sm:flex sm:flex-row-reverse sm:px-6"></div>
+              </div>
+            </div>
+          </div>
+        </form>
+      )}
+
       <div className="flex flex-col  rounded-[29px]">
         <div className="flex flex-col items-center self-center mt-5 w-full max-w-[1296px] max-md:mt-10 max-md:max-w-full">
           <div className="flex gap-5 self-stretch max-md:flex-wrap">
@@ -432,7 +472,7 @@ function DashboardComponent() {
                     )}
                   </div>
                   <button
-                    onClick={onClick}
+                    onClick={handleCreateListing}
                     className="flex flex-col ml-5 w-[17%] max-md:ml-0 max-md:w-full"
                   >
                     <div className="flex flex-col  px-7 py-20 w-full text-base font-medium text-center capitalize bg-gray-100 rounded-[31px] text-stone-300 max-md:px-5 max-md:mt-1">
