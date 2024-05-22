@@ -5,7 +5,8 @@ import { getUser } from "../features/auth/authSlice";
 import { getTravelers } from "../features/listing/listingSlice";
 import TravelerModal from "./Dashboard/TravelerModal";
 import cross from "../components/assets/Login/crossIcon.svg";
-
+import CreateListingPopup from "./Dashboard/CreateListingPopup";
+import BookNowPopup from "./Dashboard/BooknowPopup";
 function LuggageListing() {
   const [currentTraveler, setCurrentTraveler] = useState(null);
   const [showAllLuggageListings, setShowAllLuggageListings] = useState(false);
@@ -91,7 +92,11 @@ function LuggageListing() {
                 >
                   <img src={cross} alt="" />
                 </div>
-                
+                {createdTravelerList.length === 0 ? (
+                  <div className="flex flex-col px-4 py-11 bg-white max-w-[980px] rounded-[51px] max-md:px-5">
+                  <BookNowPopup state={"luggage"} />
+                  </div>
+                ) : (
                   <div className="flex flex-col px-4 py-11 bg-white max-w-[980px] rounded-[51px] max-md:px-5">
                     <div className="self-center text-xl font-semibold leading-7 text-center text-slate-900">
                       Created Listings
@@ -126,7 +131,7 @@ function LuggageListing() {
                       </button>
                     )}
                   </div>
-                
+                )}
                
                 
               </div>

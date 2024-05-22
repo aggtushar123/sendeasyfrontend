@@ -120,23 +120,7 @@ const contact = () => {
         Send Message
       </button>
 
-      <div className='mt-20 text-4xl font-semibold leading-10 text-center text-sky-400 max-md:mt-10 max-md:max-w-full '>
-        Get to know our team
-      </div>
-      <div className='mt-5 px-20 text-base leading-5 text-center text-slate-900 max-md:max-w-full w-[80%]'>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-        veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-      </div>
-      <div className='px-5 max-w-full w-[915px] max-md:mt-10'>
-        <div className='flex gap-5 max-md:flex-col max-md:gap-0'>
-          <div className='w-full flex space-x-12 overflow-x-scroll p-12 snap-x snap-mandatory mt-20 '>
-            <AboutUsCard />
-            <AboutUsCard />
-            <AboutUsCard />
-          </div>
-        </div>
-      </div>
+   
       <div className='mt-36 text-xs font-semibold tracking-wide text-emerald-600 uppercase max-md:mt-10'>
         Frequently Asked Questions
       </div>

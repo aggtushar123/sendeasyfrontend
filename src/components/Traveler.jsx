@@ -5,6 +5,8 @@ import { getUser } from "../features/auth/authSlice";
 import { getLuggage } from "../features/listing/listingSlice";
 import LuggageModal from "./Dashboard/LuggageModal";
 import cross from "../components/assets/Login/crossIcon.svg";
+import CreateListingPopup from "./Dashboard/CreateListingPopup";
+import BookNowPopup from "./Dashboard/BooknowPopup";
 const Traveler = () => {
   const [currentTraveler, setCurrentTraveler] = useState(null);
   const [showAllTravelerListings, setShowAllTravelerListings] = useState(false);
@@ -72,9 +74,9 @@ const Traveler = () => {
     });
   };
 
-  const handleContactNow = (userId) =>{
-    console.log(userId)
-  }
+  const handleContactNow = (userId) => {
+    console.log(userId);
+  };
 
   return (
     <>
@@ -92,38 +94,48 @@ const Traveler = () => {
                 >
                   <img src={cross} alt="" />
                 </div>
-
-                <div className="flex flex-col px-4 py-11 bg-white max-w-[980px] rounded-[51px] max-md:px-5">
-                  <div className="self-center text-xl font-semibold leading-7 text-center text-slate-900">
-                    Created Listings
+                {createdLuggageList.length === 0 ? (
+                  <div className="flex flex-col px-4 py-11 bg-white max-w-[980px] rounded-[51px] max-md:px-5">
+                  <BookNowPopup state={"travel"} />
                   </div>
+                ) : (
+                  <>
+                    <div className="flex flex-col px-4 py-11 bg-white max-w-[980px] rounded-[51px] max-md:px-5">
+                      <div className="self-center text-xl font-semibold leading-7 text-center text-slate-900">
+                        Created Listings
+                      </div>
 
-                  {createdLuggageList
-                    .slice(
-                      0,
-                      showAllOngoingListings ? createdLuggageList.length : 2
-                    )
-                    .map((luggage) => (
-                      <LuggageModal
-                        key={luggage.id}
-                        luggage={luggage}
-                        status="created"
-                      />
-                    ))}
-                  <>{createdLuggageList.length === 0 && console.log("empty")}</>
+                      {createdLuggageList
+                        .slice(
+                          0,
+                          showAllOngoingListings ? createdLuggageList.length : 2
+                        )
+                        .map((luggage) => (
+                          <LuggageModal
+                            key={luggage.id}
+                            luggage={luggage}
+                            status="created"
+                          />
+                        ))}
+                      <>
+                        {createdLuggageList.length === 0 &&
+                          console.log("empty")}
+                      </>
 
-                  {createdLuggageList.length > 2 && (
-                    <button
-                      onClick={() =>
-                        setShowAllOngoingListings(!showAllOngoingListings)
-                      }
-                      type="button"
-                      className="justify-center items-center self-center px-16 py-5 mt-7 max-w-full text-xl font-medium text-center text-sky-400 bg-white border-2 border-sky-400 border-solid rounded-[31px] w-[349px] max-md:px-5"
-                    >
-                      {showAllTravelerListings ? "Show Less" : "Show More"}
-                    </button>
-                  )}
-                </div>
+                      {createdLuggageList.length > 2 && (
+                        <button
+                          onClick={() =>
+                            setShowAllOngoingListings(!showAllOngoingListings)
+                          }
+                          type="button"
+                          className="justify-center items-center self-center px-16 py-5 mt-7 max-w-full text-xl font-medium text-center text-sky-400 bg-white border-2 border-sky-400 border-solid rounded-[31px] w-[349px] max-md:px-5"
+                        >
+                          {showAllTravelerListings ? "Show Less" : "Show More"}
+                        </button>
+                      )}
+                    </div>
+                  </>
+                )}
               </div>
             </div>
           </div>
@@ -310,7 +322,7 @@ const Traveler = () => {
                     <button
                       onClick={(e) => {
                         e.stopPropagation();
-                        handleContactNow(userDetail._id)
+                        handleContactNow(userDetail._id);
                       }}
                       className="flex-auto my-auto"
                     >
