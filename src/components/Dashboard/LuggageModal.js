@@ -16,6 +16,10 @@ const LuggageModal = ({ luggage, status }) => {
     dispatchUpdate({ trips: "finished" }); // Pass the updated status directly
   };
 
+  const handleSendDetails = (details) => {
+    console.log(details)
+  }
+
   const dispatchUpdate = (updatedStatus) => {
     dispatch(updateLuggageTripsStatus({ userId, tripStatus: updatedStatus }));
     window.location.reload()
@@ -83,6 +87,17 @@ const LuggageModal = ({ luggage, status }) => {
                 onClick={() => handleFinishTrip()}
               >
                 Trip Completed
+              </button>
+            </div>
+          )}
+          {status === "created" && (
+            <div className="flex flex-auto gap-5 justify-center items-center mt-4">
+              <button
+                type="button"
+                className="justify-center items-center px-4 py-2 text-xl font-medium text-center text-white bg-sky-400 max-w-[349px] rounded-[31px]"
+                onClick={() => handleSendDetails(luggage)}
+              >
+                Send Listing Details
               </button>
             </div>
           )}
