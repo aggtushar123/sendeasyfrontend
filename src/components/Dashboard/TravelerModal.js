@@ -1,13 +1,14 @@
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { updateTravelerTripsStatus } from "../../features/listing/listingSlice";
 import { addNotification } from "../../features/message/messageSlice";
+import { bookNowTraveler } from "../../features/auth/authSlice";
 
-const TravelerModal = ({ travel, status }) => {
+const TravelerModal = ({ userDetail, travel, status }) => {
   const [tripStatus, setTripStatus] = useState({ trips: "" });
-  const { sourceLocation, destinationLocation, user, _id } = travel;
+  const { sourceLocation, destinationLocation, _id } = travel;
   const dispatch = useDispatch();
-
+  const {user} = useSelector((state) => state.auth)
   const userId = _id;
   if (travel.length < 1) {
     console.log("O");
@@ -16,10 +17,17 @@ const TravelerModal = ({ travel, status }) => {
     setTripStatus({ trips: "finished" });
     dispatchUpdate({ trips: "finished" }); // Pass the updated status directly
   };
-  const handleSendDetails = (details) => {
-    console.log(details)
-    // dispatch(addNotification(details))
+  const handleSendDetails = async(details) => {
+    
+    try {
+      const action = await dispatch(bookNowTraveler({userId: user._id, listedId:userDetail._id, listingInfo: details, userInfo: user}))
+    console.log(action)
+    } catch (error) {
+      console.log(error)
+    }
+    
   }
+
 
   const dispatchUpdate = (updatedStatus) => {
     dispatch(updateTravelerTripsStatus({ userId, tripStatus: updatedStatus }));

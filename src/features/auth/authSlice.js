@@ -3,9 +3,11 @@ import authService from './authService';
 
 //Get user from localstorage
 const user = JSON.parse(localStorage.getItem('user'));
+const notification = user.notification;
 
 const initialState = {
   user: user ? user : null,
+  notification: notification ? notification : [],
   gUser: null,
   searchResult:[],
   isVerified: false,
@@ -47,6 +49,17 @@ export const updateUser = createAsyncThunk(
     }
   }
 );
+export const bookNowTraveler = createAsyncThunk(
+  'auth/bookNowTraveler',
+  async ({ userId, listedId, listingInfo, userInfo }, thunkAPI) => {
+    try {
+      const token = thunkAPI.getState().auth.user.token;
+      return await authService.bookNowTraveler(userId, listedId, listingInfo, userInfo, token);
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message || 'Error booking');
+    }
+  }
+);
 export const getUser = createAsyncThunk(
   'auth/getUser',
   async (userId, thunkAPI) => {
@@ -59,6 +72,20 @@ export const getUser = createAsyncThunk(
           error.response.data.message) ||
         error.message ||
         error.toString();
+      return thunkAPI.rejectWithValue(message);
+    }
+  }
+);
+
+export const getAllNotifications = createAsyncThunk(
+  'auth/getAllNotifications',
+  async ({ userId }, thunkAPI) => {
+    try {
+      
+      const token = thunkAPI.getState().auth.user.token;
+      return await authService.getAllNotifications(userId, token);
+    } catch (error) {
+      const message = error.message || 'Error getting notifications';
       return thunkAPI.rejectWithValue(message);
     }
   }
@@ -99,6 +126,26 @@ export const login = createAsyncThunk('auth/login', async (user, thunkAPI) => {
 export const logout = createAsyncThunk('auth/logout', async () => {
   await authService.logout();
 });
+
+export const deleteAllNotification = createAsyncThunk(
+  "auth/deleteAllNotification ",
+  async (userId, thunkAPI) => {
+    try {
+      
+      const token = thunkAPI.getState().auth.user.token;
+      
+      return await authService.deleteAllNotification(userId, token);
+    } catch (error) {
+      const message =
+        (error.response &&
+          error.response.data &&
+          error.response.data.message) ||
+        error.message ||
+        error.toString();
+      return thunkAPI.rejectWithValue(message);
+    }
+  }
+);
 
 export const googleLogin = createAsyncThunk('auth/google', async (thunkAPI) => {
   try {
@@ -254,7 +301,30 @@ export const authSlice = createSlice({
         state.isLoading = false;
         state.isError = true;
         state.message = action.payload;
+      })
+      .addCase(bookNowTraveler.pending, (state) => {
+        // Handle pending state if needed
+      })
+      .addCase(bookNowTraveler.fulfilled, (state, action) => {
+        // Handle successful response
+        console.log(action.payload.user.notification); 
+        state.notification = action.payload.user.notification;
+      })
+      .addCase(bookNowTraveler.rejected, (state, action) => {
+        // Handle rejection or error
+        console.error(action.error.message); // Log the error message
+      })
+      .addCase(getAllNotifications.pending, (state) => {
+        
+      })
+      .addCase(getAllNotifications.fulfilled, (state, action) => {
+        state.notification = action.payload
+       console.log(action.payload)
+      })
+      .addCase(getAllNotifications.rejected, (state, action) => {
+       
       });
+      ;
 
   },
 });

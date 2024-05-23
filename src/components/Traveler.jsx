@@ -15,6 +15,7 @@ const Traveler = () => {
   const [showModal, setShowModal] = useState(false);
   const [showAllOngoingListings, setShowAllOngoingListings] = useState(false);
   const [createdLuggageList, setCreatedLuggageList] = useState([]);
+  const [currentUser, setCurrentUser] = useState({})
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -63,7 +64,8 @@ const Traveler = () => {
     }
   }, [ongoingTripsData, dispatch, userDetails]);
 
-  const handleBookNow = () => {
+  const handleBookNow = (userDetail) => {
+    setCurrentUser(userDetail)
     setShowModal(true);
   };
   const handleClick = (traveler) => {
@@ -116,6 +118,7 @@ const Traveler = () => {
                             key={luggage.id}
                             luggage={luggage}
                             status="created"
+                            userDetail={currentUser}
                           />
                         ))}
                       <>
@@ -147,6 +150,7 @@ const Traveler = () => {
           .slice(0, showAllTravelerListings ? ongoingTripsData.length : 2)
           .map((traveler) => {
             const userDetail = userDetails[traveler.user];
+           
 
             return (
               <div
@@ -294,14 +298,14 @@ const Traveler = () => {
                   <div
                     onClick={(e) => {
                       e.stopPropagation();
-                      handleBookNow();
+                      handleBookNow(userDetail);
                     }}
                     className="flex gap-2 px-6 py-2 mt-6 text-base font-medium text-center text-white bg-sky-400 rounded-[31px]"
                   >
                     <button
                       onClick={(e) => {
                         e.stopPropagation();
-                        handleBookNow();
+                        handleBookNow(userDetail);
                       }}
                       className="flex-auto my-auto"
                     >

@@ -26,6 +26,31 @@ const updateUser = async (userId, userData) => {
     );
   }
 };
+export const bookNowTraveler = async (userId, listedId, listingInfo, userInfo, token) => {
+  try {
+    const config = {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    };
+
+    const data = {
+      userId,
+      listedId,
+      listingInfo,
+      userInfo,
+    };
+
+    const response = await axiosInstance.post(`${API_URL}booknowtraveler`, data, config);
+    console.log(response);
+    return response.data;
+  } catch (error) {
+    throw new Error(
+      error.response?.data?.message || error.message || 'Error booking'
+    );
+  }
+};
+
 const getUser = async (userId) => {
   try {
     const response = await axiosInstance.get(`${API_URL}user/${userId}`);
@@ -33,6 +58,25 @@ const getUser = async (userId) => {
   } catch (error) {
     throw new Error(
       error.response?.data?.message || error.message || 'Error getting user'
+    );
+  }
+};
+const getAllNotifications = async (userId, token) => {
+  try {
+    const config = {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    };
+    const response = await axios.get(`${API_URL}getallnotifications`, {
+      params: { userId },
+      ...config,
+    });
+    
+    return response.data;
+  } catch (error) {
+    throw new Error(
+      error.response?.data?.message || error.message || 'Error getting notifications'
     );
   }
 };
@@ -75,6 +119,17 @@ const sendOtp = async (otpData) => {
 // Logout User
 const logout = () => localStorage.removeItem('user');
 
+const deleteAllNotification = async (userId, token) => {
+  const config = {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  };
+  const response = await axios.get(`${API_URL}delete-all-notification`, {userId: userId}, config);
+
+  return response.data;
+};
+
 
 const googleLogin = async () => {
   try {
@@ -100,7 +155,10 @@ const authService = {
   googleLogin,
   updateUser,
   getUser,
-  searchUser
+  searchUser,
+  deleteAllNotification,
+  bookNowTraveler,
+  getAllNotifications
 };
 
 export default authService;

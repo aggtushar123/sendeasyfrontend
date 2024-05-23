@@ -151,7 +151,7 @@ const Trips = ({ tripData }) => {
         <button
           type="button"
           className="justify-center px-10 py-3 mt-5 text-lg font-medium text-center text-white bg-sky-400 rounded-[31px] max-md:px-5"
-          onClick={() => handleCancelTrip()}
+          onClick={() => handleStartTrip()}
         >
           Start Gig
         </button>

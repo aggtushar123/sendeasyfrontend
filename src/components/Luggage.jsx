@@ -15,7 +15,8 @@ function LuggageListing() {
   const [showModal, setShowModal] = useState(false)
   const [showAllOngoingListings, setShowAllOngoingListings] = useState(false);
   const [createdTravelerList, setCreatedTravelerList] = useState([])
-  const { luggageListings, traveler, isLoading, isError, isSuccess, message } =
+  const [currentUser, setCurrentUser] = useState({})
+  const { luggageListings, traveler , isLoading, isError, isSuccess, message } =
     useSelector((state) => state.listing);
 
   const navigate = useNavigate();
@@ -31,7 +32,8 @@ function LuggageListing() {
       state: { luggageDetails: luggage },
     });
   };
-  const handleBookNow = () => {
+  const handleBookNow = (userDetail) => {
+    setCurrentUser(userDetail)
     setShowModal(true)
   };
   const handleContactNow = (userId) =>{
@@ -79,11 +81,13 @@ function LuggageListing() {
 
   return (
     <>
+  
       {showModal && (
         <form className="flex justify-center items-center">
           <div className="fixed inset-0 z-10 w-screen overflow-y-auto">
             <div className="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
               <div className="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div>
+              
               <div className="relative transform overflow-hidden rounded-2xl bg-white text-left shadow-xl transition-all sm:my-8 sm:max-w-4xl py-2">
                 <div
                   className="absolute left-[750px] top-4 cursor-pointer"
@@ -93,6 +97,7 @@ function LuggageListing() {
                 >
                   <img src={cross} alt="" />
                 </div>
+               
                 {createdTravelerList.length === 0 ? (
                   <div className="flex flex-col px-4 py-11 bg-white max-w-[980px] rounded-[51px] max-md:px-5">
                   <BookNowPopup state={"luggage"} />
@@ -102,6 +107,7 @@ function LuggageListing() {
                     <div className="self-center text-xl font-semibold leading-7 text-center text-slate-900">
                       Created Listings
                     </div>
+                    
                    
                       {createdTravelerList
                       .slice(
@@ -113,6 +119,8 @@ function LuggageListing() {
                           key={travel.id}
                           travel={travel}
                           status="created"
+                          userDetail={currentUser}
+                          
                         />
                       ))}
                       <>
@@ -145,7 +153,9 @@ function LuggageListing() {
         .slice(0, showAllLuggageListings ? ongoingTripsData.length : 2)
         .map((luggage) => {
           const userDetail = userDetails[luggage.user];
-     
+   
+          
+          
           return (
             <div
               key={luggage.id}
@@ -250,14 +260,14 @@ function LuggageListing() {
                         <div
                           onClick={(e) => {
                             e.stopPropagation();
-                            handleBookNow();
+                            handleBookNow(userDetail);
                           }}
                           className="flex gap-2 px-3 py-3.5 mt-4 text-base font-medium text-center text-white bg-sky-400 rounded-[31px]"
                         >
                           <button
                             onClick={(e) => {
                               e.stopPropagation();
-                              handleBookNow();
+                              handleBookNow(userDetail);
                             }}
                             className="flex-auto my-auto"
                           >
