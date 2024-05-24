@@ -3,11 +3,13 @@ import { useDispatch, useSelector } from "react-redux";
 import { updateTravelerTripsStatus } from "../../features/listing/listingSlice";
 import { addNotification } from "../../features/message/messageSlice";
 import { bookNowTraveler } from "../../features/auth/authSlice";
+import { useNavigate } from "react-router-dom";
 
 const TravelerModal = ({ userDetail, travel, status }) => {
   const [tripStatus, setTripStatus] = useState({ trips: "" });
   const { sourceLocation, destinationLocation, _id } = travel;
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const {user} = useSelector((state) => state.auth)
   const userId = _id;
   if (travel.length < 1) {
@@ -21,7 +23,7 @@ const TravelerModal = ({ userDetail, travel, status }) => {
     
     try {
       const action = await dispatch(bookNowTraveler({userId: user._id, listedId:userDetail._id, listingInfo: details, userInfo: user}))
-    console.log(action)
+      navigate('/dashboard/notification')
     } catch (error) {
       console.log(error)
     }

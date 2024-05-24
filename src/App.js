@@ -28,6 +28,7 @@ import GoogleAuthSuccess from "./components/GoogleAuthSuccess";
 import LuggageDetails from "./pages/LuggageDetails";
 import EditTraveler from "./pages/EditTravelerListing";
 import Editluggage from "./pages/EditLuggageListing";
+import BookingDetails from "./pages/BookingDetails";
 function App() {
 
   return (
@@ -45,6 +46,7 @@ function App() {
               <Route path="chats" element={<Chats />} />
               <Route path="updatekyc" element={<UpdateKyc />} />
               <Route path="t&c" element={<Terms />} />
+              <Route path="bookingdetails" element={<BookingDetails/>}/>
             </Route>
           </Route>
           <Route path="/auth/google/success" element={<GoogleAuthSuccess/>}/>
@@ -55,6 +57,7 @@ function App() {
           <Route path="/contact" element={<Contact />} />
           <Route path="/login" element={<Login />} />
           <Route path="/Signup" element={<Signup />} />
+          
          
 
           <Route path="/travelerListing" element={<TravelerListing />} />

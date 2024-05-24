@@ -3,11 +3,11 @@ import authService from './authService';
 
 //Get user from localstorage
 const user = JSON.parse(localStorage.getItem('user'));
-const notification = user.notification;
+
 
 const initialState = {
   user: user ? user : null,
-  notification: notification ? notification : [],
+  notification:  [],
   gUser: null,
   searchResult:[],
   isVerified: false,

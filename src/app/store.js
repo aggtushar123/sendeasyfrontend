@@ -6,6 +6,7 @@ import modalReducer from '../features/modalSlice'
 import listingReducer from '../features/listing/listingSlice'
 import chatReducer from '../features/chats/chatSlice'
 import messageReducer from '../features/message/messageSlice'
+import bookingReducer from '../features/booking/bookingSlice';
 
 import { serializableCheck } from '@reduxjs/toolkit/query/react';
 
@@ -17,6 +18,7 @@ export const store = configureStore({
     listing: listingReducer,
     modal: modalReducer,
     chat: chatReducer,
-    message: messageReducer
+    message: messageReducer,
+    booking: bookingReducer,
   },
 });
