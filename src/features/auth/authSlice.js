@@ -177,6 +177,19 @@ export const sendOtp = createAsyncThunk(
   }
 );
 
+export const deleteUser = createAsyncThunk(
+  'auth/deleteUser',
+  async (userId, thunkAPI) => {
+    try {
+      const response = await authService.deleteUser(userId);
+      return response.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.response.data);
+    }
+  }
+);
+
+
 export const authSlice = createSlice({
   name: 'auth',
   initialState,
@@ -194,6 +207,21 @@ export const authSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
+    .addCase(deleteUser.pending, (state) => {
+      state.isLoading = true;
+      state.isError = false;
+      
+    })
+    .addCase(deleteUser.fulfilled, (state, action) => {
+      state.isLoading = false;
+      state.user = null;
+   
+    })
+    .addCase(deleteUser.rejected, (state, action) => {
+      state.isLoading = false;
+      state.isError = true;
+      state.message = action.payload.error;
+    })
       .addCase(register.pending, (state) => {
         state.isLoading = true;
         state.user = null;

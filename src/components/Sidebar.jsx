@@ -1,15 +1,26 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
-import { useSelector, useDispatch } from 'react-redux';
-import cross from '../components/assets/Login/crossIcon.svg';
+
+import React, { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import cross from "../components/assets/Login/crossIcon.svg";
+import { deleteUser } from "../features/auth/authSlice";
+
 function Sidebar() {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const [showModal, setShowModal] = useState(false);
   const { user } = useSelector((state) => state.auth);
 
   const deleteAccount = () => {
     setShowModal(true);
   };
+  const handleDeleteNo =() =>{
+    setShowModal(false)
+  }
+  const handleDeleteYes = () => {
+dispatch(deleteUser(user._id))
+navigate('/signup')
+  }
 
   return (
     <>
@@ -42,17 +53,26 @@ function Sidebar() {
                             Delete your account?{' '}
                           </span>
                         </div>
-                        <div className='flex gap-5 max-md:flex-col max-md:gap-0'>
-                          <div className='flex flex-col w-6/12 max-md:ml-0 max-md:w-full'>
-                            <div className='grow justify-center items-center px-16 py-7 mt-16 w-full text-base font-bold tracking-wide text-center text-white whitespace-nowrap bg-rose-500 rounded-[29px] max-md:px-5 max-md:mt-10'>
+
+                        <div className="flex gap-5 max-md:flex-col max-md:gap-0">
+                          <div className="flex flex-col w-6/12 max-md:ml-0 max-md:w-full">
+                            <button 
+                            type="button"
+                            onClick={handleDeleteYes}
+                            className="grow justify-center items-center px-16 py-7 mt-16 w-full text-base font-bold tracking-wide text-center text-white whitespace-nowrap bg-rose-500 rounded-[29px] max-md:px-5 max-md:mt-10">
+
                               Yes
-                            </div>
+                            </button>
                           </div>
-                          <div className='flex flex-col ml-5 w-6/12 max-md:ml-0 max-md:w-full'>
-                            <div className='grow justify-center items-center px-16 py-7 mt-16 w-full text-base font-bold tracking-wide text-center text-sky-400 whitespace-nowrap bg-white border-2 border-sky-400 border-solid rounded-[29px] max-md:px-5 max-md:mt-10'>
+
+                          <button 
+                          onClick={handleDeleteNo}
+                          className="flex flex-col ml-5 w-6/12 max-md:ml-0 max-md:w-full">
+                            <div className="grow justify-center items-center px-16 py-7 mt-16 w-full text-base font-bold tracking-wide text-center text-sky-400 whitespace-nowrap bg-white border-2 border-sky-400 border-solid rounded-[29px] max-md:px-5 max-md:mt-10">
+
                               No
                             </div>
-                          </div>
+                          </button>
                         </div>
                       </h3>
                       <div className='relative mt-5 mx-5'>
