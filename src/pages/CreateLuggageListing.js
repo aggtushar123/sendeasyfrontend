@@ -18,6 +18,7 @@ function CreateLuggage() {
     receiverNumber: "",
     receiverLocation: "",
     note: "",
+    type: "luggage",
   });
   const [travelType, setTravelType] = useState("");
   const {
@@ -32,6 +33,7 @@ function CreateLuggage() {
     receiverNumber,
     receiverLocation,
     note,
+    type
   } = luggageData;
   const dispatch = useDispatch();
   const navigate = useNavigate()
@@ -67,7 +69,7 @@ function CreateLuggage() {
         destinationLocation,
         numberOfBags,
         sourceLocation,
-       
+        
         totalWeight,
         dateRange,
         typeOfItems,
@@ -76,6 +78,7 @@ function CreateLuggage() {
         receiverNumber,
         receiverLocation,
         note,
+        type,
       };
       console.log(luggageListingData);
       try {

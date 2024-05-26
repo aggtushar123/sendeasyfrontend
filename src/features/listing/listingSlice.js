@@ -31,13 +31,31 @@ export const createTraveler = createAsyncThunk(
 );
 
 export const getTravelers = createAsyncThunk(
-  "traveler/get",
+  "traveler/getTraveler",
   async (travelerData, thunkAPI) => {
     try {
       
       const token = thunkAPI.getState().auth.user.token;
       
       return await listingService.getTraveler(token);
+    } catch (error) {
+      const message =
+        (error.response &&
+          error.response.data &&
+          error.response.data.message) ||
+        error.message ||
+        error.toString();
+      return thunkAPI.rejectWithValue(message);
+    }
+  }
+);
+
+export const getTravelersById = createAsyncThunk(
+  "traveler/getTravelerById",
+  async (id, thunkAPI) => {
+    try {
+      const token = thunkAPI.getState().auth.user.token;
+      return await listingService.getTravelerById(id, token);
     } catch (error) {
       const message =
         (error.response &&
@@ -74,6 +92,24 @@ export const getLuggage = createAsyncThunk(
     try {
       const token = thunkAPI.getState().auth.user.token;
       return await listingService.getLuggage(token);
+    } catch (error) {
+      const message =
+        (error.response &&
+          error.response.data &&
+          error.response.data.message) ||
+        error.message ||
+        error.toString();
+      return thunkAPI.rejectWithValue(message);
+    }
+  }
+);
+
+export const getLuggageById = createAsyncThunk(
+  "luggage/getLuggageById",
+  async (id, thunkAPI) => {
+    try {
+      const token = thunkAPI.getState().auth.user.token;
+      return await listingService.getLuggageById(id, token);
     } catch (error) {
       const message =
         (error.response &&
@@ -189,12 +225,31 @@ export const listingSlice = createSlice({
         state.isLoading = false;
         state.isSuccess = true;
         state.traveler = action.payload;
+        console.log(action.payload)
       })
       .addCase(getTravelers.rejected, (state, action) => {
     
         state.isLoading = false;
         state.isError = true;
         state.message = action.payload;
+        console.log(action.payload)
+      })
+      .addCase(getTravelersById.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(getTravelersById.fulfilled, (state, action) => {
+       
+        state.isLoading = false;
+        state.isSuccess = true;
+        state.traveler = action.payload;
+        console.log(action.payload)
+      })
+      .addCase(getTravelersById.rejected, (state, action) => {
+    
+        state.isLoading = false;
+        state.isError = true;
+        state.message = action.payload;
+        console.log(action.payload)
       })
       .addCase(updateTravelerTripsStatus.pending, (state) => {
         state.isLoading = true;
@@ -251,6 +306,23 @@ export const listingSlice = createSlice({
         state.isLoading = false;
         state.isError = true;
         state.message = action.payload;
+      })
+      .addCase(getLuggageById.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(getLuggageById.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.isSuccess = true;
+        state.luggage = action.payload;
+        console.log(action.payload)
+        
+      })
+      .addCase(getLuggageById.rejected, (state, action) => {
+       
+        state.isLoading = false;
+        state.isError = true;
+        state.message = action.payload;
+        console.log(action.payload)
       })
       .addCase(fetchTravelerListings.pending, (state) => {
         state.isLoading = true;

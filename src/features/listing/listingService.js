@@ -85,6 +85,28 @@ const getLuggage = async (token) => {
 
   return response.data;
 };
+const getLuggageById = async (luggageId,token) => {
+
+  const config = {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  };
+  const response = await axios.get(`${API_URL}luggagelisting/${luggageId.id}`, config);
+
+  return response.data;
+};
+const getTravelerById = async (travelerId, token) => {
+ 
+  const config = {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  };
+  const response = await axios.get(`${API_URL}travelerlisting/${travelerId.id}`, config);
+
+  return response.data;
+};
 
 const fetchTravelerListings = async () => {
   const response = await axiosInstance.get(
@@ -108,7 +130,9 @@ const listingService = {
   fetchTravelerListings,
   fetchLuggageListings,
   updateTravelerTripsStatus,
-  updateLuggageTripsStatus
+  updateLuggageTripsStatus,
+  getLuggageById,
+  getTravelerById
 };
 
 export default listingService;

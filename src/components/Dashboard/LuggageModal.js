@@ -1,12 +1,15 @@
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { updateLuggageTripsStatus } from "../../features/listing/listingSlice";
+import { bookNowTraveler } from "../../features/auth/authSlice";
+import { useNavigate } from "react-router-dom";
 
-const LuggageModal = ({ luggage, status }) => {
+const LuggageModal = ({ userDetail, luggage, status }) => {
   const [tripStatus, setTripStatus] = useState({ trips: "" });
-  const { sourceLocation, destinationLocation, user, _id } = luggage;
+  const { sourceLocation, destinationLocation, _id } = luggage;
+  const {user} = useSelector((state) => state.auth)
   const dispatch = useDispatch();
-
+const navigate = useNavigate();
   const userId = _id;
   if (luggage.length < 1) {
     console.log("O");
@@ -16,8 +19,13 @@ const LuggageModal = ({ luggage, status }) => {
     dispatchUpdate({ trips: "finished" }); // Pass the updated status directly
   };
 
-  const handleSendDetails = (details) => {
-    console.log(details)
+  const handleSendDetails = async(details) => {
+    try {
+      const action = await dispatch(bookNowTraveler({userId: user._id, listedId:userDetail._id, listingInfo: details, userInfo: user}))
+      navigate('/dashboard/notification')
+    } catch (error) {
+      console.log(error)
+    }
   }
 
   const dispatchUpdate = (updatedStatus) => {

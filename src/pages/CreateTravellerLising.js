@@ -14,6 +14,7 @@ const CreateTraveller = () => {
     sourceLocation: "",
     departure: "",
     items: "",
+    type: "traveler"
   });
   const [travelType, setTravelType] = useState("");
   const {
@@ -25,6 +26,7 @@ const CreateTraveller = () => {
     sourceLocation,
     departure,
     items,
+    type,
   } = travelerData;
   const dispatch = useDispatch();
   const navigate = useNavigate()
@@ -62,6 +64,7 @@ const CreateTraveller = () => {
         sourceLocation,
         departure,
         items,
+        type,
       };
       console.log(travelerListingData);
       try {

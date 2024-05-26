@@ -15,6 +15,7 @@ const Traveler = () => {
   const [showModal, setShowModal] = useState(false);
   const [showAllOngoingListings, setShowAllOngoingListings] = useState(false);
   const [createdLuggageList, setCreatedLuggageList] = useState([]);
+  const [currentUser, setCurrentUser] = useState({});
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -25,6 +26,8 @@ const Traveler = () => {
 
   const { travelers, luggage, isLoading, isError, isSuccess, message } =
     useSelector((state) => state.listing);
+  const { user } = useSelector((state) => state.auth);
+
   const luggageList = Array.isArray(luggage) ? luggage : [];
 
   useEffect(() => {
@@ -63,20 +66,20 @@ const Traveler = () => {
     }
   }, [ongoingTripsData, dispatch, userDetails]);
 
-  const handleBookNow = () => {
+  const handleBookNow = (userDetail) => {
+    setCurrentUser(userDetail);
     setShowModal(true);
   };
   const handleClick = (traveler) => {
-    dispatch(getUser(traveler.user));
-    setCurrentTraveler(traveler); // Set the current traveler
-    navigate("/travelerListing/travelerdetails", {
-      state: { travelerDetails: traveler },
-    });
+    
+    // setCurrentTraveler(traveler); // Set the current traveler
+    
+    navigate(`/travelerListing/travelerdetails/${traveler._id}`);
   };
 
   const handleContactNow = (userId) => {
     console.log(userId);
-    navigate('/dashboard/chats')
+    navigate("/dashboard/chats");
   };
 
   return (
@@ -97,7 +100,7 @@ const Traveler = () => {
                 </div>
                 {createdLuggageList.length === 0 ? (
                   <div className="flex flex-col px-4 py-11 bg-white max-w-[980px] rounded-[51px] max-md:px-5">
-                  <BookNowPopup state={"travel"} />
+                    <BookNowPopup state={"travel"} />
                   </div>
                 ) : (
                   <>
@@ -116,6 +119,7 @@ const Traveler = () => {
                             key={luggage.id}
                             luggage={luggage}
                             status="created"
+                            userDetail={currentUser}
                           />
                         ))}
                       <>
@@ -144,10 +148,10 @@ const Traveler = () => {
       )}
       <div>
         {ongoingTripsData
-          .slice(0, showAllTravelerListings ? ongoingTripsData.length : 2)
+          .slice(0, showAllTravelerListings ? ongoingTripsData.length : 2).reverse()
           .map((traveler) => {
             const userDetail = userDetails[traveler.user];
-
+          
             return (
               <div
                 key={traveler.id}
@@ -290,46 +294,51 @@ const Traveler = () => {
                       />
                     </div>
                   </div>
-
-                  <div
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      handleBookNow();
-                    }}
-                    className="flex gap-2 px-6 py-2 mt-6 text-base font-medium text-center text-white bg-sky-400 rounded-[31px]"
-                  >
-                    <button
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        handleBookNow();
-                      }}
-                      className="flex-auto my-auto"
-                    >
-                      Book Now
-                    </button>
-                  </div>
-                  <div
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      handleBookNow();
-                    }}
-                    className="flex gap-2 px-6 py-2 mt-6 text-base font-medium text-center text-white bg-sky-400 rounded-[31px]"
-                  >
-                    <img
-                      loading="lazy"
-                      src="https://cdn.builder.io/api/v1/image/assets/TEMP/73552b36b8c3d58faba037db1fd35fff9dc2b0b3fe363beda8f6703a660968fc?"
-                      className="shrink-0 w-6 aspect-square"
-                    />
-                    <button
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        handleContactNow(userDetail._id);
-                      }}
-                      className="flex-auto my-auto"
-                    >
-                      Contact Now
-                    </button>
-                  </div>
+                  {user?._id === traveler.user ? (
+                    <></>
+                  ) : (
+                    <>
+                      <div
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          handleBookNow(userDetail);
+                        }}
+                        className="flex gap-2 px-6 py-2 mt-6 text-base font-medium text-center text-white bg-sky-400 rounded-[31px]"
+                      >
+                        <button
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            handleBookNow(userDetail);
+                          }}
+                          className="flex-auto my-auto"
+                        >
+                          Book Now
+                        </button>
+                      </div>
+                      <div
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          handleBookNow();
+                        }}
+                        className="flex gap-2 px-6 py-2 mt-6 text-base font-medium text-center text-white bg-sky-400 rounded-[31px]"
+                      >
+                        <img
+                          loading="lazy"
+                          src="https://cdn.builder.io/api/v1/image/assets/TEMP/73552b36b8c3d58faba037db1fd35fff9dc2b0b3fe363beda8f6703a660968fc?"
+                          className="shrink-0 w-6 aspect-square"
+                        />
+                        <button
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            handleContactNow(userDetail._id);
+                          }}
+                          className="flex-auto my-auto"
+                        >
+                          Contact Now
+                        </button>
+                      </div>
+                    </>
+                  )}
                 </div>
               </div>
             );

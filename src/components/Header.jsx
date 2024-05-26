@@ -6,7 +6,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { logout, reset } from '../features/auth/authSlice';
 import Dropdown from './GoToListingDropdown';
 import CreateListingDropdown from './CreateAListingDropdown';
-
+import notification from './assets/notification.svg'
 const Header = () => {
   const { user } = useSelector((state) => state.auth);
 
@@ -57,6 +57,14 @@ const Header = () => {
 
         {user ? (
           <>
+          <Link to='/dashboard/notification'>
+              <img
+                loading='lazy'
+                src={notification}
+                alt='Company Logo'
+                className='w-[30px] rounded-full'
+              />
+            </Link>
             <Link to='/dashboard'>
               <img
                 loading='lazy'
@@ -65,7 +73,7 @@ const Header = () => {
                 className='w-[40px] rounded-full'
               />
             </Link>
-
+           
             <Link
               className='flex flex-col flex-1 justify-center self-stretch font-semibold text-sky-400 whitespace-nowrap'
               onClick={onLogout}
