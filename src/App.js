@@ -46,7 +46,7 @@ function App() {
               <Route path="chats" element={<Chats />} />
               <Route path="updatekyc" element={<UpdateKyc />} />
               <Route path="t&c" element={<Terms />} />
-              <Route path="bookingdetails" element={<BookingDetails/>}/>
+              <Route path="bookingdetails/:bookingId" element={<BookingDetails/>}/>
             </Route>
           </Route>
           <Route path="/auth/google/success" element={<GoogleAuthSuccess/>}/>
@@ -61,11 +61,11 @@ function App() {
          
 
           <Route path="/travelerListing" element={<TravelerListing />} />
-          <Route path="/travelerListing/travelerdetails" element={<TravelerDetails />} />
+          <Route path="/travelerListing/travelerdetails/:id" element={<TravelerDetails />} />
           <Route path="/edittravelerListing" element={<EditTraveler/>} />
           <Route path="/editluggageListing" element={<EditTraveler/>} />
           <Route path="/luggageListing" element={<LuggageListing />} />
-          <Route path="/luggageListing/luggagedetails" element={<LuggageDetails />} />
+          <Route path="/luggageListing/luggagedetails/:id" element={<LuggageDetails />} />
           <Route path="/createTraveler" element={<PrivateRoute />}>
             <Route
               path="/createTraveler"

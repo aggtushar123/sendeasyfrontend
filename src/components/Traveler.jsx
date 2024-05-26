@@ -71,11 +71,10 @@ const Traveler = () => {
     setShowModal(true);
   };
   const handleClick = (traveler) => {
-    dispatch(getUser(traveler.user));
-    setCurrentTraveler(traveler); // Set the current traveler
-    navigate("/travelerListing/travelerdetails", {
-      state: { travelerDetails: traveler },
-    });
+    
+    // setCurrentTraveler(traveler); // Set the current traveler
+    
+    navigate(`/travelerListing/travelerdetails/${traveler._id}`);
   };
 
   const handleContactNow = (userId) => {

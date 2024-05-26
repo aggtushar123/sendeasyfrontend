@@ -30,8 +30,7 @@ const Notifications = () => {
   const handleClick = (bookingId) => {
     // Delay the navigate call to ensure it happens within an event handler
     return () => {
-      dispatch(fetchBookingById(bookingId)) 
-      navigate('/dashboard/bookingdetails');
+      navigate(`/dashboard/bookingdetails/${bookingId}`);
     };
   };
   return (

@@ -27,11 +27,9 @@ function LuggageListing() {
   }, [dispatch]);
 
   const handleClick = (luggage) => {
-    dispatch(getUser(luggage.user));
-    setCurrentTraveler(luggage); // Set the current traveler
-    navigate("/luggageListing/luggagedetails", {
-      state: { luggageDetails: luggage },
-    });
+    
+    // setCurrentTraveler(luggage); // Set the current traveler
+    navigate(`/luggageListing/luggagedetails/${luggage._id}`);
   };
   const handleBookNow = (userDetail) => {
     setCurrentUser(userDetail);

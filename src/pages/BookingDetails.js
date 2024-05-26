@@ -1,8 +1,22 @@
-import React from "react";
-import { useSelector } from "react-redux";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useParams } from "react-router-dom";
+import {
+  fetchBookingById,
+  acceptBooking,
+} from "../features/booking/bookingSlice";
 
 function BookingDetails() {
+  const { bookingId } = useParams();
+  const dispatch = useDispatch();
   const { booking, isLoading } = useSelector((state) => state.booking);
+
+  useEffect(() => {
+    if (bookingId) {
+      dispatch(fetchBookingById(bookingId));
+    }
+  }, [dispatch, bookingId]);
+
   const { user } = useSelector((state) => state.auth);
 
   if (isLoading) {
@@ -12,7 +26,14 @@ function BookingDetails() {
   if (!booking) {
     return <>No booking details available</>;
   }
-  console.log(booking);
+  const handleAcceptBooking = (bookingId) => {
+    
+    dispatch(acceptBooking(bookingId));
+    window.location.reload()
+  };
+  const handleRejectBooking = () => {
+    console.log("reject");
+  };
   return (
     <>
       {booking?.listingInfo?.type === "traveler" ? (
@@ -94,19 +115,28 @@ function BookingDetails() {
                       {booking.listingInfo?.expectation} Rs
                     </div>
                   </div>
-                  {user._id === booking.listedId ? (<>
-                    <div className="flex gap-5 justify-between self-stretch mt-2 w-full text-xl font-medium text-center text-white max-md:flex-wrap max-md:max-w-full">
+                  {user._id === booking.listedId && booking.status==="pending"? (
+                    <>
+                      <div className="flex gap-5 justify-between self-stretch mt-2 w-full text-xl font-medium text-center text-white max-md:flex-wrap max-md:max-w-full">
+                        <button
+                          onClick={() => handleRejectBooking(bookingId)}
+                          className="justify-center items-start py-5 pr-16 pl-16 bg-sky-400 rounded-[31px] max-md:px-5"
+                        >
+                          Reject
+                        </button>
+                        <button
+                          onClick={() => handleAcceptBooking(bookingId)}
+                          className="justify-center items-start py-5 pr-16 pl-16 bg-sky-400 rounded-[31px] max-md:px-5"
+                        >
+                          Accept
+                        </button>
+                      </div>
+                    </>
+                  ) : (
                     <div className="justify-center items-start py-5 pr-16 pl-16 bg-sky-400 rounded-[31px] max-md:px-5">
-                      Reject
-                    </div>
-                    <div className="justify-center items-start py-5 pr-16 pl-16 bg-sky-400 rounded-[31px] max-md:px-5">
-                      Accept
-                    </div>
-                  </div>
-                  </>) : (<>
-                    {booking.status}
-                  </>)}
-                  
+                        {booking.status}
+                      </div>
+                  )}
                 </div>
                 <div className="flex flex-col items-center">
                   <img
@@ -209,22 +239,30 @@ function BookingDetails() {
                       {booking.listingInfo?.expectation} Rs
                     </div>
                   </div>
-                  {user._id === booking.listedId ? (<>
-                    <div className="flex gap-5 justify-between self-stretch mt-2 w-full text-xl font-medium text-center text-white max-md:flex-wrap max-md:max-w-full">
-                    <div className="justify-center items-start py-5 pr-16 pl-16 bg-sky-400 rounded-[31px] max-md:px-5">
-                      Reject
-                    </div>
-                    <div className="justify-center items-start py-5 pr-16 pl-16 bg-sky-400 rounded-[31px] max-md:px-5">
-                      Accept
-                    </div>
-                  </div>
-                  </>) : (<>
-                  <div className="justify-center items-start py-5 pr-16 pl-16 bg-sky-400 rounded-[31px] max-md:px-5">
-                   
-                  {booking.status}
-                  </div>
-                    
-                  </>)}
+                  {user._id === booking.listedId && booking.status==="pending"? (
+                    <>
+                      <div className="flex gap-5 justify-between self-stretch mt-2 w-full text-xl font-medium text-center text-white max-md:flex-wrap max-md:max-w-full">
+                        <button
+                          onClick={() => handleRejectBooking(bookingId)}
+                          className="justify-center items-start py-5 pr-16 pl-16 bg-sky-400 rounded-[31px] max-md:px-5"
+                        >
+                          Reject
+                        </button>
+                        <button
+                          onClick={() => handleAcceptBooking(bookingId)}
+                          className="justify-center items-start py-5 pr-16 pl-16 bg-sky-400 rounded-[31px] max-md:px-5"
+                        >
+                          Accept
+                        </button>
+                      </div>
+                    </>
+                  ) : (
+                    <>
+                      <div className="justify-center items-start py-5 pr-16 pl-16 bg-sky-400 rounded-[31px] max-md:px-5">
+                        {booking.status}
+                      </div>
+                    </>
+                  )}
                 </div>
                 <div className="flex flex-col items-center">
                   <img

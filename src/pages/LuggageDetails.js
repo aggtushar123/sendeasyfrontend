@@ -1,19 +1,31 @@
 import React, { useEffect } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
-import { useSelector } from "react-redux";
-
+import { useNavigate, useParams } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { getLuggageById } from "../features/listing/listingSlice";
+import { getUser } from "../features/auth/authSlice";
 function LuggageDetails() {
+  const luggageId = useParams()
   const { user, gUser } = useSelector((state) => state.auth);
-  const location = useLocation();
-  const luggageDetails = location.state?.luggageDetails;
+const {luggage} = useSelector((state) => state.listing)
+  const dispatch = useDispatch()
+ 
   const navigate = useNavigate();
   useEffect(() => {
     if (!user) {
       navigate("/signup");
     } 
+    dispatch(getLuggageById(luggageId))
+   
   }, [user, navigate]);
+
+  useEffect(() => {
+    if (luggage?.user) {
+      dispatch(getUser(luggage.user));
+    }
+  }, [luggage, dispatch]);
+
   if (!user || !gUser) {
-    return null; // Or you can render a loading indicator or message here
+    <>Loading</>// Or you can render a loading indicator or message here
   }
   return (
     <div className="flex flex-col rounded-[29px]">
@@ -46,18 +58,18 @@ function LuggageDetails() {
           <div className="flex gap-5 justify-between items-start self-stretch px-px max-md:flex-wrap max-md:max-w-full max-sm:self-center">
             <div className="flex flex-col self-stretch mt-2">
               <div className="text-2xl font-semibold leading-10 text-sky-400">
-                {gUser.fName}
+                {gUser?.fName}
               </div>
               <div className="flex gap-5 py-1 mt-6 text-xl tracking-wide text-blue-950">
                 <div className="flex-auto capitalize">destination</div>
                 <div className="flex-auto font-semibold">
-                  {luggageDetails.destinationLocation}
+                  {luggage.destinationLocation}
                 </div>
               </div>
               <div className="flex gap-5 py-1 mt-3 text-xl tracking-wide text-blue-950">
                 <div className="grow capitalize">Pickup Location</div>
                 <div className="flex-auto font-semibold">
-                  {luggageDetails.sourceLocation}
+                  {luggage.sourceLocation}
                 </div>
               </div>
               <div className="flex gap-5 py-1 mt-3 text-xl tracking-wide text-blue-950">

@@ -27,7 +27,7 @@ const acceptBooking = async (id, token) => {
     },
   };
 
-  const response = await axios.patch(`${API_URL}/${id}/accept`, {}, config);
+  const response = await axios.patch(`${API_URL}/${id}/accept`, config);
   return response.data;
 };
 

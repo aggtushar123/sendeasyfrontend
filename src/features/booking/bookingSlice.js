@@ -27,8 +27,9 @@ export const fetchBookingById = createAsyncThunk(
 // Async thunk for accepting booking
 export const acceptBooking = createAsyncThunk(
   'booking/accept',
-  async ({ id, token }, thunkAPI) => {
+  async ( id, thunkAPI) => {
     try {
+        const token = thunkAPI.getState().auth.user.token;
       return await bookingService.acceptBooking(id, token);
     } catch (error) {
       const message = error.response?.data?.message || error.message || error.toString();
