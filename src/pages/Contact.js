@@ -4,61 +4,73 @@ import phone from '../components/assets/Contact/Phone.svg';
 import location from '../components/assets/Contact/Location.svg';
 import Accordion from '../components/Accordian';
 import AboutUsCard from '../components/AboutUsCard';
+import { motion } from 'framer-motion';
 const contact = () => {
   return (
     <div className='flex flex-col items-center pt-8 rounded-[29px]'>
-      <div className='justify-between px-5 mt-16 max-w-full w-[745px] max-md:mt-10'>
-       
-        <div className="justify-between max-w-[745px]">
-      <div className="flex gap-5 max-md:flex-col max-md:gap-0">
-        <div className="flex flex-col w-6/12 max-md:ml-0 max-md:w-full">
-          <div className="flex grow justify-center items-center px-16 text-center rounded-2xl text-slate-900 max-md:px-5">
-            <div className="flex flex-col items-center max-w-full w-[116px]">
-              <img
-                loading="lazy"
-                src="https://cdn.builder.io/api/v1/image/assets/TEMP/63dd1dda038054991f54aeb3bd7c10b9c1243483ca8df0420fa282f2adb0d29b?"
-                className="w-8 aspect-square"
-              />
-              <div className="mt-2.5 text-xl font-semibold leading-7">
-                Phone
+      <motion.div
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        transition={{ duration: 0.5, ease: 'easeInOut' }}
+        className='justify-between px-5 mt-16 max-w-full w-[745px] max-md:mt-10'
+      >
+        <div className='justify-between max-w-[745px]'>
+          <div className='flex gap-5 max-md:flex-col max-md:gap-0'>
+            <div className='flex flex-col w-6/12 max-md:ml-0 max-md:w-full'>
+              <div className='flex grow justify-center items-center px-16 text-center rounded-2xl text-slate-900 max-md:px-5'>
+                <div className='flex flex-col items-center max-w-full w-[116px]'>
+                  <img
+                    loading='lazy'
+                    src='https://cdn.builder.io/api/v1/image/assets/TEMP/63dd1dda038054991f54aeb3bd7c10b9c1243483ca8df0420fa282f2adb0d29b?'
+                    className='w-8 aspect-square'
+                  />
+                  <div className='mt-2.5 text-xl font-semibold leading-7'>
+                    Phone
+                  </div>
+                  <div className='self-stretch mt-2.5 text-base leading-6'>
+                    7973426726
+                  </div>
+                </div>
               </div>
-              <div className="self-stretch mt-2.5 text-base leading-6">
-                +91 7973426726
+            </div>
+            <div className='flex flex-col ml-5 w-6/12 max-md:ml-0 max-md:w-full'>
+              <div className='flex flex-col grow items-center px-20 text-center whitespace-nowrap rounded-2xl text-slate-900 max-md:px-5'>
+                <img
+                  loading='lazy'
+                  src='https://cdn.builder.io/api/v1/image/assets/TEMP/2bed6b93e0f6827dbf0b317b3e3461dce36069636396e15993c6eb1e39d39af4?'
+                  className='w-8 aspect-square'
+                />
+                <div className='mt-2.5 text-xl font-semibold leading-7'>
+                  Location
+                </div>
+                <div className='mt-2.5 text-base leading-6'>
+                  sendalong93@gmail.com
+                </div>
               </div>
             </div>
           </div>
         </div>
-        <div className="flex flex-col ml-5 w-6/12 max-md:ml-0 max-md:w-full">
-          <div className="flex flex-col grow items-center px-20 text-center whitespace-nowrap rounded-2xl text-slate-900 max-md:px-5">
-            <img
-              loading="lazy"
-              src="https://cdn.builder.io/api/v1/image/assets/TEMP/2bed6b93e0f6827dbf0b317b3e3461dce36069636396e15993c6eb1e39d39af4?"
-              className="w-8 aspect-square"
-            />
-            <div className="mt-2.5 text-xl font-semibold leading-7">
-              Location
-            </div>
-            <div className="mt-2.5 text-base leading-6">
-              sendalong93@gmail.com
-            </div>
-          </div>
-        </div>
+      </motion.div>
+
+      <div className=' text-4xl font-semibold text-center text-sky-400 max-md:max-w-full mt-64'>
+        Contact Us
       </div>
-    </div>
-      </div>
-      <div className='mt-32 text-xs font-semibold tracking-wide text-sky-400 uppercase max-md:mt-10'>
-        contact form
-      </div>
-      <div className='mt-5 text-4xl font-semibold text-center text-sky-400 max-md:max-w-full'>
-        Let's schedule your appointment
-      </div>
-      <div className='mt-5 text-xl leading-7 text-center text-slate-900 w-[754px] max-md:max-w-full'>
+      <motion.div
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        transition={{ duration: 0.5, ease: 'easeInOut' }}
+        className='mt-5 text-xl leading-7 text-center text-slate-900 w-[754px] max-md:max-w-full font-thin mb-6'
+      >
         Feel free to give us a call or send us a message and we'll help get the
-        answers you need, or a quote for services at your residential or
-        commercial property.
-      </div>
-      <div className='flex gap-5 justify-between mt-16 max-w-full w-[750px] max-md:flex-wrap max-md:mt-10'>
-        <div className='flex flex-col px-5'>
+        answers you need.
+      </motion.div>
+      <motion.div className='flex gap-5 justify-between mt-16 max-w-full w-[750px] max-md:flex-wrap max-md:mt-10'>
+        <motion.div
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          transition={{ duration: 0.5, ease: 'easeInOut' }}
+          className='flex flex-col px-5'
+        >
           <div className='text-xs font-semibold tracking-wide uppercase text-slate-900'>
             name
           </div>
@@ -67,8 +79,13 @@ const contact = () => {
             placeholder='Write your name'
             type='text'
           />
-        </div>
-        <div className='flex flex-col px-5'>
+        </motion.div>
+        <motion.div
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          transition={{ duration: 0.7, ease: 'easeInOut' }}
+          className='flex flex-col px-5'
+        >
           <div className='text-xs font-semibold tracking-wide uppercase text-slate-900'>
             email
           </div>
@@ -77,10 +94,15 @@ const contact = () => {
             placeholder='Write your email address'
             type='email'
           />
-        </div>
-      </div>
+        </motion.div>
+      </motion.div>
       <div className='flex gap-5 justify-between mt-8 max-w-full w-[750px] max-md:flex-wrap'>
-        <div className='flex flex-col px-5'>
+        <motion.div
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          transition={{ duration: 0.9, ease: 'easeInOut' }}
+          className='flex flex-col px-5'
+        >
           <div className='text-xs font-semibold tracking-wide uppercase text-slate-900'>
             Phone number
           </div>
@@ -89,8 +111,13 @@ const contact = () => {
             placeholder='Write your phone number'
             type='tel'
           />
-        </div>
-        <div className='flex flex-col px-5'>
+        </motion.div>
+        <motion.div
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          transition={{ duration: 1.1, ease: 'easeInOut' }}
+          className='flex flex-col px-5'
+        >
           <div className='text-xs font-semibold tracking-wide uppercase text-slate-900'>
             Address
           </div>
@@ -99,30 +126,47 @@ const contact = () => {
             placeholder='Write your street address, zipcode , etc'
             type='text'
           />
-        </div>
+        </motion.div>
       </div>
-      <div className='mt-8 text-xs font-semibold tracking-wide uppercase text-slate-900 max-md:max-w-full'>
+      <motion.div
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        transition={{ duration: 1.3, ease: 'easeInOut' }}
+        className='mt-8 text-xs font-semibold tracking-wide uppercase text-slate-900 max-md:max-w-full'
+      >
         notes
-      </div>
-      <input
+      </motion.div>
+      <motion.input
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        transition={{ duration: 1.3, ease: 'easeInOut' }}
         className='items-start px-4 pt-4 pb-24 mt-3.5 max-w-full text-base leading-6 bg-gray-100 rounded-xl text-stone-300 w-[715px] max-md:pr-5'
         placeholder='Type Here'
       />
 
-      <button className='justify-center px-8 py-5 mt-8 text-base font-semibold text-center text-white bg-emerald-600 rounded-md max-md:px-5'>
+      <button className='px-8 py-5 mt-8 text-base font-semibold text-center text-white bg-emerald-600 rounded-md max-md:px-5'>
         Send Message
       </button>
 
-   
       <div className='mt-36 text-xs font-semibold tracking-wide text-emerald-600 uppercase max-md:mt-10'>
         Frequently Asked Questions
       </div>
-      <div className='mt-5 text-4xl font-semibold leading-10 text-center text-sky-400 max-md:max-w-full'>
+      <motion.div
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        transition={{ duration: 1, ease: 'easeInOut' }}
+        className='mt-5 text-4xl font-semibold leading-10 text-center text-sky-400 max-md:max-w-full'
+      >
         You've got questions. we've got answers.
-      </div>
-      <div className='flex flex-col p-8 mt-16 mb-28 max-w-full bg-gray-100 rounded-xl w-[750px] max-md:px-5 max-md:mt-10'>
+      </motion.div>
+      <motion.div
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        transition={{ duration: 1, ease: 'easeInOut' }}
+        className='flex flex-col p-8 mt-16 mb-28 max-w-full bg-gray-100 rounded-xl w-[750px] max-md:px-5 max-md:mt-10'
+      >
         <Accordion />
-      </div>
+      </motion.div>
 
       {/* <div className='flex flex-col items-center px-20 mt-32 max-w-full font-semibold text-slate-900 w-[1140px] max-md:px-5 max-md:mt-10'>
         <div className='text-xs tracking-wide uppercase'>contact us</div>

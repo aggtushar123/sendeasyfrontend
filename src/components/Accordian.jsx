@@ -25,22 +25,22 @@ const Accordion = () => {
   ];
 
   return (
-    <div className="max-w-full bg-gray-100 rounded-xl w-[750px] max-md:px-5 max-md:mt-10">
+    <div className='max-w-full bg-gray-100 rounded-xl w-[750px] max-md:px-5 max-md:mt-10'>
       {accordionItems.map((item, index) => (
-        <div key={index} className="border-b">
+        <div key={index} className='border-b'>
           <button
-            className="flex justify-between items-center p-5 w-full text-left font-semibold text-sky-400 focus:outline-none"
+            className='flex justify-between items-center p-5 w-full text-left font-semibold text-sky-400 focus:outline-none'
             onClick={() => toggleAccordion(index)}
           >
             <span>{item.question}</span>
             <img
-              src="https://cdn.builder.io/api/v1/image/assets/TEMP/b4cf947232c15b3d0223f56683dc6042884844734f5f16d60c52bea9d9bc1175?"
-              alt=""
-              className="shrink-0 w-8 aspect-square"
+              src='https://cdn.builder.io/api/v1/image/assets/TEMP/b4cf947232c15b3d0223f56683dc6042884844734f5f16d60c52bea9d9bc1175?'
+              alt=''
+              className='shrink-0 w-8 aspect-square'
             />
           </button>
           {activeAccordion === index && (
-            <div className="p-5 text-slate-900">{item.answer}</div>
+            <div className='p-5 text-slate-900'>{item.answer}</div>
           )}
         </div>
       ))}
