@@ -1,8 +1,13 @@
 import * as React from 'react';
-
+import { motion } from 'framer-motion';
 function Card() {
   return (
-    <div className=' bg-[#F5F4F8] rounded-xl shadow-sm max-w-[745px] max-md:pr-5  flex flex-col items-center flex-shrink-0 w-[500px] md:w-[600px] xl:w-[600px] hover:opacity-100 opacity-70 cursor-pointer transition-opacity duration-200 overflow-hidden '>
+    <motion.div
+      initial={{ opacity: 0 }}
+      whileInView={{ opacity: 1 }}
+      transition={{ duration: 1.5, ease: 'easeInOut' }}
+      className=' bg-[#F5F4F8] rounded-xl shadow-sm max-w-[745px] max-md:pr-5  flex flex-col items-center flex-shrink-0 w-[500px] md:w-[600px] xl:w-[600px] hover:opacity-100 opacity-70 cursor-pointer transition-opacity duration-200 overflow-hidden '
+    >
       <div className='flex gap-5 max-md:flex-col max-md:gap-0'>
         <div className='flex flex-col w-[37%] max-md:ml-0 max-md:w-full'>
           <img
@@ -11,7 +16,8 @@ function Card() {
             className='grow w-full aspect-[1] h-[296px] '
           />
         </div>
-        <div className='flex flex-col ml-5 w-[83%] max-md:ml-0 max-md:w-full text-black'>    
+        <div className='flex flex-col ml-5 w-[83%] max-md:ml-0 max-md:w-full text-black'>
+              
           <div className='flex flex-col self-stretch my-auto text-xs text-slate-900 max-md:mt-10 max-md:max-w-full'>
             <div className='text-left max-md:max-w-full'>May 8, 2020</div>
             <div className='mt-4 text-2xl font-semibold max-md:max-w-full'>
@@ -28,7 +34,7 @@ function Card() {
           </div>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 }
 export default Card;
