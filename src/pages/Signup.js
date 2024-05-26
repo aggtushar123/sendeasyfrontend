@@ -6,6 +6,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import image from '../components/assets/Login/main.svg';
 import GoogleIcon from '../components/assets/Login/GoogleIcon.svg';
 import FacebookIcon from '../components/assets/Login/FaebookIcon.svg';
+import { motion } from 'framer-motion';
 import EmailIcon from '../components/assets/Login/EmailIcon.svg';
 import NameIcon from '../components/assets/Login/NameIcon.svg';
 import PasswordIcon from '../components/assets/Login/PasswordIcon.svg';
@@ -197,18 +198,23 @@ const Signup = () => {
 
       <div className='flex flex-col pt-5 pr-4 pb-20 pl-15 rounded-[29px] max-md:pl-5'>
         <div className='flex gap-2 justify-between self-center mt-7 w-full max-w-[1080px] max-md:flex-wrap max-md:mt-10 max-md:max-w-full'>
-          <img
+          <motion.img
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            transition={{ duration: 0.5, ease: 'easeInOut' }}
             loading='lazy'
             src={image}
             className='self-start w-full aspect-[1.1] max-md:max-w-full'
           />
-          <div className='flex flex-col '>
+          <motion.div
+            initial={{ opacity: 0, x: '100%' }}
+            whileInView={{ opacity: 1, x: '0%' }}
+            transition={{ duration: 0.5, ease: 'easeInOut' }}
+            className='flex flex-col '
+          >
             <div className='text-3xl font-medium tracking-wider leading-10 text-sky-400 '>
               <span className=''>Let’s</span>{' '}
               <span className='font-extrabold text-sky-400'>Sign Up</span>{' '}
-            </div>
-            <div className='mt-1 text-sm tracking-wide leading-5 whitespace-nowrap text-slate-600 max-md:ml-1'>
-              quis nostrud exercitation ullamco laboris nisi ut
             </div>
 
             <form
@@ -357,7 +363,7 @@ const Signup = () => {
                 Sign in
               </Link>
             </div>
-          </div>
+          </motion.div>
         </div>
       </div>
     </>
