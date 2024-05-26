@@ -2,20 +2,35 @@ import React, { useState } from 'react';
 import location from '../components/assets/Home/location.svg';
 import date from '../components/assets/Home/date.svg';
 import { motion } from 'framer-motion';
+import { useNavigate } from 'react-router-dom';
 function TravellerShipper() {
   const [bgColor1, setbgColor1] = useState(true);
   const [bgColor2, setbgColor2] = useState(false);
+  const [active, setActive] = useState("Send")
+  const navigate = useNavigate();
 
   const handleClick1 = () => {
     setbgColor1(true);
     setbgColor2(false);
+    setActive("Send")
   };
   const handleClick2 = () => {
     setbgColor1(false);
     setbgColor2(true);
+    setActive("Carry")
   };
+  const handleSubmit = () =>{
+    if(active === "Send"){
+      navigate('/travelerlisting')
+    }
+    if(active==="Carry"){
+      navigate('/luggagelisting')
+    }
+  }
   return (
-    <form className='flex flex-col w-[38%] max-md:ml-0 max-md:w-full'>
+    <form 
+    onSubmit={handleSubmit}
+    className='flex flex-col w-[38%] max-md:ml-0 max-md:w-full'>
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
