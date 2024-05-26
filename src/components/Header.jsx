@@ -1,18 +1,18 @@
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import logo from './assets/Group.png';
+import logo from './assets/logo.svg';
 import Avatar from './assets/AvatarIcon.svg';
 import { useSelector, useDispatch } from 'react-redux';
 import { logout, reset } from '../features/auth/authSlice';
 import Dropdown from './GoToListingDropdown';
 import CreateListingDropdown from './CreateAListingDropdown';
-import notification from './assets/notification.svg'
+import notification from './assets/notification.svg';
 const Header = () => {
   const { user } = useSelector((state) => state.auth);
 
   const dispatch = useDispatch();
   const location = useLocation();
- 
+
   const onLogout = () => {
     dispatch(logout());
     dispatch(reset());
@@ -57,7 +57,7 @@ const Header = () => {
 
         {user ? (
           <>
-          <Link to='/dashboard/notification'>
+            <Link to='/dashboard/notification'>
               <img
                 loading='lazy'
                 src={notification}
@@ -68,19 +68,19 @@ const Header = () => {
             <Link to='/dashboard'>
               <img
                 loading='lazy'
-                src={ Avatar}
+                src={Avatar}
                 alt='Company Logo'
                 className='w-[40px] rounded-full'
               />
             </Link>
-           
+
             <Link
               className='flex flex-col flex-1 justify-center self-stretch font-semibold text-sky-400 whitespace-nowrap'
               onClick={onLogout}
               to={'/'}
             >
               <div className='justify-center px-11 py-3 bg-white border-2 border-sky-400 border-solid rounded-[31px] max-md:px-5'>
-              Logout
+                Logout
               </div>
             </Link>
           </>
