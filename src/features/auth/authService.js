@@ -26,6 +26,21 @@ const updateUser = async (userId, userData) => {
     );
   }
 };
+const deleteUser = async (userId) => {
+  try {
+    const response = await axios.delete(`${API_URL}user/${userId}`);
+    console.log(response)
+    if(response.status === 200){
+      localStorage.removeItem('user')
+    }
+  return response;
+  } catch (error) {
+    throw new Error(
+      error.response?.data?.message || error.message || 'Error deleting user'
+    );
+  }
+  
+};
 export const bookNowTraveler = async (userId, listedId, listingInfo, userInfo, token) => {
   try {
     const config = {
@@ -131,6 +146,7 @@ const deleteAllNotification = async (userId, token) => {
 };
 
 
+
 const googleLogin = async () => {
   try {
     const url = `${process.env.SENDEASY_BACKEND_URL}/auth/login/success`;
@@ -155,6 +171,7 @@ const authService = {
   googleLogin,
   updateUser,
   getUser,
+  deleteUser,
   searchUser,
   deleteAllNotification,
   bookNowTraveler,
