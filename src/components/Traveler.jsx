@@ -168,21 +168,20 @@ const Traveler = () => {
                     <div className='flex flex-col items-center font-semibold'>
                       <img
                         loading='lazy'
-                        // srcSet={userDetail?.profilePicture}
-                        src='https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=2864&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
+                        srcSet={userDetail?.profilePicture}
                         className='aspect-[1.03] w-[86px] rounded-full'
                       />
                       <div className='self-stretch mt-1 text-base leading-6 text-sky-400'>
                         {userDetail?.fName ?? ' '}
                       </div>
-                      <div className='flex gap-0.5 mt-2.5 text-xs leading-loose text-slate-900'>
+                      {/* <div className='flex gap-0.5 mt-2.5 text-xs leading-loose text-slate-900'>
                         <img
                           loading='lazy'
                           src='https://cdn.builder.io/api/v1/image/assets/TEMP/12fa56c1f59dd970aca6c251a796b3783cbe34dc570bfbeda374ae6ec76517dd?'
                           className='shrink-0 aspect-square w-[22px]'
                         />
                         <div className='my-auto'>4.9 (16)</div>
-                      </div>
+                      </div> */}
                     </div>
                   </div>
                 </div>
@@ -219,9 +218,9 @@ const Traveler = () => {
                       </div>
                     </div>
                   </div>
-                  <div className='flex gap-5 mt-16 w-full max-md:flex-wrap max-md:mt-10 max-md:max-w-full'>
+                  <div className='flex gap-5 mt-8 w-full max-md:flex-wrap max-md:mt-10 max-md:max-w-full'>
                     <div className='flex flex-auto gap-5 justify-between items-center self-start'>
-                      <div className='flex flex-col self-stretch'>
+                      {/* <div className='flex flex-col self-stretch'>
                         <div className='flex gap-1 pr-3.5 mt-3'>
                           <img
                             loading='lazy'
@@ -242,15 +241,15 @@ const Traveler = () => {
                         <div className='mt-3 text-xs leading-5 text-slate-900'>
                           2 people Booked
                         </div>
-                      </div>
-                      <div className='flex flex-col self-stretch my-auto text-sky-400 leading-[158.5%]'>
+                      </div> */}
+                      {/* <div className='flex flex-col self-stretch my-auto text-sky-400 leading-[158.5%]'>
                         <div className='text-xs'>Already Booked </div>
                         <div className='mt-3 text-xl font-semibold'>75%</div>
                       </div>
                       <div className='flex flex-col self-stretch my-auto leading-[158.5%] text-slate-900'>
                         <div className='text-xs'>Past QD</div>
                         <div className='mt-3 text-xl font-semibold'>12</div>
-                      </div>
+                      </div> */}
                       <div className='flex flex-col py-1.5 ml-6'>
                         <div className='text-xs'>Date:</div>
                         <div className='mt-3.5 text-xl font-semibold'>
@@ -269,38 +268,7 @@ const Traveler = () => {
                           {traveler.luggageSpace} KG
                         </div>
                       </div>
-                    </div>
-                  </div>
-                </div>
-                <div className='flex flex-col'>
-                  <div className='flex flex-col items-start pl-11 max-md:pl-5'>
-                    <div className='text-xs leading-5 text-sky-400'>Price</div>
-                    <div className='mt-2.5 text-xl font-semibold leading-8 text-sky-400'>
-                      $ {traveler.expectation}
-                    </div>
-                    <div className='mt-2 ml-2.5 text-xs leading-4 text-emerald-600'>
-                      (Suggested $100)
-                    </div>
-                    <div className='flex gap-3 px-0.5 mt-6'>
-                      <img
-                        loading='lazy'
-                        src='https://cdn.builder.io/api/v1/image/assets/TEMP/baefcd77e32ab6ff6d774be13ef038cf0629e78074ad69d103f920c6101aefe2?'
-                        className='shrink-0 my-auto w-7 aspect-square'
-                      />
-                      <img
-                        loading='lazy'
-                        src='https://cdn.builder.io/api/v1/image/assets/TEMP/05837094a9bbfcd0543d8bfad4056edf315ad88eb2b9e1174c7cff73a4b0c171?'
-                        className='shrink-0 w-8 aspect-square'
-                      />
-
-                      <img
-                        loading='lazy'
-                        src='https://cdn.builder.io/api/v1/image/assets/TEMP/29daa0f8450483a2071e63756aba7eeb8d4d4067f2db7427c7c150e8c797d74d?'
-                        className='shrink-0 w-8 aspect-square'
-                      />
-                    </div>
-                  </div>
-                  {user?._id === traveler.user ? (
+                      {user?._id === traveler.user ? (
                     <></>
                   ) : (
                     <>
@@ -345,6 +313,38 @@ const Traveler = () => {
                       </div>
                     </>
                   )}
+                    </div>
+                  </div>
+                </div>
+                <div className='flex flex-col'>
+                  <div className='flex flex-col items-start pl-11 max-md:pl-5'>
+                    <div className='text-xs leading-5 text-sky-400'>Price</div>
+                    <div className='mt-2.5 text-xl font-semibold leading-8 text-sky-400'>
+                      $ {traveler.expectation}
+                    </div>
+                    <div className='mt-2 ml-2.5 text-xs leading-4 text-emerald-600'>
+                      (Suggested $100)
+                    </div>
+                    <div className='flex gap-3 px-0.5 mt-6'>
+                      <img
+                        loading='lazy'
+                        src='https://cdn.builder.io/api/v1/image/assets/TEMP/baefcd77e32ab6ff6d774be13ef038cf0629e78074ad69d103f920c6101aefe2?'
+                        className='shrink-0 my-auto w-7 aspect-square'
+                      />
+                      <img
+                        loading='lazy'
+                        src='https://cdn.builder.io/api/v1/image/assets/TEMP/05837094a9bbfcd0543d8bfad4056edf315ad88eb2b9e1174c7cff73a4b0c171?'
+                        className='shrink-0 w-8 aspect-square'
+                      />
+
+                      <img
+                        loading='lazy'
+                        src='https://cdn.builder.io/api/v1/image/assets/TEMP/29daa0f8450483a2071e63756aba7eeb8d4d4067f2db7427c7c150e8c797d74d?'
+                        className='shrink-0 w-8 aspect-square'
+                      />
+                    </div>
+                  </div>
+                  
                 </div>
               </motion.div>
             );
