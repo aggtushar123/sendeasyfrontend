@@ -44,7 +44,7 @@ function BookingDetails() {
             <div className="flex gap-5 mt-4 w-full max-md:flex-wrap max-md:max-w-full">
               <img
                 loading="lazy"
-                srcSet="..."
+                srcSet={booking.userInfo?.profilePicture}
                 className="shrink-0 my-auto rounded-full aspect-square w-[71px]"
               />
               <div className="flex-auto max-md:max-w-full">
@@ -131,7 +131,7 @@ function BookingDetails() {
                       ) : (
                         <>
                           <div className="justify-center px-12 py-5 mt-10 text-center text-white whitespace-nowrap bg-sky-400 rounded-[31px] max-md:px-5">
-                            {booking.status.toUpperCase()}
+                            {booking.status?.toUpperCase()}
                           </div>
                         </>
                       )}
@@ -211,7 +211,7 @@ function BookingDetails() {
             <div className="flex gap-5 mt-4 w-full max-md:flex-wrap max-md:max-w-full">
               <img
                 loading="lazy"
-                srcSet="..."
+                srcSet={booking.userInfo?.profilePicture}
                 className="shrink-0 my-auto rounded-full aspect-square w-[71px]"
               />
               <div className="flex-auto max-md:max-w-full">
@@ -298,7 +298,7 @@ function BookingDetails() {
                       ) : (
                         <>
                           <div className="justify-center px-12 py-5 mt-10 text-center text-white whitespace-nowrap bg-sky-400 rounded-[31px] max-md:px-5">
-                            {booking.status.toUpperCase()}
+                            {booking.status?.toUpperCase()}
                           </div>
                         </>
                       )}

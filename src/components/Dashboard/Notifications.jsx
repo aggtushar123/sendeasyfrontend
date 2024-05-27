@@ -58,8 +58,8 @@ const Notifications = () => {
                         <div className="flex grow justify-center items-center p-1.5 rounded-full border-solid border-[3px] border-blue-300 border-opacity-20 stroke-[3px] max-md:mt-4">
                           <img
                             loading="lazy"
-                            srcSet="..."
-                            className="aspect-square w-[93px]"
+                            srcSet={notificationMessage.profilePicture}
+                            className="aspect-square w-[93px] rounded-full"
                           />
                         </div>
                       </div>
