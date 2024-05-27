@@ -167,19 +167,19 @@ function LuggageListing() {
                       <div className='self-stretch mt-1 text-base leading-6 text-sky-400'>
                         {userDetail?.fName ?? ' '}
                       </div>
-                      <div className='flex gap-0.5 mt-2.5 text-xs leading-loose text-slate-900'>
+                      {/* <div className='flex gap-0.5 mt-2.5 text-xs leading-loose text-slate-900'>
                         <img
                           loading='lazy'
                           src='https://cdn.builder.io/api/v1/image/assets/TEMP/12fa56c1f59dd970aca6c251a796b3783cbe34dc570bfbeda374ae6ec76517dd?'
                           className='shrink-0 aspect-square w-[22px]'
                         />
                         <div className='my-auto'>4.9 (16)</div>
-                      </div>
+                      </div> */}
                     </div>
                     <div className='flex flex-col mt-11'>
                       <div className='text-xs text-slate-900'>Item type:</div>
                       <div className='justify-center px-5 py-2.5 mt-2.5 text-sm font-semibold text-center text-sky-400 whitespace-nowrap bg-indigo-100 rounded-[31px]'>
-                        Electronics
+                        {luggage.typeOfItems}
                       </div>
                     </div>
                   </div>
@@ -228,7 +228,7 @@ function LuggageListing() {
                               Expected to pay
                             </div>
                             <div className='mt-2.5 text-xl font-semibold leading-8 text-sky-400'>
-                              $ 50
+                              Rs {luggage.expectation}
                             </div>
                             <div className='self-center mt-1.5 text-xs leading-4 text-emerald-600'>
                               (Suggested $100)
