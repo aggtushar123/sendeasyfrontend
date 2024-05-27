@@ -1,11 +1,13 @@
 import React, { useState } from "react";
-import {useNavigate} from "react-router-dom"
+import { useNavigate } from "react-router-dom";
 import date from "../components/assets/Home/date.svg";
 import { toast } from "react-toastify";
 import { useDispatch } from "react-redux";
 import { createLuggage } from "../features/listing/listingSlice";
 
 function CreateLuggage() {
+  const [image, setImage] = useState("");
+  const [image2, setImage2] = useState("");
   const [luggageData, setLuggageData] = useState({
     destinationLocation: "",
     numberOfBags: "",
@@ -19,8 +21,11 @@ function CreateLuggage() {
     receiverLocation: "",
     note: "",
     type: "luggage",
+    expectation: "",
   });
   const [travelType, setTravelType] = useState("");
+  const [file, setFile] = useState("");
+  const [file2, setFile2] = useState("");
   const {
     destinationLocation,
     numberOfBags,
@@ -33,10 +38,11 @@ function CreateLuggage() {
     receiverNumber,
     receiverLocation,
     note,
-    type
+    type,
+    expectation
   } = luggageData;
   const dispatch = useDispatch();
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const onChange = (e) => {
     setLuggageData((prevState) => ({
       ...prevState,
@@ -45,6 +51,31 @@ function CreateLuggage() {
   };
   const handleButtonClick = (option) => {
     setTravelType(option);
+  };
+
+  function previewFiles(file) {
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onloadend = () => {
+      setImage(reader.result);
+    };
+  }
+  function previewFiles2(file2) {
+    const reader = new FileReader();
+    reader.readAsDataURL(file2);
+    reader.onloadend = () => {
+      setImage2(reader.result);
+    };
+  }
+  const handleFileChange1 = (e) => {
+    const file = e.target.files[0];
+    setFile(file);
+    previewFiles(file);
+  };
+  const handleFileChange2 = (e) => {
+    const file2 = e.target.files[0];
+    setFile2(file2);
+    previewFiles2(file2);
   };
 
   const onSubmit = async (e) => {
@@ -60,7 +91,10 @@ function CreateLuggage() {
       !nameOfItems ||
       !receiverName ||
       !receiverNumber ||
-      !receiverLocation
+      !receiverLocation ||
+      !image ||
+      !image2 ||
+      !expectation
     ) {
       toast.error("Empty fields not allowed");
     } else {
@@ -69,7 +103,8 @@ function CreateLuggage() {
         destinationLocation,
         numberOfBags,
         sourceLocation,
-        
+        image,
+        image2,
         totalWeight,
         dateRange,
         typeOfItems,
@@ -79,13 +114,14 @@ function CreateLuggage() {
         receiverLocation,
         note,
         type,
+        expectation,
       };
       console.log(luggageListingData);
       try {
         const response = await dispatch(createLuggage(luggageListingData));
         if (response.meta.requestStatus === "fulfilled") {
           console.log("Created");
-          navigate('/luggageListing') // Set showModal to true upon successful registration
+          navigate("/luggageListing"); // Set showModal to true upon successful registration
         } else {
           // Extract and show the specific error message from the response
           const errorMessage = response.error.message;
@@ -279,11 +315,32 @@ function CreateLuggage() {
                 />
               </div>
             </div>
-            <div className="flex-auto">
+            <div className="flex flex-row">
               <input
+                id="fileInput1"
+                onChange={(e) => handleFileChange1(e)}
                 type="file"
                 accept="image/*"
                 className="flex-auto py-2.5 my-auto max-md:max-w-full bg-transparent border-none focus:outline-none"
+                required
+              />
+              <img
+                src={image}
+                alt=""
+                className="shrink-0 aspect-[1.04] w-[120px]"
+              />
+              <input
+                id="fileInput2"
+                onChange={(e) => handleFileChange2(e)}
+                type="file"
+                accept="image/*"
+                className="flex-auto py-2.5 my-auto max-md:max-w-full bg-transparent border-none focus:outline-none"
+                required
+              />
+              <img
+                src={image2}
+                alt=""
+                className="shrink-0 aspect-[1.04] w-[120px]"
               />
             </div>
           </div>
@@ -291,10 +348,16 @@ function CreateLuggage() {
             <div className="flex-auto">
               <div className="flex-auto">Minimum Charges (Recommended)</div>
               <div className="flex gap-5 py-2.5 pr-2 pl-7 mt-2 text-lg font-semibold tracking-wide bg-gray-100 rounded-3xl max-w-[636px] text-blue-950 max-md:flex-wrap max-md:pl-5">
-                <div
-                 
+                <input
+                  type="text"
                   className="flex-auto py-2.5 my-auto max-md:max-w-full bg-transparent border-none focus:outline-none"
-                ></div>
+                  id="expectation"
+                  name="expectation"
+                  value={expectation}
+                  onChange={onChange}
+                  placeholder="50"
+                  required
+                />
                 <img
                   loading="lazy"
                   src="https://cdn.builder.io/api/v1/image/assets/TEMP/02d3a26d6f2a423afe74d7ebea8938f79d59ceaf8af12eb2c7dfae01c51954e9?"
@@ -370,7 +433,6 @@ function CreateLuggage() {
                   name="note"
                   value={note}
                   onChange={onChange}
-                
                 />
               </div>
             </div>
