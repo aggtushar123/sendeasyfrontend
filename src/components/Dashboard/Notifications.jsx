@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import {
@@ -11,7 +11,7 @@ const Notifications = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { user, notification } = useSelector((state) => state.auth);
-
+  const [showAllNotification, setShowAllNotification] = useState(false);
   // delete notifications
 
   useEffect(() => {
@@ -46,7 +46,7 @@ const Notifications = () => {
             </div>
 
             {notification
-              .slice()
+              .slice(0, showAllNotification ? notification.length : 3)
               .reverse()
               .map((notificationMessage) => (
                 <div 
@@ -84,10 +84,17 @@ const Notifications = () => {
                   </div>
                 </div>
               ))}
-
-            <div className="justify-center items-center px-16 py-5 mt-8 max-w-full text-xl font-medium text-center text-sky-400 bg-white border-2 border-sky-400 border-solid rounded-[31px] w-[349px] max-md:px-5 max-md:mt-10">
-              See more
-            </div>
+              {notification.length > 3 && (
+                <button
+                  onClick={() =>
+                    setShowAllNotification(!showAllNotification)
+                  }
+                  className="justify-center items-center px-16 py-5 mt-8 max-w-full text-xl font-medium text-center text-sky-400 bg-white border-2 border-sky-400 border-solid rounded-[31px] w-[349px] max-md:px-5 max-md:mt-10"
+                >
+                  {showAllNotification ? "Show Less" : "Show More"}
+                </button>
+              )}
+            
           </div>
         </div>
       </div>
