@@ -53,7 +53,7 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
 
 
   useEffect(() => {
-    socket.on("message recieved", (newMessageRecieved) => {
+    const callback = (newMessageRecieved) => {
       if (
         !selectedChatCompare || // if chat is not selected or doesn't match current chat
         selectedChatCompare._id !== newMessageRecieved.chat._id
@@ -65,7 +65,13 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
       } else {
         dispatch(addMessage(newMessageRecieved));
       }
-    });
+    };
+
+    socket.on("message recieved", callback);
+
+    return () => {
+      socket.removeAllListeners("message recieved")
+    };
   });
 
   const handleSendMessage = async (event) => {
