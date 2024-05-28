@@ -149,7 +149,7 @@ const deleteAllNotification = async (userId, token) => {
 
 const googleLogin = async () => {
   try {
-    const url = `${process.env.SENDEASY_BACKEND_URL}/auth/login/success`;
+    const url = `${process.env.REACT_APP_API_URL}/auth/login/success`;
     const response = await axios.get(url, { withCredentials: true });
     const userData = response.data; 
     localStorage.setItem('user', JSON.stringify(userData))
