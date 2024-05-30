@@ -18,7 +18,7 @@ const Signup = () => {
   let check = false;
   const [showModal, setShowModal] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
-  const [authWindow, setAuthWindow] = useState(null);
+  
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -33,10 +33,7 @@ const Signup = () => {
 
   const [otp, setOtp] = useState('');
 
-  const { user, isSuccess, isLoading, message } = useSelector(
-    (state) => state.auth
-  );
-
+ 
   const onChange = (e) => {
     setSignupData((prevState) => ({
       ...prevState,
@@ -107,24 +104,11 @@ const Signup = () => {
     setShowPassword(!showPassword);
   };
 
-  const googleAuth = async () => {
-    const newAuthWindow = window.open(
-      `${process.env.SENDEASY_BACKEND_URL}/auth/google/callback`
-    );
-
-    setAuthWindow(newAuthWindow);
+  const googleAuth = () => {
+    window.location.href = `${process.env.REACT_APP_API_URL}/auth/google/callback`;
   };
 
-  useEffect(() => {
-    if (authWindow) {
-      const intervalId = setInterval(() => {
-        if (authWindow.closed) {
-          clearInterval(intervalId);
-          dispatch(googleLogin());
-        }
-      }, 1000); // Check every second if the authentication window is closed
-    }
-  }, [authWindow, dispatch]);
+ 
 
   return (
     <>

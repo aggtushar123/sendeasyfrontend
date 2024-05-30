@@ -163,6 +163,23 @@ const googleLogin = async () => {
   }
 };
 
+
+const facebookLogin = async () => {
+  try {
+    const url = `${process.env.REACT_APP_API_URL}/auth/login/success`;
+    const response = await axios.get(url, { withCredentials: true });
+    const userData = response.data; 
+    localStorage.setItem('user', JSON.stringify(userData))
+    return response;
+  } catch (error) {
+    throw new Error(
+      error.response?.data?.message ||
+        error.message ||
+        'Error Logging via Google'
+    );
+  }
+};
+
 const authService = {
   register,
   logout,
@@ -175,7 +192,8 @@ const authService = {
   searchUser,
   deleteAllNotification,
   bookNowTraveler,
-  getAllNotifications
+  getAllNotifications,
+  facebookLogin
 };
 
 export default authService;
