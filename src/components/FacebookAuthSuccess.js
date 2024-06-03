@@ -1,20 +1,20 @@
 import React, {useEffect} from "react"
 import { Navigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { googleLogin } from '../features/auth/authSlice';
+import { facebookLogin } from '../features/auth/authSlice';
 
-const GoogleAuthSuccess = () => {
+const FacebookAuthSuccess = () => {
   const dispatch = useDispatch();
   
 
   // Dispatch googleLogin() action upon component mount (or useEffect if needed)
   
   useEffect(() => {
-    dispatch(googleLogin());
+    dispatch(facebookLogin());
     }, [ dispatch]);
 
   // Redirect to home page or any other desired route after dispatching the action
   return <Navigate to="/" />;
 };
 
-export default GoogleAuthSuccess;
+export default FacebookAuthSuccess;
